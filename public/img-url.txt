@@ -1,0 +1,48 @@
+VALUES (
+  1, 
+  'Build Your Own',
+  'https://www.walksofitaly.com/blog/wp-content/uploads/2013/01/Pizza-03.jpg',
+  500
+),
+(
+  2, 
+  'Classic Cheese Pizza',
+  'https://foodstreetpizza.com/wp-content/uploads/2019/04/cheese-pizza.png',
+  1000
+),
+(
+  3, 
+  'Pepperoni Pizza',
+  'https://freepngimg.com/thumb/pizza/35510-7-pepperoni-pizza.png',
+  1000
+),
+(
+  4,
+  'Deluxe Pizza',
+  'https://freepngimg.com/thumb/pizza/19-pizza-png-image.png',
+  1000
+),
+(
+  5, 
+  'Vegetarian Pizza',
+  'https://freepngimg.com/thumb/pizza/2-pizza-png-image.png',
+  1000
+),
+(
+  6,
+  'Meat Lovers Pizza',
+  'https://toppng.com/uploads/preview/meat-eater-transparent-library-pepperoni-and-beef-pizza-11563244610icxlmgqbau.png',
+  1000
+),
+(
+  7, 
+  'Hawaiian Pizza',
+  'https://www.vhv.rs/dpng/d/488-4889339_hawaiian-pizza-png-6-png-image-pizza.png',
+  1000
+),
+(
+  8, 
+  'BBQ Chicken Pizza',
+  'https://www.vhv.rs/dpng/d/115-1156467_bbq-chicken-pizza-transparent-hd-png-download.png',
+  1000
+),
