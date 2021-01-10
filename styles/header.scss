@@ -1,0 +1,34 @@
+nav {
+  display: flex;
+  z-index: 1;
+  background-color: #a51c30;
+  justify-content: space-between;
+  height: 70px;
+  width: 100vw;
+  position: fixed;
+  margin-top: 0px;
+  padding-top: 0px;
+  top: 0;
+  align-items: flex-end;
+  padding: 1.5em;
+  margin-bottom: 120px;
+}
+
+.logo {
+  height: 50px;
+  padding: 10px;
+  align-self: center;
+  border: 4px solid brown;
+}
+
+.order {
+  margin-right: 50px;
+  margin-top: 17%;
+}
+h1 {
+  color: 73956f;
+}
+
+#main-img {
+  height: 70vh;
+}

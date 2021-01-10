@@ -1,9 +1,20 @@
 // See: https://sass-lang.com/
 
 body {
-  background-color: #EEE;
-
   h1 {
     color: #244751;
   }
+}
+
+body {
+  background-color: rgba(#73956f, 0.9);
+}
+
+html {
+  font-family: "Merienda One", cursive;
+}
+
+header {
+  margin-top: 170px;
+  margin-left: 10%;
 }
