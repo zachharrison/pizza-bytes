@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS customers CASCADE; 
+DROP TABLE IF EXISTS customers CASCADE;
 DROP TABLE IF EXISTS restaurants CASCADE;
 DROP TABLE IF EXISTS menu_items CASCADE;
 DROP TABLE IF EXISTS orders CASCADE;
@@ -34,12 +34,12 @@ CREATE TABLE menu_items (
 
 CREATE TABLE orders (
   id SERIAL PRIMARY KEY NOT NULL,
-  restaurant_id INTEGER REFERENCES restaurants(id) ON DELETE CASCADE, 
+  restaurant_id INTEGER REFERENCES restaurants(id) ON DELETE CASCADE,
   order_date TIMESTAMP NOT NULL DEFAULT NOW()::timestamp,
   customer_id INTEGER REFERENCES customers(id) ON DELETE CASCADE,
   pickup_time TIMESTAMP NOT NULL DEFAULT now()::timestamp + interval '30 minutes',
   completed BOOLEAN DEFAULT 'FALSE'
-); 
+);
 
 CREATE TABLE sizes (
     id SERIAL PRIMARY KEY NOT NULL,
@@ -56,7 +56,8 @@ CREATE TABLE topping_categories (
 CREATE TABLE toppings (
     id SERIAL PRIMARY KEY NOT NULL,
     topping_category_id INTEGER REFERENCES topping_categories(id),
-    name VARCHAR(255) NOT NULL
+    name VARCHAR(255) NOT NULL,
+    menu_item_id INTEGER REFERENCES menu_items(id)
 );
 
 CREATE TABLE order_items (
@@ -70,5 +71,5 @@ CREATE TABLE order_items (
 CREATE TABLE order_item_toppings (
     id SERIAL PRIMARY KEY NOT NULL,
     order_item_id INTEGER REFERENCES order_items(id),
-    topping_id INTEGER REFERENCES toppings(id) 
+    topping_id INTEGER REFERENCES toppings(id)
 );
