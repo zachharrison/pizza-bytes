@@ -22,6 +22,7 @@ module.exports = (db) => {
   });
   // shows the 'selected' menu item and options INSERT into orders
   router.get("/edit", (req, res) => {
+    res.render("edit");
     db.query(`SELECT * FROM toppings;`)
       .then((data) => {
         const result = data.rows;
@@ -35,6 +36,7 @@ module.exports = (db) => {
   // see and remove orders item
   // option to edit => get'/edit'
   router.get("/cart", (req, res) => {
+    res.render("cart");
     db.query(`SELECT * FROM order_items;`)
       .then((data) => {
         const result = data.rows;
