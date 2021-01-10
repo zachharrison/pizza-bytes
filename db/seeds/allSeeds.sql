@@ -124,5 +124,5 @@ VALUES (3, 1),
 (9, 7),
 (10, 7);
 
-
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO labber;
 
