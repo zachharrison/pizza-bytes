@@ -81,6 +81,12 @@ const helpers = {
       [id]
     );
   },
+  getAllOrders: function () {
+    return `SELECT orders.*, customers.name, customers.phone_number
+    FROM orders
+    JOIN customers ON customer_id = customers.id
+    ORDER BY pickup_time;`;
+  },
 };
 
 module.exports = { helpers };

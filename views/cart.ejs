@@ -21,11 +21,10 @@
         </thead>
         <tbody>
           <tr class="table-rows">
-            
             <td>
               <div class="item-container">
                 <p>Pepperoni*</p>
-                <img src="/public/img/pepperoni.png" alt="">
+                <img src="https://freepngimg.com/thumb/pizza/35510-7-pepperoni-pizza.png">
               </div>
             </td>
 
@@ -35,31 +34,64 @@
 
             <td>
               <div class="details-container">
-                <p>Size: <span>Medium</span></p>
+                <p>Size: <span id="size">Medium</span></p>
+                <p>Quantity: <span id="quantity">1</span></p>
                 <div class="btn-container">
-                  <a href="/edit">Edit</a>
-                  <button>Remove</button>
+                  <a href="/edit" class="edit-btn">Edit</a>
+                  <button class="remove-btn">Remove</button>
                 </div>
               </div>
             </td>
-            <div class= "price">
+            <div class="price">
               <td>
                 $9.99
               </td>
             </div>
-
           </tr>
 
+          <tr class="table-rows">
+            <td>
+              <div class="item-container">
+                <p>Pepperoni*</p>
+                <img src="https://freepngimg.com/thumb/pizza/35510-7-pepperoni-pizza.png">
+              </div>
+            </td>
+
+            <td>
+              Mozzarella, Pepperoni*, Mozzarella, Pepperoni*, Mozzarella, Pepperoni*, Mozzarella, Pepperoni*, Mozzarella, Pepperoni*
+            </td>
+
+            <td>
+              <div class="details-container">
+                <p>Size: <span id="size">Medium</span></p>
+                <p>Quantity: <span id="quantity">1</span></p>
+                <div class="btn-container">
+                  <a href="/edit" class="edit-btn">Edit</a>
+                  <button class="remove-btn">Remove</button>
+                </div>
+              </div>
+            </td>
+            <div class="price">
+              <td>
+                $9.99
+              </td>
+            </div>
+          </tr>
+          
         </tbody>
 
 
         <tfoot>
-          <tr>
-            <div class="total-container">
-              <th>Total</th>
-              <th>$9.99</th>
-            </div>
-          </tr>
+          <thead>
+            <tr>
+              <div class="total-container">
+                <th class="total-header">Total</th>
+                <th class="total-header"></th>
+                <th class="total-header"></th>
+                <th class="total-header">$9.99</th>
+              </div>
+            </tr>
+          </thead>
         </tfoot>
       </table>
     </main>
