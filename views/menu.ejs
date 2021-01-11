@@ -9,11 +9,21 @@
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
+    <!-- <script type="text/javascript" src="/scripts/menu.js"></script> -->
   </head>
 
   <body>
     <%- include('partials/nav') %>
-    
+
     <h1>This is the menu!!</h1>
+    <% for (let item of result) { let dollarPrice = item.price/100 %>
+    <p>
+      <span><%= item.name %></span>
+      <span>$<%= dollarPrice.toFixed(2) %></span>
+      <!-- <img src="<%item.photo_url%>" alt="" /> -->
+      <span><%= item.photo_url%></span>
+      <button>Add to cart</button>
+    </p>
+    <% } %>
   </body>
 </html>

@@ -6,13 +6,14 @@
  */
 const express = require("express");
 const router = express.Router();
+const { helpers } = require("../db/query-scripts/queryMethods.js");
 module.exports = (db) => {
   // main menu, shows pizzas with details
   router.get("/", (req, res) => {
-    db.query(`SELECT name, photo_url, price FROM menu_items;`)
+    db.query(helpers.getMenu())
       .then((data) => {
         const result = data.rows;
-        res.json({ result });
+        res.render("menu", { result });
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
