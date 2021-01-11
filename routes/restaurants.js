@@ -7,6 +7,7 @@
 
 const express = require("express");
 const router = express.Router();
+const { helpers } = require("../db/query-scripts/queryMethods.js");
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
