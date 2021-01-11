@@ -17,7 +17,7 @@ JOIN orders ON orders.id = order_id
 WHERE orders.id = 1;
 
 -- count of pizzas in an order
-SELECT count(quantity)
+SELECT sum(quantity)
 FROM order_items
 JOIN orders ON orders.id = order_id
 WHERE orders.id = 1;
@@ -54,6 +54,7 @@ JOIN toppings ON topping_id = toppings.id
 JOIN topping_categories ON topping_category_id = topping_categories.id
 WHERE order_items.id = 1;
 
+-- sum of topping prices on WHOLE ORDER
 SELECT sum(topping_categories.price)
 FROM menu_items
 JOIN order_items ON menu_item_id = menu_items.id
