@@ -5,24 +5,24 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
     integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous" />
-  <title>Customize order</title>
+  <title>Shopping Cart</title>
 </head>
 
 <body>
   <%- include('partials/nav') %>
 
   <main style="margin: 1em">
-    <h3>Customize Pizza</h3>
+    <h3>Pizza oven (cart)</h3>
     <table class="table">
       <thead>
         <tr>
           <th scope="col">Pizza</th>
           <th scope="col">Toppings</th>
           <th scope="col">Stomach storage</th>
+          <th scope="col"></th>
           <th scope="col">Quantity</th>
+          <th scope="col"></th>
           <th scope="col">Price</th>
-          <th scope="col"></th>
-          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
@@ -31,31 +31,42 @@
 
           <td>Mozzarella, Pepperoni*</td>
           <td>kiloByte*</td>
-          <form method="POST" action=>
-            <td>+/- 1*</td>
-            <td>$9.99*</td>
-            <td>
-              <button type="submit" class="btn btn-primary">update</button>
-          </form>
-          </td>
           <td>
-            <form method="POST" action=>
               <button type="submit" class="btn btn-primary">edit</button>
-            </form>
           </td>
+          <td>+/- 1*</td>
           <td>
-            <form method="POST" action=>
               <button type="delete" class="btn btn-danger">remove</button>
-            </form>
+          </td>
+          <td>$9.99*</td>
+          <td>
           </td>
         </tr>
-        <tr>
-          Subtotal
-        </tr>
-        <tr>
-          Total
-        </tr>
+
       </tbody>
+      <tfoot>
+        <tr>
+          <th>Subtotal</th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th>$9.99</th>
+        </tr>
+        <tr>
+          <th>Total</th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th>$9.99</th>
+        </tr>
+        <tr>
+            <button type="submit" class="btn btn-primary">update</button>
+        </tr>
+      </tfoot>
     </table>
   </main>
 

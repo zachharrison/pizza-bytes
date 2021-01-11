@@ -1,0 +1,89 @@
+/* NAVBAR */
+nav {
+  z-index: 1;
+  background-color: #a51c30;
+  height: 80px;
+  width: 100%;
+  position: fixed;
+  margin-top: 0px;
+  top: 0;
+  padding: 1.5em;
+  border-bottom: 4px solid #0A5E2AFF;
+  /* margin-bottom: 120px; */
+}
+
+nav .nav-items {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav .nav-items .logo-container {
+
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+}
+
+nav .nav-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 45px;
+}
+
+nav .nav-links a {
+  margin-right: 12px;
+  font-size: 24px;
+  color: black;
+  text-decoration: none;
+}
+
+nav .nav-links a:hover {
+  border-bottom: 3px solid #0A5E2AFF;
+
+}
+
+.logo {
+  height: 50px;
+}
+
+ header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-items: center;
+  margin-top: 64px;
+  background-image: url("https://images.pexels.com/photos/5088638/pexels-photo-5088638.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");
+  background-position: center; 
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 90vh;
+  width: 100%;
+}
+
+header .showcase {
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+header .showcase h1 {
+  font-size: 32px;
+  color: #0A5E2AFF;
+}
+
+header .showcase .order {
+  width: 150px;
+  height: 50px;
+  background-color: #a51c30;
+  color: black;
+  border: 3px solid #0A5E2AFF;
+  outline: none;
+}
+
+header .showcase .order:hover {
+  background-color: #791625;
+}
