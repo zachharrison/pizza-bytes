@@ -11,64 +11,124 @@
 <body>
   <%- include('partials/nav') %>
 
-  <main style="margin: 1em">
-    <h3>Customize Pizza</h3>
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">Pizza</th>
-          <th scope="col">Toppings</th>
-          <th scope="col">Stomach storage</th>
-          <th scope="col">Quantity</th>
-          <th scope="col">Price</th>
-          <th scope="col"></th>
-          <th scope="col"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Pepperoni*</a></td>
-
-          <td>Mozzarella, Pepperoni*</td>
-          <td>kiloByte*</td>
-          <form method="POST" action=>
-            <td>+/- 1*</td>
-            <td>$9.99*</td>
+    <main style="margin: 1em">
+      <h3>Customize Pizza</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Pizza</th>
+            <th scope="col">Cheeses</th>
+            <th scope="col">Meats</th>
+            <th scope="col">Veggies</th>
+            <th scope="col">Price</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Pepperoni*</a></td>
+            <td>
+              <div>
+                <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
+                <label for="subscribeNews">Mozzarella</label>
+              </div>
+              <div>
+                <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
+                <label for="subscribeNews">Cheddar</label>
+              </div>
+              <div>
+                <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
+                <label for="subscribeNews">Feta</label>
+              </div>
+            </td>
+            <td>
+              <div>
+                <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
+                <label for="subscribeNews">Pepperoni</label>
+              </div>
+              <div>
+                <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
+                <label for="subscribeNews">Bacon</label>
+              </div>
+              <div>
+                <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
+                <label for="subscribeNews">Ham</label>
+              </div>
+              <div>
+                <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
+                <label for="subscribeNews">Chicken</label>
+              </div>
+              <div>
+                <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
+                <label for="subscribeNews">Italian Sausage</label>
+              </div>
+            </td>>
+            <td>
+              <div>
+                <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
+                <label for="subscribeNews">Green Pepper</label>
+              </div>
+              <div>
+                <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
+                <label for="subscribeNews">Banana Peppers</label>
+              </div>
+              <div>
+                <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
+                <label for="subscribeNews">Mushrooms</label>
+              </div>
+              <div>
+                <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
+                <label for="subscribeNews">Black Olives</label>
+              </div>
+              <div>
+                <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
+                <label for="subscribeNews">Red Onion</label>
+              </div>
+              <div>
+                <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
+                <label for="subscribeNews">Pineapple</label>
+              </div>
+              <div>
+                <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter">
+                <label for="subscribeNews">Tomato</label>
+              </div>
+            </td>>
             <td>
               <button type="submit" class="btn btn-primary">update</button>
-          </form>
-          </td>
-          <td>
-            <form method="POST" action=>
-              <button type="submit" class="btn btn-primary">edit</button>
-            </form>
-          </td>
-          <td>
-            <form method="POST" action=>
-              <button type="delete" class="btn btn-danger">remove</button>
-            </form>
-          </td>
-        </tr>
-        <tr>
-          Subtotal
-        </tr>
-        <tr>
-          Total
-        </tr>
-      </tbody>
-    </table>
-  </main>
+              </form>
+            </td>
+            <td>
+              <form method="POST" action=>
+                <button type="submit" class="btn btn-primary">edit</button>
+              </form>
+            </td>
+            <td>
+              <form method="POST" action=>
+                <button type="delete" class="btn btn-danger">remove</button>
+              </form>
+            </td>
+          </tr>
+          <tr>
+            Subtotal
+          </tr>
+          <tr>
+            Total
+          </tr>
+        </tbody>
+      </table>
+    </main>
 
-  <!-- Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"></script>
 </body>
 
 </html>

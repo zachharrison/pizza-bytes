@@ -11,75 +11,68 @@
 <body>
   <%- include('partials/nav') %>
 
-  <main style="margin: 1em">
-    <h3>Pizza oven (cart)</h3>
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">Pizza</th>
-          <th scope="col">Toppings</th>
-          <th scope="col">Stomach storage</th>
-          <th scope="col"></th>
-          <th scope="col">Quantity</th>
-          <th scope="col"></th>
-          <th scope="col">Price</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Pepperoni*</a></td>
+    <main style="margin: 1em">
+      <h3>Pizza oven (cart)</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Pizza</th>
+            <th scope="col">Toppings</th>
+            <th scope="col">Stomach storage</th>
+            <th scope="col"></th>
+            <th scope="col">Quantity</th>
+            <th scope="col"></th>
+            <th scope="col">Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Pepperoni*</a></td>
 
-          <td>Mozzarella, Pepperoni*</td>
-          <td>kiloByte*</td>
-          <td>
+            <td>Mozzarella, Pepperoni*</td>
+            <td>kiloByte*</td>
+            <td>
               <button type="submit" class="btn btn-primary">edit</button>
-          </td>
-          <td>+/- 1*</td>
-          <td>
+            </td>
+            <td>+/- 1*</td>
+            <td>
               <button type="delete" class="btn btn-danger">remove</button>
-          </td>
-          <td>$9.99*</td>
-          <td>
-          </td>
-        </tr>
+            </td>
+            <td>$9.99*</td>
+            <td>
+            </td>
+            <div class="one column remove omega desktop">
+              <a href="/cart/change?line={{ forloop.index }}&quantity=0" rel="{{ item.id }}">Remove Item</a>
+            </div>
+          </tr>
 
-      </tbody>
-      <tfoot>
-        <tr>
-          <th>Subtotal</th>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th>$9.99</th>
-        </tr>
-        <tr>
-          <th>Total</th>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th>$9.99</th>
-        </tr>
-        <tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th colspan="6">Subtotal</th>
+            <th>$9.99</th>
+          </tr>
+          <tr>
+            <th colspan="6">Total</th>
+            <th>$9.99</th>
+          </tr>
+          <tr>
             <button type="submit" class="btn btn-primary">update</button>
-        </tr>
-      </tfoot>
-    </table>
-  </main>
+          </tr>
+        </tfoot>
+      </table>
+    </main>
 
-  <!-- Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"></script>
 </body>
 
 </html>
