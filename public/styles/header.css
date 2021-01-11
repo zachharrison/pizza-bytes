@@ -9,7 +9,6 @@ nav {
   top: 0;
   padding: 1.5em;
   border-bottom: 4px solid #0A5E2AFF;
-  /* margin-bottom: 120px; */
 }
 
 nav .nav-items {
@@ -19,10 +18,9 @@ nav .nav-items {
 }
 
 nav .nav-items .logo-container {
-
   display: flex;
   flex-direction: column;
-  align-items: center; 
+  align-items: center;
 }
 
 nav .nav-links {
@@ -41,21 +39,20 @@ nav .nav-links a {
 
 nav .nav-links a:hover {
   border-bottom: 3px solid #0A5E2AFF;
-
 }
 
 .logo {
   height: 50px;
 }
 
- header {
+header {
   display: flex;
   align-items: center;
   justify-content: center;
   align-items: center;
   margin-top: 64px;
   background-image: url("https://images.pexels.com/photos/5088638/pexels-photo-5088638.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");
-  background-position: center; 
+  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   height: 90vh;
