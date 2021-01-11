@@ -4,10 +4,8 @@
  *   these routes are mounted onto /menu
  * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
  */
-
 const express = require("express");
 const router = express.Router();
-
 module.exports = (db) => {
   // main menu, shows pizzas with details
   router.get("/", (req, res) => {
@@ -32,7 +30,6 @@ module.exports = (db) => {
         res.status(500).json({ error: err.message });
       });
   });
-
   // see and remove orders item
   // option to edit => get'/edit'
   router.get("/cart", (req, res) => {
@@ -46,7 +43,6 @@ module.exports = (db) => {
         res.status(500).json({ error: err.message });
       });
   });
-
   // checkout confirmation
   router.get("/checkout", (req, res) => {
     db.query(`SELECT * FROM orders;`)
@@ -58,7 +54,6 @@ module.exports = (db) => {
         res.status(500).json({ error: err.message });
       });
   });
-
   // option to chng_quantity/remove => post'/cart'
   router.post("/cart", (req, res) => {
     db.query(`SELECT * FROM order_items;`)
@@ -70,6 +65,5 @@ module.exports = (db) => {
         res.status(500).json({ error: err.message });
       });
   });
-
   return router;
 };
