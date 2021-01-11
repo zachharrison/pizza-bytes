@@ -1,0 +1,50 @@
+body {
+  /* background-color: #174a20; */
+  background-color: #73956F;
+}
+
+.edit-table {
+  border: 1px solid black;
+  font-size: 18px;
+  padding: 12px;
+  width: 90%;
+  text-align: left;
+  margin: auto;
+}
+
+.title {
+  text-align: center;
+  font-size: 24px;
+  color:  black;
+}
+
+.edit-table thead, tfoot {
+  border: 2px solid black;
+  background: #a51c30;
+  width: 100%;
+}
+
+.edit-table tbody {
+  background-color: #f6ebe5;
+}
+
+.right {
+  text-align: right;
+}
+
+tbody .table-rows {
+  text-align: center;
+}
+
+tbody .table-rows td {
+  background-color: #f6ebe5;
+}
+
+tbody {
+  vertical-align: text-top;
+}
+
+.table tfoot{
+  background: #a51c30;
+  width: 100%;
+}

@@ -5,7 +5,7 @@
   <%- include('partials/nav') %>
 
     <main style="margin: 1em">
-      <h3>Customize Pizza</h3>
+      <h3 class="title">Customize Pizza</h3>
       <table class="edit-table">
         <thead>
           <tr>
@@ -14,7 +14,7 @@
             <th scope="col">Meats</th>
             <th scope="col">Veggies</th>
             <th scope="col">Stomach storage</th>
-            <th scope="col">Price-----</th>
+            <th scope="col">Price</th>
           </tr>
         </thead>
         <tbody>
@@ -87,29 +87,28 @@
               </div>
             </td>
             <td>
+              <div>
+                <form>
+                  <select name="size" id="size">
+                    <option value="byte">byte</option>
+                    <option value="megabyte">megabyte</option>
+                    <option value="gigabyte">gigabyte</option>
+                  </select>
+                </form>
+              </div>
+            </td>
             <div>
-              <form action=>
-                <label>Stomach storage</label>
-                <select name="size" id="size">
-                  <option value="byte">byte</option>
-                  <option value="megabyte">megabyte</option>
-                  <option value="gigabyte">gigabyte</option>
-                </select>
-              </form>
+              <td class="right">1 BTC</td>
             </div>
-            <div>
-            <td class="num">1 BTC</td>
-            </div>
-          </td>
           </tr>
         </tbody>
         <tfoot>
           <tr>
-            <th colspan="5">Uploading text animation ======> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 60%</th>
+            <th colspan="5">Uploading text animation ======> 60%</th>
             <th>
-              <button type="submit">upload</button>
-            </form>
-          </th>
+              <button type="submit" class="right">upload</button>
+              </form>
+            </th>
           </tr>
         </tfoot>
       </table>
