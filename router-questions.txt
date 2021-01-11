@@ -1,0 +1,22 @@
+Why am I getting unhandledPromiseRejection that points to node modules folder?
+---------------------------------------------------------------------------------------------
+===>(node:3298) UnhandledPromiseRejectionWarning: Error: Connection terminated
+    at Client.<anonymous> (/vagrant/Food-Pick-up-Ordering/node_modules/pg/lib/client.js:210:17)
+---------------------------------------------------------------------------------------------
+
+Why is the skeleton using this as middlewear?
+---------------------------------------------------------------------------------------------
+===> app.use("/api/widgets", widgetsRoutes(db));
+---------------------------------------------------------------------------------------------
+
+Is my server correctly connected to the database?
+
+Do I need to export and require my pool in any of my routing files like Vasiliy does here?
+---------------------------------------------------------------------------------------------
+===> https://github.com/vasiliy-klimkin/lhl-lectures/blob/master/w05d03-SQL-from-our-Apps/demo3/db/db.js
+---------------------------------------------------------------------------------------------
+
+How can I display our data in the browser?
+
+Do I need to add db.end() anywhere?
+
