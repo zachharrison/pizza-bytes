@@ -68,9 +68,9 @@ VALUES (1, '2021-01-09 19:03:11.242422', 1, '2021-01-09 19:33:11.242422', TRUE),
 (1, '2021-01-07 19:03:11.242422', 4, '2021-01-07 19:33:11.242422', TRUE);
 
 INSERT INTO sizes (name, price)
-VALUES ('small', 0),
-('medium', 400),
-('large', 700);
+VALUES ('byte', 0),
+('megabyte', 400),
+('gigabyte', 700);
 
 INSERT INTO topping_categories (name, price)
 VALUES ('Cheeses', 200),

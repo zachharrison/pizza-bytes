@@ -43,6 +43,7 @@ nav .nav-links a:hover {
 
 .logo {
   height: 50px;
+  border: 2px solid #0A5E2AFF;
 }
 
 header {
@@ -50,7 +51,7 @@ header {
   align-items: center;
   justify-content: center;
   align-items: center;
-  margin-top: 64px;
+  /* margin-top: 10px; */
   background-image: url("https://images.pexels.com/photos/5088638/pexels-photo-5088638.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");
   background-position: center;
   background-repeat: no-repeat;

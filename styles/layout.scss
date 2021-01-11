@@ -4,5 +4,11 @@ body {
 }
 html {
 	font-family: "Merienda One", cursive;
-}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  table-layout: fixed; /* NEW */
+}}
 
