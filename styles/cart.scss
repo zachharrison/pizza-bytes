@@ -1,0 +1,24 @@
+// main {
+//   .cart-table {
+//     display: flex;
+//     justify-content: space-between;
+//     align-items: center;
+
+//     .cart-headers {
+//       tr {
+//         display: flex;
+//         justify-content: space-between;
+//         align-items: center;
+
+//       }
+//     }
+
+
+//   }
+// }
+main,
+.cart-table,
+.cart-headers,
+tr {
+  border: 2px solid black
+}
