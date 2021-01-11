@@ -35,14 +35,13 @@ module.exports = (db) => {
       });
   });
   router.get("/orders", (req, res) => {
-    let query = `SELECT * FROM restaurants`;
-    console.log(query);
-    db.query(query)
+    db.query(helpers.getAllOrders())
       .then((data) => {
         const result = data.rows;
-        res.json({ result });
+        res.render("orders", { result });
       })
       .catch((err) => {
+        console.error(err);
         res.status(500).json({ error: err.message });
       });
   });

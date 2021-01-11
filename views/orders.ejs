@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Orders</title>
+
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="/scripts/app.js"></script>
+    <!-- <script type="text/javascript" src="/scripts/menu.js"></script> -->
+  </head>
+
+  <body>
+    <%- include('partials/nav') %>
+
+    <h1>Your Orders</h1>
+    <table>
+      <tr>
+        <th>Order Number</th>
+        <th>Order Date</th>
+        <th>Pickup Time</th>
+        <th>Name</th>
+        <th>Phone Number</th>
+        <th>Completed</th>
+      </tr>
+      <% for (let item of result) { %>
+      <tr>
+        <td><%= item.id %></td>
+        <td><%= item.order_date.toLocaleString() %></td>
+        <td><%= item.pickup_time.toLocaleString() %></td>
+        <td><%= item.name %></td>
+        <td><%= item.phone_number %></td>
+        <td><%= item.completed %></td>
+      </tr>
+      <% } %>
+    </table>
+  </body>
+</html>
