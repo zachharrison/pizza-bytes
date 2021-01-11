@@ -22,7 +22,7 @@ nav .nav-items .logo-container {
 
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; 
 }
 
 nav .nav-links {
@@ -52,12 +52,14 @@ nav .nav-links a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
+  align-items: center;
   margin-top: 64px;
   background-image: url("https://images.pexels.com/photos/5088638/pexels-photo-5088638.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");
   background-position: center; 
   background-repeat: no-repeat;
   background-size: cover;
   height: 90vh;
+  width: 100%;
 }
 
 header .showcase {
