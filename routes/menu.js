@@ -38,7 +38,7 @@ module.exports = (db) => {
   // see and remove orders item
   // option to edit => get'/edit'
   router.get("/cart", (req, res) => {
-    db.query(helpers.getPizzasInOrder(), ['1'])
+    db.query(helpers.getPizzasInOrder(), ["1"])
       .then((data) => {
         const result = data.rows;
         console.log("result: pizza orders", result);
@@ -54,7 +54,7 @@ module.exports = (db) => {
     db.query(`SELECT * FROM orders;`)
       .then((data) => {
         const result = data.rows;
-        res.json({ result });
+        res.render("checkout", { result });
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
