@@ -39,12 +39,12 @@ nav .nav-links a {
 
 nav .nav-links a:hover {
   padding-bottom: 6px;
-  border-bottom: 4px solid #0A5E2AFF;
+  border-bottom: 4px solid #0a5e2aff;
 }
 
 .logo {
   height: 50px;
-  border: 3px solid #0A5E2AFF;
+  border: 3px solid #0a5e2aff;
 }
 
 header {
@@ -76,8 +76,7 @@ header .showcase h1 {
 }
 
 header .showcase .order {
-  width: 200px;
-  height: 65px;
+  width: 175px;
   color: #f6ebe5;
   border: 3px solid #f6ebe5;
   background: #a51c30;
@@ -85,6 +84,7 @@ header .showcase .order {
   padding: 12px;
   font-size: 24px;
   text-align: center;
+  text-decoration: none;
 }
 
 header .showcase .order:hover {

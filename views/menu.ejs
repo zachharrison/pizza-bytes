@@ -14,17 +14,58 @@
 
   <body>
     <%- include('partials/nav') %>
+    <main>
+      <h3 class="title">Menu</h3>
+      <table class="table">
+        <thead class="table-headers">
+          <tr>
+            <th>Photo</th>
+            <th>Pizza</th>
+            <th>Starting at</th>
+            <th></th>
+          </tr>
+        </thead>
+        <% for (let item of result) { let dollarPrice = item.price/100 %>
+        <tbody>
+          <tr class="table-rows">
+            <td>
+              <div class="item-container">
+                <p><%=item.name %></p>
+              </div>
+            </td>
+            <td>
+              <div class="item-container">
+                <p><%=item.name %></p>
+              </div>
+            </td>
+            <td>
+              <div class="item-container">
+                <p>$<%= dollarPrice.toFixed(2) %></p>
+              </div>
+            </td>
+            <td>
+              <div class="btn-container">
+                <a href="/api/menu/cart" class="edit-btn">Order</a>
+              </div>
+            </td>
 
-    <h1>This is the menu!!</h1>
-    <% for (let item of result) { let dollarPrice = item.price/100 %>
-    <p>
-      <span><%= item.name %></span>
-      <span>$<%= dollarPrice.toFixed(2) %></span>
-      <!-- <img src="<%item.photo_url%>" alt="" /> -->
-      <!-- currently as span to show the URL, one above is the commented out img one that's not working -->
-      <span><%= item.photo_url%></span>
-      <button>Add to cart</button>
-    </p>
-    <% } %>
+            <% } %>
+          </tr>
+        </tbody>
+
+        <tfoot>
+          <thead>
+            <tr>
+              <div class="total-container">
+                <th class="total-header"></th>
+                <th class="total-header"></th>
+                <th class="total-header"></th>
+                <th class="total-header"></th>
+              </div>
+            </tr>
+          </thead>
+        </tfoot>
+      </table>
+    </main>
   </body>
 </html>
