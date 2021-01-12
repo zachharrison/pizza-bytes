@@ -46,14 +46,24 @@ module.exports = (db) => {
       });
   });
   router.get("/orders/:id", (req, res) => {
-    let query = `SELECT * FROM restaurants`;
-    console.log(query);
-    db.query(query)
+    let id = req.params.id;
+    db.query(
+      `SELECT quantity, orders.id, menu_items.price, menu_items.name AS pizza_name, sizes.name AS size, order_items.id AS order_id
+      FROM order_items
+      JOIN orders ON orders.id = order_id
+      JOIN menu_items ON menu_item_id = menu_items.id
+      JOIN sizes ON sizes.id = size_id
+      WHERE orders.id = 1;`
+    )
       .then((data) => {
         const result = data.rows;
-        res.json({ result });
+        console.log("========================>", result);
+        console.log("RESULT IS:", result);
+        console.log("RESULT ID r, ", result[0].id);
+        res.render("orders-id", { result });
       })
       .catch((err) => {
+        console.error(err);
         res.status(500).json({ error: err.message });
       });
   });
@@ -83,6 +93,30 @@ module.exports = (db) => {
       });
   });
   router.get("/menu/:id", (req, res) => {
+    let query = `SELECT * FROM restaurants`;
+    console.log(query);
+    db.query(query)
+      .then((data) => {
+        const result = data.rows;
+        res.json({ result });
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  });
+  router.get("/customers", (req, res) => {
+    let query = `SELECT * FROM restaurants`;
+    console.log(query);
+    db.query(query)
+      .then((data) => {
+        const result = data.rows;
+        res.json({ result });
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  });
+  router.get("/customers/:id", (req, res) => {
     let query = `SELECT * FROM restaurants`;
     console.log(query);
     db.query(query)
