@@ -1,6 +1,6 @@
 body {
   /* background-color: #174a20; */
-  background-color: #73956F;
+  background-color: #73956f;
 }
 
 .edit-table {
@@ -18,22 +18,23 @@ body {
   text-align: center;
 }
 
-.edit-table thead, tfoot {
+.edit-table thead,
+tfoot {
   border: 2px solid black;
-  background: #a51c30;
+  background: rgba(115, 149, 111, 0.8);
   width: 100%;
 }
 
 .edit-table tbody {
   padding: 12px;
-  background-color: #f6ebe5;
+  background-color: rgba(255, 255, 255, 0.9);
 }
 
 tbody tr td {
   padding: 12px;
 }
 
-tbody tr td div { 
+tbody tr td div {
   margin-bottom: 12px;
 }
 
@@ -73,7 +74,7 @@ tfoot tr th {
 }
 
 .upload:hover {
-  background: #73956F;
+  background: #73956f;
   color: white;
 }
 

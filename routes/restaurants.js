@@ -53,13 +53,11 @@ module.exports = (db) => {
       JOIN orders ON orders.id = order_id
       JOIN menu_items ON menu_item_id = menu_items.id
       JOIN sizes ON sizes.id = size_id
-      WHERE orders.id = 1;`
+      WHERE orders.id = $1;`,
+      [id]
     )
       .then((data) => {
         const result = data.rows;
-        console.log("========================>", result);
-        console.log("RESULT IS:", result);
-        console.log("RESULT ID r, ", result[0].id);
         res.render("orders-id", { result });
       })
       .catch((err) => {
