@@ -7,6 +7,23 @@
 const express = require("express");
 const router = express.Router();
 const { helpers } = require("../db/query-scripts/queryMethods.js");
+const { generateRandomId } = require('../generateRandomId');
+const bodyParser = require("body-parser");
+const cookieSession = require('cookie-session');
+const app = express()
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(cookieSession(
+  // { name: 'session', keys: 'somestring', cart: {}},
+  { name: 'session', keys: ["some secret here"], maxAge: 24 * 60 * 60 * 1000 }
+));
+app.use(function(req, res, next){
+  res.locals.cart = req.session.cart;
+  next();
+});
+
+
 module.exports = (db) => {
   // main menu, shows pizzas with details
   router.get("/", (req, res) => {
@@ -58,15 +75,87 @@ module.exports = (db) => {
       });
   });
   // option to chng_quantity/remove => post'/cart'
+  // router.post("/cart", (req, res) => {
+  //   db.query(`SELECT * FROM order_items;`)
+  //     .then((data) => {
+  //       const id = generateRandomId();
+  //       const result = data.rows;
+  //       const templateVars = { result, id, cart: req.session.cart };
+  //       console.log(req.session.cart)
+  //       // res.json({ result });
+  //       res.json({ result });
+  //       res.render('cart', templateVars);
+  //     })
+  //     .catch((err) => {
+  //       res.status(500).json({ error: err.message });
+  //     });
+  // });
+
   router.post("/cart", (req, res) => {
-    db.query(`SELECT * FROM order_items;`)
-      .then((data) => {
-        const result = data.rows;
-        res.json({ result });
-      })
-      .catch((err) => {
-        res.status(500).json({ error: err.message });
-      });
+
+    const id = generateRandomId();
+    // const templateVars = { id, cart: req.session.cart };
+    
+    req.session['pizza'] = req.body.myBtn
+    
+    const templateVars = { pizzaName: req.session.pizza }
+    
+
+    console.log('This is the req.session.pizza ', req.session.pizza);
+    // console.log('This is the req.body.test ', req.body.myBtn);
+    res.render('cart', templateVars);
+    
   });
+
   return router;
-};
+}
+
+
+
+// req.session["cart"]["pizzas"]
+// req.session["user_id"] = id;
+// res.redirect("/urls");
+
+// { name: 1, keys: 'somestring', cart: { } }
+
+// cartRandomID {
+//   pizzaRandomID {
+//     name: cheese pizza,
+//     size: lg,
+//     toppings: [feta, sausuage]
+//   },
+//   pizzaRandomID {
+//     etc
+//   }
+
+// }
+
+
+// cart {
+//   unique_cart_id: {
+//     pizzas : [
+//     {
+//       name: pepperoni,
+//       size: small,
+//       mozzarella: true,
+//       chedder: false,
+//       feta: false,
+//       pepperoni: true,
+//     },
+//       { //options 2
+//         name: custom
+//       }
+//     ]
+//   }
+// }
+
+// randomCartId: {
+//   pizzas : [
+//     {
+//       id: randomPizzaId,
+//       name: pepperoni,
+//       size: small,
+//       toppings: ['pepperoni', 'mozzarella'],
+//     },
+//   ]
+// }

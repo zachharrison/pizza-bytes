@@ -50,9 +50,10 @@
               </div>
             </td>
             <td>
-              <form class="btn-container" action="/api/menu/cart" method="GET">
+              <form class="btn-container" action="/api/menu/cart/" method="POST">
                 <!-- <a href="/api/menu/cart" class="edit-btn" id="order-btn">Order</a> -->
-                <button class="btn" value="<%=item.name%>">Order</button>
+                <button name="myBtn" class="btn" value="<%=item.name%>">Order</button>
+                <input type="text" name="test" id="test">
               </form>
             </td>
 
