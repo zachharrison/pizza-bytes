@@ -28,3 +28,9 @@ body {
   height: 90vh;
   width: 100%;
 }
+
+#homepagehead {
+  position: fixed;
+  margin-top: 230px;
+  top: 0;
+}
