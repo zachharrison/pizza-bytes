@@ -7,20 +7,12 @@
 
 const express = require("express");
 const router = express.Router();
+const bodyParser = require("body-parser");
 const { helpers } = require("../db/query-scripts/queryMethods.js");
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
-    let query = `SELECT * FROM restaurants`;
-    console.log(query);
-    db.query(query)
-      .then((data) => {
-        const result = data.rows;
-        res.json({ result });
-      })
-      .catch((err) => {
-        res.status(500).json({ error: err.message });
-      });
+    res.render("rests");
   });
   router.get("/login", (req, res) => {
     let query = `SELECT * FROM restaurants`;
@@ -79,24 +71,21 @@ module.exports = (db) => {
   });
 
   router.get("/menu", (req, res) => {
-    let query = `SELECT * FROM restaurants`;
-    console.log(query);
-    db.query(query)
+    db.query(helpers.getMenu())
       .then((data) => {
         const result = data.rows;
-        res.json({ result });
+        res.render("rests-menu", { result });
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
       });
   });
   router.get("/menu/:id", (req, res) => {
-    let query = `SELECT * FROM restaurants`;
-    console.log(query);
-    db.query(query)
+    let id = req.params.id;
+    db.query(helpers.getMenuItemFromId(), [id])
       .then((data) => {
-        const result = data.rows;
-        res.json({ result });
+        const result = data.rows[0];
+        res.render("rests-menu-id", { result });
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
@@ -151,16 +140,8 @@ module.exports = (db) => {
       });
   });
   router.post("/menu/:id", (req, res) => {
-    let query = `SELECT * FROM restaurants`;
-    console.log(query);
-    db.query(query)
-      .then((data) => {
-        const result = data.rows;
-        res.json({ result });
-      })
-      .catch((err) => {
-        res.status(500).json({ error: err.message });
-      });
+    console.log(res.body);
+    res.redirect("/api/restaurants/menu");
   });
   router.delete("/user/menu/:id", (req, res) => {
     let query = `SELECT * FROM restaurants`;
