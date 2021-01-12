@@ -1,20 +1,20 @@
 const helpers = {
-  getMenu: function () {
+  getMenu: function() {
     return `SELECT * FROM menu_items;`;
   },
-  getMenuItemFromId: function () {
+  getMenuItemFromId: function() {
     return `SELECT * FROM menu_items WHERE id = $1;`;
   },
-  getToppings: function () {
+  getToppings: function() {
     return `SELECT * toppings;`;
   },
-  getToppingFromId: function () {
+  getToppingFromId: function() {
     return `SELECT * FROM toppings WHERE id = $1;`;
   },
-  getToppingFromId: function () {
+  getToppingFromId: function() {
     return `SELECT * FROM toppings WHERE id = $1;`;
   },
-  getPizzasInOrder: function () {
+  getPizzasInOrder: function() {
     return (
       `SELECT quantity, menu_items.price, menu_items.name AS pizza_name, sizes.name AS size, order_items.id AS order_id
       FROM order_items
@@ -24,7 +24,7 @@ const helpers = {
       WHERE orders.id = $1;`
     );
   },
-  countPizzasInOrder: function () {
+  countPizzasInOrder: function() {
     return (
       `SELECT sum(quantity)
       FROM order_items
@@ -32,7 +32,7 @@ const helpers = {
       WHERE orders.id = $1;`
     );
   },
-  sumOfPizzasInOrder: function () {
+  sumOfPizzasInOrder: function() {
     return (
       `SELECT sum(price * quantity)
       FROM order_items
@@ -41,7 +41,7 @@ const helpers = {
       WHERE orders.id = $1`
     );
   },
-  getToppingsOnOrderItem: function () {
+  getToppingsOnOrderItem: function() {
     return (
       `SELECT menu_items.name, toppings.name, topping_categories.price
       FROM menu_items
@@ -52,7 +52,7 @@ const helpers = {
       WHERE order_items.id = $1;`
     );
   },
-  sumToppingsOnOrderItem: function () {
+  sumToppingsOnOrderItem: function() {
     return (
       `SELECT sum(topping_categories.price)
       FROM menu_items
@@ -63,7 +63,7 @@ const helpers = {
       WHERE order_items.id = $1;`
     );
   },
-  sumToppingsOnWholeOrder: function () {
+  sumToppingsOnWholeOrder: function() {
     return (
       `SELECT sum(topping_categories.price)
       FROM menu_items
@@ -75,7 +75,7 @@ const helpers = {
       WHERE orders.id = $1;`
     );
   },
-  getAllOrders: function () {
+  getAllOrders: function() {
     return `SELECT orders.*, customers.name, customers.phone_number
     FROM orders
     JOIN customers ON customer_id = customers.id

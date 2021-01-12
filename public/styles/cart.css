@@ -50,10 +50,6 @@ tbody .table-rows td {
   background-color: #f6ebe5;
 }
 
-/* tbody {
-  vertical-align: text-top;
-} */
-
 .total-header {
   padding: 12px;
   background: #a51c30;
@@ -90,12 +86,12 @@ tbody .table-rows td {
   align-items: center;
 }
 
-/* .edit-btn:hover {
-  color: #f6ebe5;
+.edit-btn:hover {
   background: #73956F;
+  color: white;
 }
 
 .remove-btn:hover {
-  background: #73956F;
-  color: #f6ebe5;
-} */
+  background: #c52039;
+  color: white;
+} 

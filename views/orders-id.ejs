@@ -16,34 +16,18 @@
   <body>
     <%- include('partials/nav') %>
 
-    <h1>Your Orders</h1>
+    <h1>Order <%= result[0].id%></h1>
     <table>
       <tr>
-        <th>Order Number</th>
-        <th>Order Date</th>
-        <th>Pickup Time</th>
-        <th>Name</th>
-        <th>Phone Number</th>
-        <th>Completed</th>
+        <th>Pizza</th>
+        <th>Size</th>
+        <th>Toppings</th>
       </tr>
       <% for (let item of result) { %>
       <tr>
-        <td>
-          <a class="order-detail" href="/api/restaurants/orders/<%= item.id %>"
-            ><%= item.id %></a
-          >
-        </td>
-        <td><%= item.order_date.toLocaleString() %></td>
-        <td><%= item.pickup_time.toLocaleString() %></td>
-        <td>
-          <a
-            class="order-detail"
-            href="/api/restaurants/customers/<%= item.name %>"
-            ><%= item.name %></a
-          >
-        </td>
-        <td><%= item.phone_number %></td>
-        <td><%= item.completed %></td>
+        <td><%= item.pizza_name %></td>
+        <td><%= item.size %></td>
+        <td><%= item.size %></td>
       </tr>
       <% } %>
     </table>
