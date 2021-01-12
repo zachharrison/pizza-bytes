@@ -20,34 +20,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="table-rows">
-            <td>
-              <div class="item-container">
-                <p>Pepperoni*</p>
-                <img src="https://freepngimg.com/thumb/pizza/35510-7-pepperoni-pizza.png">
-              </div>
-            </td>
 
-            <td>
-              Mozzarella, Pepperoni*, Mozzarella, Pepperoni*, Mozzarella, Pepperoni*, Mozzarella, Pepperoni*, Mozzarella, Pepperoni*
-            </td>
-
-            <td>
-              <div class="details-container">
-                <p>Size: <span id="size">Medium</span></p>
-                <p>Quantity: <span id="quantity">1</span></p>
-                <div class="btn-container">
-                  <a href="/edit" class="edit-btn">Edit</a>
-                  <button class="remove-btn">Remove</button>
-                </div>
-              </div>
-            </td>
-            <div class="price">
-              <td>
-                $9.99
-              </td>
-            </div>
-          </tr>
 
           <tr class="table-rows">
             <td>
@@ -77,7 +50,39 @@
               </td>
             </div>
           </tr>
-          
+
+          <% for (let pizza of result) { %>
+            <tr class="table-rows">
+              <td>
+                <div class="item-container">
+                  <p><%=pizza.pizza_name %></p>
+                  <img src="https://freepngimg.com/thumb/pizza/35510-7-pepperoni-pizza.png">
+                </div>
+              </td>
+
+              <td>
+                toppings tbd
+              </td>
+
+              <td>
+                <div class="details-container">
+                  <p>Size: <span id="size"><%= pizza.size %></span></p>
+                  <p>Quantity: <span id="quantity"><%= pizza.quantity %></span></p>
+                  <div class="btn-container">
+                    <a href="/edit" class="edit-btn">Edit</a>
+                    <button class="remove-btn">Remove</button>
+                  </div>
+                </div>
+              </td>
+              <div class="price">
+                <td>
+                  <%=pizza.price/100 %>
+                </td>
+              </div>
+            </tr>
+            <% } %>
+
+
         </tbody>
 
 
@@ -96,7 +101,7 @@
       </table>
     </main>
 
-  
+
 </body>
 
 </html>

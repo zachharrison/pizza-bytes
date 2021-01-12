@@ -35,13 +35,14 @@ module.exports = (db) => {
   // see and remove orders item
   // option to edit => get'/edit'
   router.get("/cart", (req, res) => {
-    res.render("cart");
-    db.query(`SELECT * FROM order_items;`)
+    db.query(helpers.getPizzasInOrder(), ['1'])
       .then((data) => {
         const result = data.rows;
-        res.json({ result });
+        console.log("result: pizza orders", result)
+        res.render("cart", { result });
       })
       .catch((err) => {
+        console.error(err);
         res.status(500).json({ error: err.message });
       });
   });
