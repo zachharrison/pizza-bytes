@@ -4,7 +4,7 @@
 <body>
   <%- include('partials/nav') %>
 
-    <main style="margin: 1em">
+    <main>
       <h3 class="title">Customize Pizza</h3>
       <table class="edit-table">
         <thead>
@@ -13,76 +13,81 @@
             <th scope="col">Cheeses</th>
             <th scope="col">Meats</th>
             <th scope="col">Veggies</th>
-            <th scope="col">Stomach storage</th>
+            <th scope="col">Stomach Storage</th>
             <th scope="col">Price</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Pepperoni*</a></td>
+          <tr class="pizza">
             <td>
-              <div>
-                <input type="checkbox">
+              <div class="item-container">
+                <p>Pepperoni*</p>
+                <img src="https://freepngimg.com/thumb/pizza/35510-7-pepperoni-pizza.png">
+              </div>
+            </td>
+            <td>
+              <div class="check-group">
+                <input class="check" type="checkbox">
                 <label>Mozzarella</label>
               </div>
-              <div>
-                <input type="checkbox">
+              <div class="check-group">
+                <input class="check" type="checkbox">
                 <label>Cheddar</label>
               </div>
-              <div>
-                <input type="checkbox">
+              <div class="check-group">
+                <input class="check" type="checkbox">
                 <label>Feta</label>
               </div>
             </td>
             <td>
-              <div>
-                <input type="checkbox">
+              <div class="check-group">
+                <input class="check" type="checkbox">
                 <label>Pepperoni</label>
               </div>
-              <div>
-                <input type="checkbox">
+              <div class="check-group">
+                <input class="check" type="checkbox">
                 <label>Bacon</label>
               </div>
-              <div>
-                <input type="checkbox">
+              <div class="check-group">
+                <input class="check" type="checkbox">
                 <label>Ham</label>
               </div>
-              <div>
-                <input type="checkbox">
+              <div class="check-group">
+                <input class="check" type="checkbox">
                 <label>Chicken</label>
               </div>
-              <div>
-                <input type="checkbox">
+              <div class="check-group">
+                <input class="check" type="checkbox">
                 <label>Italian Sausage</label>
               </div>
             </td>
             <td>
-              <div>
-                <input type="checkbox">
+              <div class="check-group">
+                <input class="check" type="checkbox">
                 <label>Green Pepper</label>
               </div>
-              <div>
-                <input type="checkbox">
+              <div class="check-group">
+                <input class="check" type="checkbox">
                 <label>Banana Peppers</label>
               </div>
-              <div>
-                <input type="checkbox">
+              <div class="check-group">
+                <input class="check" type="checkbox">
                 <label>Mushrooms</label>
               </div>
-              <div>
-                <input type="checkbox">
+              <div class="check-group">
+                <input class="check" type="checkbox">
                 <label>Black Olives</label>
               </div>
-              <div>
-                <input type="checkbox">
+              <div class="check-group">
+                <input class="check" type="checkbox">
                 <label>Red Onion</label>
               </div>
-              <div>
-                <input type="checkbox">
+              <div class="check-group">
+                <input class="check" type="checkbox">
                 <label>Pineapple</label>
               </div>
-              <div>
-                <input type="checkbox">
+              <div class="check-group">
+                <input class="check" type="checkbox">
                 <label>Tomato</label>
               </div>
             </td>
@@ -98,7 +103,96 @@
               </div>
             </td>
             <div>
-              <td class="right">1 BTC</td>
+              <td class="last">1 BTC</td>
+            </div>
+          </tr>
+
+          <tr class="pizza">
+            <td>
+              <div class="item-container">
+                <p>Pepperoni*</p>
+                <img src="https://freepngimg.com/thumb/pizza/35510-7-pepperoni-pizza.png">
+              </div>
+            </td>
+            <td>
+              <div class="check-group">
+                <input class="check" type="checkbox">
+                <label>Mozzarella</label>
+              </div>
+              <div class="check-group">
+                <input class="check" type="checkbox">
+                <label>Cheddar</label>
+              </div>
+              <div class="check-group">
+                <input class="check" type="checkbox">
+                <label>Feta</label>
+              </div>
+            </td>
+            <td>
+              <div class="check-group">
+                <input class="check" type="checkbox">
+                <label>Pepperoni</label>
+              </div>
+              <div class="check-group">
+                <input class="check" type="checkbox">
+                <label>Bacon</label>
+              </div>
+              <div class="check-group">
+                <input class="check" type="checkbox">
+                <label>Ham</label>
+              </div>
+              <div class="check-group">
+                <input class="check" type="checkbox">
+                <label>Chicken</label>
+              </div>
+              <div class="check-group">
+                <input class="check" type="checkbox">
+                <label>Italian Sausage</label>
+              </div>
+            </td>
+            <td>
+              <div class="check-group">
+                <input class="check" type="checkbox">
+                <label>Green Pepper</label>
+              </div>
+              <div class="check-group">
+                <input class="check" type="checkbox">
+                <label>Banana Peppers</label>
+              </div>
+              <div class="check-group">
+                <input class="check" type="checkbox">
+                <label>Mushrooms</label>
+              </div>
+              <div class="check-group">
+                <input class="check" type="checkbox">
+                <label>Black Olives</label>
+              </div>
+              <div class="check-group">
+                <input class="check" type="checkbox">
+                <label>Red Onion</label>
+              </div>
+              <div class="check-group">
+                <input class="check" type="checkbox">
+                <label>Pineapple</label>
+              </div>
+              <div class="check-group">
+                <input class="check" type="checkbox">
+                <label>Tomato</label>
+              </div>
+            </td>
+            <td>
+              <div>
+                <form>
+                  <select name="size" id="size">
+                    <option value="byte">byte</option>
+                    <option value="megabyte">megabyte</option>
+                    <option value="gigabyte">gigabyte</option>
+                  </select>
+                </form>
+              </div>
+            </td>
+            <div>
+              <td class="last">1 BTC</td>
             </div>
           </tr>
         </tbody>
@@ -106,7 +200,7 @@
           <tr>
             <th colspan="5">Uploading text animation ======> 60%</th>
             <th>
-              <button type="submit" class="right">upload</button>
+              <button type="submit" class="upload">upload</button>
               </form>
             </th>
           </tr>
