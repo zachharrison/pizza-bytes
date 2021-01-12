@@ -7,7 +7,7 @@
 const express = require("express");
 const router = express.Router();
 const { helpers } = require("../db/query-scripts/queryMethods.js");
-const { menuBuilder } = require("../db/query-scripts/menu-queries.js");
+/* const { menuBuilder } = require("../db/query-scripts/menu-queries.js"); */
 
 module.exports = (db) => {
   // main menu, shows pizzas with details
