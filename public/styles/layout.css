@@ -1,10 +1,17 @@
+/* 
+************ WARNING ************** 
+BE CARFUL WHEN CHANGING THIS FILE 
+*/
+
 body {
-  background-color: #0a5e2aff;
-  margin-top: 100px;
+  box-sizing: border-box;
 }
 
 html {
   font-family: "Merienda One", cursive;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 html table {
@@ -15,11 +22,11 @@ html table {
 }
 
 body {
+  background-color: #0a5e2aff;
   display: flex;
   align-items: center;
   justify-content: center;
   align-items: center;
-  margin-top: 300px;
   background-image: url("https://images.pexels.com/photos/5088638/pexels-photo-5088638.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");
   background-position: center;
   background-attachment: fixed;
@@ -27,6 +34,9 @@ body {
   background-size: cover;
   height: 90vh;
   width: 100%;
+  /* margin: 200px 0 150px 0; */
+  margin-top: 200px;
+  margin-bottom: 15vh;
 }
 
 #homepagehead {

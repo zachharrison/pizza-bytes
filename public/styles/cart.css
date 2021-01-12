@@ -10,10 +10,12 @@ body {
 }
 
 .title {
+  /* margin-top: 175px; */
   text-align: center;
   padding: 12px;
   font-size: 24px;
   color: black;
+  /* margin-bottom: 400px; */
 }
 
 .table-headers {
@@ -46,7 +48,7 @@ tbody .table-rows {
 
 tbody .table-rows td {
   padding: 12px;
-  border-bottom: 3px solid a51c30;
+  /* border-bottom: 3px solid #a51c30; */
   background-color: rgba(255, 255, 255, 0.9);
 }
 
@@ -93,5 +95,23 @@ tbody .table-rows td {
 
 .remove-btn:hover {
   background: #c52039;
+  color: white;
+}
+
+.btn {
+  width: 80px;
+  height: 40px;
+  text-decoration: none;
+  border: 1px solid black;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 6px;
+  outline:none;
+}
+
+.btn:hover {
+  background: #73956f;
   color: white;
 }
