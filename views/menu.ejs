@@ -47,7 +47,9 @@
             </td>
             <td>
               <div class="item-container">
-                <p>mystery meat</p>
+                <% for (let topping of item.toppings) { %>
+                <p><%=topping %></p>
+            <% } %>
               </div>
             </td>
             <td>
