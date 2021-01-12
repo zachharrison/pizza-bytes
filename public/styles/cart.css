@@ -73,6 +73,7 @@ tbody .table-rows td {
   align-items: center;
   justify-content: center;
   margin-bottom: 6px;
+  border-radius: 4px;
 }
 
 .remove-btn {
@@ -82,6 +83,17 @@ tbody .table-rows td {
   background: #a51c30;
   color: #f6ebe5;
   padding: 3px;
+  border-radius: 4px;
+}
+.checkout-btn {
+  width: 85px;
+  height: 25px;
+  border: 1px solid #2f2f2f;
+  background: #a51c30;
+  color: #f6ebe5;
+  padding: 3px;
+  text-decoration: none;
+  border-radius: 4px;
 }
 
 .btn-container {
@@ -113,6 +125,7 @@ tbody .table-rows td {
   justify-content: center;
   margin-bottom: 6px;
   outline: none;
+  border-radius: 4px;
 }
 
 .btn:hover {
