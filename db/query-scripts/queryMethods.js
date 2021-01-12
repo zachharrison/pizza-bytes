@@ -16,13 +16,13 @@ const helpers = {
   },
   getPizzasInOrder: function (id) {
     return (
-      `SELECT quantity, menu_items.price, menu_items.name, sizes.name, order_items.id AS order_id
-      FROM order_items
-      JOIN orders ON orders.id = order_id
-      JOIN menu_items ON menu_item_id = menu_items.id
-      JOIN sizes ON sizes.id = size_id
-      WHERE orders.id = $1;`,
-      [id]
+      `SELECT quantity, orders.id, menu_items.price, menu_items.name AS pizza_name, sizes.name AS size, order_items.id AS order_id
+    FROM order_items
+    JOIN orders ON orders.id = order_id
+    JOIN menu_items ON menu_item_id = menu_items.id
+    JOIN sizes ON sizes.id = size_id
+    WHERE orders.id = $1;`,
+      [1]
     );
   },
   countPizzasInOrder: function (id) {
