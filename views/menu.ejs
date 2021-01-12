@@ -14,9 +14,9 @@
 
   <body>
     <%- include('partials/nav') %>
-    <main>
+    <main id="menu-main">
       <h3 class="title">Menu</h3>
-      <table class="table">
+      <table class="table" id="menu-table">
         <thead class="table-headers">
           <tr>
             <th>Photo</th>
@@ -31,7 +31,13 @@
           <tr class="table-rows">
             <td>
               <div class="item-container">
-                <p><%=item.name %></p>
+                <p>
+                  <img
+                    class="menu-photo"
+                    src="<%=item.photo_url %>"
+                    alt="<%=item.name %>"
+                  />
+                </p>
               </div>
             </td>
             <td>

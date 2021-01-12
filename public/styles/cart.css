@@ -4,7 +4,7 @@ body {
 }
 
 .table {
-  border: 1px solid black;
+  border: 2px solid grey;
   width: 90%;
   margin: auto;
 }
@@ -16,6 +16,10 @@ body {
   font-size: 24px;
   color: black;
   /* margin-bottom: 400px; */
+}
+
+.cart-main {
+  margin-top: 200px;
 }
 
 .table-headers {
@@ -108,7 +112,7 @@ tbody .table-rows td {
   align-items: center;
   justify-content: center;
   margin-bottom: 6px;
-  outline:none;
+  outline: none;
 }
 
 .btn:hover {

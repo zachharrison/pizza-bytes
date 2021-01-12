@@ -1,6 +1,6 @@
-/* 
-************ WARNING ************** 
-BE CARFUL WHEN CHANGING THIS FILE 
+/*
+************ WARNING **************
+BE CARFUL WHEN CHANGING THIS FILE
 */
 
 body {
@@ -41,6 +41,6 @@ body {
 
 #homepagehead {
   position: fixed;
-  margin-top: 230px;
+  margin-top: 150px;
   top: 0;
 }
