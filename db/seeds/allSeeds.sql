@@ -11,49 +11,49 @@ INSERT INTO menu_items (restaurant_id, name, photo_url, price)
 VALUES (
   1,
   'Build Your Own',
-  './public/img/Pizza-Toss.png',
+  'https://github.com/AdamTranquilla/Food-Pick-up-Ordering/blob/master/public/img/Pizza-Toss.png?raw=true',
   500
 ),
 (
   1,
   'Classic Cheese Pizza',
-  './public/img/cheese.png',
+  'https://github.com/AdamTranquilla/Food-Pick-up-Ordering/blob/master/public/img/cheese.png?raw=true',
   1000
 ),
 (
   1,
   'Pepperoni Pizza',
-  './public/img/pepperoni.png',
+  'https://github.com/AdamTranquilla/Food-Pick-up-Ordering/blob/master/public/img/pepperoni.png?raw=true',
   1000
 ),
 (
   1,
   'Deluxe Pizza',
-  './public/img/deluxe.png',
+  'https://github.com/AdamTranquilla/Food-Pick-up-Ordering/blob/master/public/img/deluxe.png?raw=true',
   1000
 ),
 (
   1,
   'Vegetarian Pizza',
-  './public/img/veg.png',
+  'https://github.com/AdamTranquilla/Food-Pick-up-Ordering/blob/master/public/img/veg.png?raw=true',
   1000
 ),
 (
   1,
   'Meat Lovers Pizza',
-  './public/img/meat-lovers.png',
+  'https://github.com/AdamTranquilla/Food-Pick-up-Ordering/blob/master/public/img/meat-lovers.png?raw=true',
   1000
 ),
 (
   1,
   'Hawaiian Pizza',
-  './public/img/hawaiian.png',
+  'https://github.com/AdamTranquilla/Food-Pick-up-Ordering/blob/master/public/img/hawaiian.png?raw=true',
   1000
 ),
 (
   1,
   'BBQ Chicken Pizza',
-  './public/img/bbq-chicken.png',
+  'https://github.com/AdamTranquilla/Food-Pick-up-Ordering/blob/master/public/img/bbq-chicken.png?raw=true',
   1000
 );
 
