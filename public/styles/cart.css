@@ -1,6 +1,6 @@
 body {
   /* background-color: #174a20; */
-  background-color: #73956F;
+  background-color: #73956f;
 }
 
 .table {
@@ -13,11 +13,11 @@ body {
   text-align: center;
   padding: 12px;
   font-size: 24px;
-  color:  black;
+  color: black;
 }
 
 .table-headers {
-  background: #a51c30;
+  background: rgba(115, 149, 111, 0.8);
   width: 100%;
 }
 
@@ -41,13 +41,13 @@ body {
 tbody .table-rows {
   padding: 12px;
   font-size: 18px;
-  text-align: center
+  text-align: center;
 }
 
 tbody .table-rows td {
   padding: 12px;
-  border-bottom: 3px solid black;
-  background-color: #f6ebe5;
+  border-bottom: 3px solid a51c30;
+  background-color: rgba(255, 255, 255, 0.9);
 }
 
 .total-header {
@@ -61,7 +61,7 @@ tbody .table-rows td {
   width: 80px;
   height: 40px;
   text-decoration: none;
-  border: 2px solid black;
+  border: 1px solid black;
   color: black;
   display: flex;
   align-items: center;
@@ -87,11 +87,11 @@ tbody .table-rows td {
 }
 
 .edit-btn:hover {
-  background: #73956F;
+  background: #73956f;
   color: white;
 }
 
 .remove-btn:hover {
   background: #c52039;
   color: white;
-} 
+}
