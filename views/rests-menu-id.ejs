@@ -13,10 +13,11 @@
   </head>
 
   <body>
-    <%- include('partials/nav') %>
+    <%- include('partials/restNav') %>
     <main id="menu-main">
-      <h3 class="title">Menu</h3>
-      <table class="table" id="menu-table">
+      <h3 class="title"><%=result.name%></h3>
+      <form action="/api/restaurants/menu/<%=result.id%>" method="POST">
+      <table class="table" id="rest-menu-id-table">
         <thead class="table-headers">
           <tr>
             <th>Photo</th>
@@ -26,7 +27,6 @@
             <th></th>
           </tr>
         </thead>
-        <% for (let item of result) { let dollarPrice = item.price/100 %>
         <tbody>
           <tr class="table-rows">
             <td>
@@ -34,41 +34,45 @@
                 <p>
                   <img
                     class="menu-photo"
-                    src="<%=item.photo_url %>"
-                    alt="<%=item.name %>"
+                    src="<%=result.photo_url %>"
+                    alt="<%=result.name %>"
                   />
                 </p>
+                <label for="photo-url">New Photo URL</label>
+                <textarea name="photo" id="photo-url"></textarea>
               </div>
             </td>
             <td>
               <div class="item-container">
-                <p><%=item.name %></p>
+                <p><%=result.name %></p>
+                <label for="pizza-name">New Pizza Name</label>
+                <textarea name="name" id="pizza-name"></textarea>
               </div>
             </td>
             <td>
               <div class="item-container">
-                <% for (let topping of item.toppings) { %>
-                <p><%=topping %></p>
-            <% } %>
+                <p>mystery meat</p>
+                <label for="pizza-description">New Description</label>
+                <textarea name="description" id="pizza-description"></textarea>
               </div>
             </td>
             <td>
               <div class="item-container">
+                <% let dollarPrice = result.price/100 %>
                 <p>$<%= dollarPrice.toFixed(2) %></p>
+                <label for="pizza-price">New Price (cents)</label>
+                <textarea name="price" id="pizza-price"></textarea>
               </div>
             </td>
             <td>
-              <form class="btn-container" action="/api/menu/cart/" method="POST">
-                <!-- <a href="/api/menu/cart" class="edit-btn" id="order-btn">Order</a> -->
-                <button name="myBtn" class="btn" value="<%=item.name%>">Order</button>
-                <input type="text" name="test" id="test">
-              </form>
-            </td>
 
-            <% } %>
+                <!-- <a href="/api/menu/cart" class="edit-btn" id="order-btn">Order</a> -->
+                <button class="btn" value="<%=result.name%>">Change</button>
+
+            </td>
           </tr>
         </tbody>
-
+      </form>
         <tfoot>
           <!-- <thead>
             <tr>

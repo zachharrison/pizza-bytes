@@ -19,7 +19,7 @@ body {
 
 .edit-table thead,
 tfoot {
-  border: 2px solid black;
+  border: 2px solid grey;
   background: rgba(115, 149, 111, 0.8);
   width: 100%;
 }

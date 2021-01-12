@@ -7,6 +7,7 @@
 const express = require("express");
 const router = express.Router();
 const { helpers } = require("../db/query-scripts/queryMethods.js");
+<<<<<<< HEAD
 const { generateRandomId } = require('../generateRandomId');
 const bodyParser = require("body-parser");
 const cookieSession = require('cookie-session');
@@ -23,20 +24,24 @@ app.use(function(req, res, next){
   next();
 });
 
+=======
+/* const { menuBuilder } = require("../db/query-scripts/menu-queries.js"); */
+>>>>>>> b2e8079f3151e380a8304fc39f14fb23fed8e2f3
 
 module.exports = (db) => {
   // main menu, shows pizzas with details
   router.get("/", (req, res) => {
-    db.query(helpers.getMenu())
+    res.render("menu", menuBuilder());
+    db.query(helpers.getMenu2pt0())
       .then((data) => {
-        const result = data.rows;
-        res.render("menu", { result });
+        const result = menuBuilder(data.rows);
+        console.log(result);
       })
       .catch((err) => {
         console.error(err);
-        res.status(500).json({ error: err.message });
       });
   });
+
   // shows the 'selected' menu item and options INSERT into orders
   router.get("/edit", (req, res) => {
     res.render("edit");
@@ -52,10 +57,10 @@ module.exports = (db) => {
   // see and remove orders item
   // option to edit => get'/edit'
   router.get("/cart", (req, res) => {
-    db.query(helpers.getPizzasInOrder(), ['1'])
+    db.query(helpers.getPizzasInOrder(), ["1"])
       .then((data) => {
         const result = data.rows;
-        console.log("result: pizza orders", result)
+        console.log("result: pizza orders", result);
         res.render("cart", { result });
       })
       .catch((err) => {
@@ -68,7 +73,7 @@ module.exports = (db) => {
     db.query(`SELECT * FROM orders;`)
       .then((data) => {
         const result = data.rows;
-        res.json({ result });
+        res.render("checkout", { result });
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });

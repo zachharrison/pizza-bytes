@@ -1,0 +1,11 @@
+.checkout-form {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 15px;
+  border: 1px solid grey;
+  border-radius: 4px;
+}
+
+.checkout-body {
+  margin: 0px;
+  margin-top: 20px;
+}
