@@ -7,6 +7,7 @@ DROP TABLE IF EXISTS topping_categories CASCADE;
 DROP TABLE IF EXISTS toppings CASCADE;
 DROP TABLE IF EXISTS order_items CASCADE;
 DROP TABLE IF EXISTS order_item_toppings CASCADE;
+DROP TABLE IF EXISTS menu_item_toppings CASCADE;
 
 
 CREATE TABLE customers (
@@ -31,6 +32,7 @@ CREATE TABLE menu_items (
     photo_url VARCHAR(255) NOT NULL,
     price INTEGER NOT NULL
 );
+
 
 CREATE TABLE orders (
   id SERIAL PRIMARY KEY NOT NULL,
@@ -58,6 +60,12 @@ CREATE TABLE toppings (
     topping_category_id INTEGER REFERENCES topping_categories(id),
     name VARCHAR(255) NOT NULL,
     menu_item_id INTEGER REFERENCES menu_items(id)
+);
+
+CREATE TABLE menu_item_toppings (
+    id SERIAL PRIMARY KEY NOT NULL,
+    menu_item_id INTEGER REFERENCES menu_items(id),
+    topping_id INTEGER REFERENCES toppings(id)
 );
 
 CREATE TABLE order_items (

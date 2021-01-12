@@ -57,6 +57,7 @@ VALUES (
   1000
 );
 
+
 INSERT INTO orders (restaurant_id, customer_id, completed)
 VALUES (1, 2, FALSE);
 
@@ -94,6 +95,31 @@ VALUES (1, 'Mozzarella'),
 (3, 'Pineapple'),
 (3, 'Tomato');
 
+INSERT INTO menu_item_toppings (menu_item_id, topping_id )
+VALUES
+(1, NULL),
+(2,1),
+(3,1),
+(3,4),
+(4,1),
+(4,4),
+(4,9),
+(4,11),
+(4,12),
+(5,1),
+(5,9),
+(5,11),
+(5,12),
+(5,13),
+(5,15),
+(6,1),
+(6,6),
+(6,14),
+(7,1),
+(7,2),
+(7,7),
+(7,13);
+
 -- Currently have 4 orders so need order items for 4 orders
 
 INSERT INTO order_items (order_id, size_id, quantity, menu_item_id)
@@ -125,4 +151,3 @@ VALUES (3, 1),
 (10, 7);
 
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO labber;
-
