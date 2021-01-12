@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Menu</title>
+
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <!-- <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" /> -->
+    <!-- <link rel="stylesheet" href="/styles/layout.css" type="text/css" /> -->
+
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="/scripts/app.js"></script>
+    <!-- <script type="text/javascript" src="/scripts/menu.js"></script> -->
+  </head>
+
+  <body>
+    <%- include('partials/restNav') %>
+    <main id="menu-main">
+      <h3 class="title"><%=result.name%></h3>
+      <form action="/api/restaurants/menu/<%=result.id%>" method="POST">
+      <table class="table" id="rest-menu-id-table">
+        <thead class="table-headers">
+          <tr>
+            <th>Photo</th>
+            <th>Pizza</th>
+            <th>Description</th>
+            <th>Starting at</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="table-rows">
+            <td>
+              <div class="item-container">
+                <p>
+                  <img
+                    class="menu-photo"
+                    src="<%=result.photo_url %>"
+                    alt="<%=result.name %>"
+                  />
+                </p>
+                <label for="photo-url">New Photo URL</label>
+                <textarea name="photo" id="photo-url"></textarea>
+              </div>
+            </td>
+            <td>
+              <div class="item-container">
+                <p><%=result.name %></p>
+                <label for="pizza-name">New Pizza Name</label>
+                <textarea name="name" id="pizza-name"></textarea>
+              </div>
+            </td>
+            <td>
+              <div class="item-container">
+                <p>mystery meat</p>
+                <label for="pizza-description">New Description</label>
+                <textarea name="description" id="pizza-description"></textarea>
+              </div>
+            </td>
+            <td>
+              <div class="item-container">
+                <% let dollarPrice = result.price/100 %>
+                <p>$<%= dollarPrice.toFixed(2) %></p>
+                <label for="pizza-price">New Price (cents)</label>
+                <textarea name="price" id="pizza-price"></textarea>
+              </div>
+            </td>
+            <td>
+
+                <!-- <a href="/api/menu/cart" class="edit-btn" id="order-btn">Order</a> -->
+                <button class="btn" value="<%=result.name%>">Change</button>
+
+            </td>
+          </tr>
+        </tbody>
+      </form>
+        <tfoot>
+          <!-- <thead>
+            <tr>
+              <div class="total-container">
+                <th class="total-header"></th>
+                <th class="total-header"></th>
+                <th class="total-header"></th>
+                <th class="total-header"></th>
+              </div>
+            </tr>
+          </thead> -->
+        </tfoot>
+      </table>
+    </main>
+  </body>
+</html>

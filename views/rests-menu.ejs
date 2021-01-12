@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Menu</title>
+
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <!-- <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" /> -->
+    <!-- <link rel="stylesheet" href="/styles/layout.css" type="text/css" /> -->
+
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="/scripts/app.js"></script>
+    <!-- <script type="text/javascript" src="/scripts/menu.js"></script> -->
+  </head>
+
+  <body>
+    <%- include('partials/restNav') %>
+    <main id="menu-main">
+      <h3 class="title">Menu</h3>
+      <table class="table" id="menu-table">
+        <thead class="table-headers">
+          <tr>
+            <th>Photo</th>
+            <th>Pizza</th>
+            <th>Description</th>
+            <th>Starting at</th>
+            <th></th>
+          </tr>
+        </thead>
+        <% for (let item of result) { let dollarPrice = item.price/100 %>
+        <tbody>
+          <tr class="table-rows">
+            <td>
+              <div class="item-container">
+                <p>
+                  <img
+                    class="menu-photo"
+                    src="<%=item.photo_url %>"
+                    alt="<%=item.name %>"
+                  />
+                </p>
+              </div>
+            </td>
+            <td>
+              <div class="item-container">
+                <p><%=item.name %></p>
+              </div>
+            </td>
+            <td>
+              <div class="item-container">
+                <p>mystery meat</p>
+              </div>
+            </td>
+            <td>
+              <div class="item-container">
+                <p>$<%= dollarPrice.toFixed(2) %></p>
+              </div>
+            </td>
+            <td>
+              <form
+                class="btn-container"
+                action="/api/restaurants/menu/<%=item.id%>"
+                method="GET"
+              >
+                <!-- <a href="/api/menu/cart" class="edit-btn" id="order-btn">Order</a> -->
+                <button class="btn" value="<%=item.name%>">Edit</button>
+              </form>
+            </td>
+
+            <% } %>
+          </tr>
+        </tbody>
+
+        <tfoot>
+          <!-- <thead>
+            <tr>
+              <div class="total-container">
+                <th class="total-header"></th>
+                <th class="total-header"></th>
+                <th class="total-header"></th>
+                <th class="total-header"></th>
+              </div>
+            </tr>
+          </thead> -->
+        </tfoot>
+      </table>
+    </main>
+  </body>
+</html>
