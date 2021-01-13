@@ -46,8 +46,9 @@ nav .nav-links a:hover {
 }
 
 .logo {
-  height: 50px;
-  border: 3px solid #0a5e2aff;
+  height: 60px;
+  /* border: 1px solid #0a5e2aff; */
+  border-radius: 3px;
 }
 
 header {
