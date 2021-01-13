@@ -43,7 +43,6 @@ function menuBuilder(rows) {
 function pizzaEditor(rows) {
   const result = {};
   for (const row of rows) {
-    console.log('cheeses etc',row.type)
     const ID = row.type;
     let toppingID = result[ID];
 
@@ -54,7 +53,6 @@ function pizzaEditor(rows) {
      toppingID.push(row.name);
 
   }
-  console.log(result)
   return result;
 }
 

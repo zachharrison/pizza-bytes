@@ -38,7 +38,6 @@ module.exports = (db) => {
   router.get("/edit", (req, res) => {
     db.query(helpers.getToppings2pt0())
       .then((data) => {
-        console.log("=====> rows here ",data.rows)
         const templateVars = {
           result: pizzaEditor(data.rows),
         };
@@ -78,7 +77,6 @@ module.exports = (db) => {
     db.query(helpers.getPizzasInOrder(), ["1"])
       .then((data) => {
         const result = data.rows;
-        console.log("result: pizza orders", result);
         res.render("cart", { result });
       })
       .catch((err) => {
@@ -105,7 +103,6 @@ module.exports = (db) => {
   //       const id = generateRandomId();
   //       const result = data.rows;
   //       const templateVars = { result, id, cart: req.session.cart };
-  //       console.log(req.session.cart)
   //       // res.json({ result });
   //       res.json({ result });
   //       res.render('cart', templateVars);
@@ -142,7 +139,6 @@ module.exports = (db) => {
           cart = req.cookies["cart"];
           cart[req.cookies['cartId']]["pizzas"].push(pizza);
 
-          console.log(cart[req.cookies['cartId']]['pizzas']);
           res.cookie("cart", cart);
 
         } else {
@@ -159,8 +155,6 @@ module.exports = (db) => {
 
           res.cookie("cartId", cartId);
           res.cookie("cart", cart);
-
-          console.log("The cart has been set ---->", JSON.stringify(cart));
         }
 
         res.render("cart", req.cookies["cart"]);
