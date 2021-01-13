@@ -3,10 +3,11 @@ const helpers = {
     return `SELECT * FROM menu_items;`;
   },
   getMenu2pt0: function() {
-    return `SELECT photo_url, menu_items.name AS pizza_name, toppings.name AS topping_name, menu_items.price AS menu_price
+    return `SELECT photo_url, menu_items.name AS pizza_name, toppings.name AS topping_name, menu_items.price AS menu_price, topping_categories.price AS topping_price
     FROM menu_items
     JOIN menu_item_toppings ON menu_items.id = menu_item_id
-    JOIN toppings ON menu_item_toppings.topping_id = toppings.id;`;
+    JOIN toppings ON menu_item_toppings.topping_id = toppings.id
+    JOIN topping_categories ON topping_category_id = topping_categories.id;`;
   },
   getMenuItemFromId: function() {
     return `SELECT * FROM menu_items WHERE id = $1;`;

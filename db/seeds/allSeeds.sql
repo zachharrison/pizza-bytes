@@ -12,7 +12,7 @@ VALUES (
   1,
   'Build Your Own',
   'https://github.com/AdamTranquilla/Food-Pick-up-Ordering/blob/master/public/img/Pizza-Toss.png?raw=true',
-  500
+  900
 ),
 (
   1,
@@ -24,25 +24,25 @@ VALUES (
   1,
   'Pepperoni Pizza',
   'https://github.com/AdamTranquilla/Food-Pick-up-Ordering/blob/master/public/img/pepperoni.png?raw=true',
-  1000
+  1300
 ),
 (
   1,
   'Deluxe Pizza',
   'https://github.com/AdamTranquilla/Food-Pick-up-Ordering/blob/master/public/img/deluxe.png?raw=true',
-  1000
+  1650
 ),
 (
   1,
   'Vegetarian Pizza',
   'https://github.com/AdamTranquilla/Food-Pick-up-Ordering/blob/master/public/img/veg.png?raw=true',
-  1000
+  1550
 ),
 (
   1,
   'Meat Lovers Pizza',
   'https://github.com/AdamTranquilla/Food-Pick-up-Ordering/blob/master/public/img/meat-lovers.png?raw=true',
-  1000
+  1850
 ),
 (
   1,
@@ -113,12 +113,18 @@ VALUES
 (5,13),
 (5,15),
 (6,1),
+(6,4),
+(6,5),
 (6,6),
-(6,14),
+(6,7),
+(6,8),
 (7,1),
-(7,2),
-(7,7),
-(7,13);
+(7,6),
+(7,14),
+(8,1),
+(8,2),
+(8,7),
+(8,13);
 
 -- Currently have 4 orders so need order items for 4 orders
 

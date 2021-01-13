@@ -7,21 +7,39 @@
 const express = require("express");
 const router = express.Router();
 const { helpers } = require("../db/query-scripts/queryMethods.js");
-/* const { menuBuilder } = require("../db/query-scripts/menu-queries.js"); */
+const { menuBuilder } = require("../db/query-scripts/menu-queries.js");
 
 module.exports = (db) => {
   // main menu, shows pizzas with details
   router.get("/", (req, res) => {
-    res.render("menu", menuBuilder());
+
     db.query(helpers.getMenu2pt0())
       .then((data) => {
-        const result = menuBuilder(data.rows);
-        console.log(result);
+        const templateVars = {
+          result: menuBuilder(data.rows),
+        };
+        res.render("menu", templateVars);
+        console.log('===================>', templateVars);
+        for (const pizza in templateVars.result) {
+          console.log('pizza----->', pizza);
+
+        }
       })
       .catch((err) => {
         console.error(err);
       });
   });
+  /*   router.get("/", (req, res) => {
+      db.query(helpers.getMenu())
+        .then((data) => {
+          const result = data.rows;
+          res.render("menu", { result });
+        })
+        .catch((err) => {
+          console.error(err);
+          res.status(500).json({ error: err.message });
+        });
+    }); */
 
   // shows the 'selected' menu item and options INSERT into orders
   router.get("/edit", (req, res) => {
