@@ -19,11 +19,10 @@
       <table class="table" id="menu-table">
         <thead class="table-headers">
           <tr>
-            <th>Photo</th>
-            <th>Pizza</th>
-            <th>Description</th>
-            <th>Starting at</th>
-            <th></th>
+            <th col="1">Photo</th>
+            <th col="1">Pizza</th>
+            <th col="2">Description</th>
+            <th col="1">Starting at</th>
           </tr>
         </thead>
         <% for (let item of result) { let dollarPrice = item.price/100 %>
@@ -47,11 +46,10 @@
             </td>
             <td>
               <div class="item-container">
-                <% for (let topping of item.toppings) { %>
-                <p><%=topping %></p>
-            <% } %>
+                <p>Description</p>
               </div>
             </td>
+  
             <td>
               <div class="item-container">
                 <p>$<%= dollarPrice.toFixed(2) %></p>
@@ -60,8 +58,7 @@
             <td>
               <form class="btn-container" action="/api/menu/cart/" method="POST">
                 <!-- <a href="/api/menu/cart" class="edit-btn" id="order-btn">Order</a> -->
-                <button name="myBtn" class="btn" value="<%=item.name%>">Order</button>
-                <input type="text" name="test" id="test">
+                <button name="pizza" class="btn" value="<%=item.name%>">Order</button>
               </form>
             </td>
 
