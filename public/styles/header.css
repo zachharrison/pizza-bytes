@@ -94,3 +94,7 @@ header .showcase .order {
 header .showcase .order:hover {
   background-color: #c52039;
 }
+
+.logo:hover {
+  transform: scale(1.1);
+}
