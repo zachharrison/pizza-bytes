@@ -33,11 +33,6 @@ function menuBuilder(rows) {
       pizza.price = row.menu_price;
     }
 
-    if (!pizza.newPrice) {
-      pizza.newPrice = 0;
-    }
-    pizza.newPrice += row.topping_price;
-
     if (!pizza.toppings) {
       pizza.toppings = [];
     }
@@ -52,7 +47,6 @@ function pizzaEditor(rows) {
   for (const row of rows) {
     const name = row.pizza_name;
     let pizza = result[name];
-
 
     if (!pizza) {
       result[name] = {};

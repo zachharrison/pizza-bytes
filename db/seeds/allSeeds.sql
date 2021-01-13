@@ -76,7 +76,10 @@ VALUES ('byte', 0),
 INSERT INTO topping_categories (name, price)
 VALUES ('Cheeses', 200),
 ('Meats', 150),
-('Veggies', 125);
+('Veggies', 125),
+('byte', 0),
+('megabyte', 400),
+('gigabyte', 700);
 
 INSERT INTO toppings (topping_category_id, name)
 VALUES (1, 'Mozzarella'),
@@ -93,7 +96,10 @@ VALUES (1, 'Mozzarella'),
 (3, 'Black Olives'),
 (3, 'Red Onion'),
 (3, 'Pineapple'),
-(3, 'Tomato');
+(3, 'Tomato'),
+(4, 'byte'),
+(5, 'megaByte'),
+(6, 'gigaByte');
 
 INSERT INTO menu_item_toppings (menu_item_id, topping_id )
 VALUES
