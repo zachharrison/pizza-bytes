@@ -7,6 +7,7 @@
 const express = require("express");
 const router = express.Router();
 const { helpers } = require("../db/query-scripts/queryMethods.js");
+const { menuBuilder } = require("../db/query-scripts/menu-queries.js");
 const { generateRandomId } = require('../generateRandomId');
 const bodyParser = require("body-parser");
 const cookieParser = require('cookie-parser');
@@ -32,10 +33,13 @@ module.exports = (db) => {
   // });
 
   router.get("/", (req, res) => {
-    db.query(helpers.getMenu())
+
+    db.query(helpers.getMenu2pt0())
       .then((data) => {
-        const result = data.rows;
-        res.render("menu", { result });
+        const templateVars = {
+          result: menuBuilder(data.rows),
+        };
+        res.render("menu", templateVars);
       })
       .catch((err) => {
         console.error(err);
