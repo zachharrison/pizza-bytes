@@ -5,10 +5,11 @@ require("dotenv").config();
 const PORT = process.env.PORT || 8080;
 const ENV = process.env.ENV || "development";
 const express = require("express");
-const bodyParser = require("body-parser");
 const sass = require("node-sass-middleware");
 const app = express();
 const morgan = require("morgan");
+const bodyParser = require("body-parser");
+const cookieSession = require('cookie-session');
 
 // PG database client/connection setup
 const { Pool } = require("pg");
@@ -23,6 +24,7 @@ app.use(morgan("dev"));
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 // app.use(
 //   "/styles",
 //   sass({
@@ -33,6 +35,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //   })
 // );
 app.use(express.static("public"));
+app.use(cookieSession(
+  { name: 'id', keys: 'somestring', cart: {num: 55}},
+));
+
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
