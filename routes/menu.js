@@ -9,19 +9,12 @@ const router = express.Router();
 const { helpers } = require("../db/query-scripts/queryMethods.js");
 const { generateRandomId } = require('../generateRandomId');
 const bodyParser = require("body-parser");
-// const cookieSession = require('cookie-session');
+const cookieParser = require('cookie-parser');
 const app = express()
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-// app.use(cookieSession(
-//   // { name: 'session', keys: 'somestring', cart: {}},
-//   { name: 'session', keys: ["some secret here"], maxAge: 24 * 60 * 60 * 1000 }
-// ));
-// app.use(function(req, res, next){
-//   res.locals.cart = req.session.cart;
-//   next();
-// });
+app.use(cookieParser());
 
 
 module.exports = (db) => {
@@ -106,12 +99,7 @@ module.exports = (db) => {
 
   router.post("/cart", (req, res) => {
 
-    // req.session['cartId'] ? 
-    // req.session['cartId'] = cartId :
-    // pizzaId = generateRandomId()
-    // req.session['pizzaId'] = pizzaId;
-
-    pizzas = [];
+    pizzaId = generateRandomId()
 
     const pizza = {
       id: pizzaId,
@@ -119,76 +107,44 @@ module.exports = (db) => {
       size: "small",
       toppings: []
     }
+    
+    /* 
+      IF USER ALREADY HAS A CART IN THEIR COOKIES, USE THE EXISTING CART
+      ELSE CREATE A CART AND STORE THE CART ID AND THE 
+      CART ITSELF AS COOKIES IN THE BROWSER
+    */
+    if (req.cookies['cartId']) {
 
-    pizzas.push(pizza);
-
-    if (req.session.cartId) {
-      console.log('trueeeeee')
-      cartId = req.session['cartId'];
-      // pizzas.push(pizza)
-      // console.log('TRUUUUUUUE');
-      // // const cart = {} 
-      // cart[req.session['cartId']] = {};
-
+      cart = req.cookies['cart'];
+      cart[req.cookies['cartId']]['pizzas'].push(pizza);
+      console.log('This is your cart' , JSON.stringify(cart));
+      
     } else {
 
-      console.log('no cart')
       cartId = generateRandomId();
-      req.session['cartId'] = cartId
 
-      // const cart = {};
-      // req.session.cart = cart;
+      cart = {};
+      cart[cartId] = {};
 
-    
-      // req.session['pizza'] = req.body.pizza;
-      // req.session['pizzaId'] = generateRandomId();
-    
-      // cart[cartId] = {};
+      const pizzas = [];
+      pizzas.push(pizza);
+      
+      cart[cartId]['pizzas'] = pizzas;
 
-      // pizzas = [];
-      // pizzas.push(pizza);
+      res.cookie('cartId', cartId);
+      res.cookie('cart', cart);
+
+      console.log('The cart has been set ', JSON.stringify(cart));
+
     }
-
-    // cartId = generateRandomId();
-    // req.session['cartId'] = cartId
-    
-    // req.session['pizza'] = req.body.pizza;
-    // req.session['pizzaId'] = generateRandomId();
-    
-    // pizzaId = generateRandomId()
-    // req.session['pizzaId'] = pizzaId;
-    
-    
-    // pizza = {
-    //   id: pizzaId,
-    //   name: req.body.pizza,
-    //   size: "small",
-    //   toppings: []
-    // }
-    
-    // const cart = {};
-    // cart[cartId] = {};
-
-    // pizzas = [];
-    // pizzas.push(pizza);
-
-    // console.log('This is the cart ', req.session.cart);
-    // console.log('This is the pizzas ', pizzas);
-
-
-    // templateVars[cartId]['pizzas'] = [];
-    // templateVars[cartId]['pizzas'].push(pizza);
-    // stringifyed = JSON.stringify(templateVars)
-    // console.log('This is the data', stringifyed);
-      
-      
-      
-      // res.render('cart', req.session.cart, pizzas);
+  
+    res.render('cart', req.cookies['cart']);
       
   });
     
-    return router;
-  }
+  return router;
+
+}
   
-  /* 
+
   
