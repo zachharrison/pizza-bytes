@@ -26,7 +26,6 @@
             <th col="1">Starting at</th>
           </tr>
         </thead>
-<<<<<<< HEAD
         <tbody>
           <% for (let pizza in result) { %>
           <tr class="table-rows">
@@ -61,47 +60,6 @@
                 </form>
               </td>
             </tr>
-            <% } %>
-          </tbody>
-=======
-        <% for (let item in result) { let dollarPrice = item.price/100 %>
-        <tbody>
-          <tr class="table-rows">
-            <td>
-              <div class="item-container">
-                <p>
-                  <img
-                    class="menu-photo"
-                    src="<%=item.photo_url %>"
-                    alt="<%=item.name %>"
-                  />
-                </p>
-              </div>
-            </td>
-            <td>
-              <div class="item-container">
-                <p><%=item.name %></p>
-              </div>
-            </td>
-            <td>
-              <div class="item-container">
-                <p>Description</p>
-              </div>
-            </td>
-  
-            <td>
-              <div class="item-container">
-                <p>$<%= dollarPrice.toFixed(2) %></p>
-              </div>
-            </td>
-            <td>
-              <form class="btn-container" action="/api/menu/cart/" method="POST">
-                <!-- <a href="/api/menu/cart" class="edit-btn" id="order-btn">Order</a> -->
-                <button name="pizza" class="btn" value="<%=item.name%>">Order</button>
-              </form>
-            </td>
->>>>>>> 8443968e4a8fc016904d2411d13d3f6b46e2361f
-
             <% } %>
           </tr>
         </tbody>

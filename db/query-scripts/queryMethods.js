@@ -15,9 +15,6 @@ const helpers = {
   getToppings: function() {
     return `SELECT * toppings;`;
   },
-  getCatTopping: function() {
-    return `SELECT * FROM toppings;`;
-  },
   getToppingFromId: function() {
     return `SELECT * FROM toppings WHERE id = $1;`;
   },
