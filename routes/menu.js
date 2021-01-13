@@ -120,17 +120,27 @@ module.exports = (db) => {
       console.log("This is your cart ---->", JSON.stringify(cart));
     } else {
       cartId = generateRandomId();
-
+      
       cart = {};
       cart[cartId] = {};
-
+      
       const pizzas = [];
       pizzas.push(pizza);
+<<<<<<< HEAD
 
       cart[cartId]["pizzas"] = pizzas;
 
       res.cookie("cartId", cartId);
       res.cookie("cart", cart);
+=======
+      
+      cart[cartId]['pizzas'] = pizzas;
+      
+      res.cookie('cartId', cartId);
+      res.cookie('cart', cart);
+      
+      console.log('The cart has been set ', JSON.stringify(cart));
+>>>>>>> a0475980822411d3bf1ef6f311397a208d5e6a3d
 
       console.log("The cart has been set ---->", JSON.stringify(cart));
     }
