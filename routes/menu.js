@@ -36,6 +36,19 @@ module.exports = (db) => {
   // shows the 'selected' menu item and options INSERT into orders
 
   router.get("/edit", (req, res) => {
+    db.query(helpers.getToppings2pt0())
+      .then((data) => {
+        console.log("=====> rows here ",data.rows)
+        const templateVars = {
+          result: pizzaEditor(data.rows),
+        };
+        res.render("edit", templateVars);
+      })
+       .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  });
+  router.get("/edit/:id", (req, res) => {
     db.query(helpers.getToppings())
       .then((data) => {
         const templateVars = {
@@ -43,7 +56,7 @@ module.exports = (db) => {
         };
         res.render("edit", templateVars);
       })
-      .catch((err) => {
+       .catch((err) => {
         res.status(500).json({ error: err.message });
       });
   });
@@ -104,49 +117,55 @@ module.exports = (db) => {
 
   router.post("/cart", (req, res) => {
 
-    pizzaId = generateRandomId()
+    db
+    .query(helpers.getDefaultToppings(), [req.body.pizza])
+      .then(data => {
 
-    const pizza = {
-      id: pizzaId,
-      name: req.body.pizza,
-      size: "small",
-      toppings: [],
-    };
+        const defaultToppings = data.rows;
 
-    /*
-      IF USER ALREADY HAS A CART IN THEIR COOKIES, USE THE EXISTING CART
-      ELSE CREATE A CART AND STORE THE CART ID AND THE
-      CART ITSELF AS COOKIES IN THE BROWSER
-    */
-    if (req.cookies["cartId"]) {
+        pizzaId = generateRandomId();
 
-      cart = req.cookies["cart"];
-      // console.log("This is your cart BEFORE you add to cart ---->", JSON.stringify(cart));
+        const pizza = {
+          id: pizzaId,
+          name: req.body.pizza,
+          size: "small",
+          toppings: defaultToppings.map(topping => topping.name),
+        };
 
-      cart[req.cookies['cartId']]["pizzas"].push(pizza);
+        /*
+          IF USER ALREADY HAS A CART IN THEIR COOKIES, USE THE EXISTING CART
+          ELSE CREATE A CART AND STORE THE CART ID AND THE
+          CART ITSELF AS COOKIES IN THE BROWSER
+        */
+        if (req.cookies["cartId"]) {
 
-      // console.log("This is your cart ---->", JSON.stringify(cart));
-      console.log(cart[req.cookies['cartId']]['pizzas']);
-      res.cookie("cart", cart)
+          cart = req.cookies["cart"];
+          cart[req.cookies['cartId']]["pizzas"].push(pizza);
 
-    } else {
-      cartId = generateRandomId();
+          console.log(cart[req.cookies['cartId']]['pizzas']);
+          res.cookie("cart", cart);
 
-      cart = {};
-      cart[cartId] = {};
+        } else {
 
-      const pizzas = [];
-      pizzas.push(pizza);
+          cartId = generateRandomId();
 
-      cart[cartId]["pizzas"] = pizzas;
+          cart = {};
+          cart[cartId] = {};
 
-      res.cookie("cartId", cartId);
-      res.cookie("cart", cart);
+          const pizzas = [];
+          pizzas.push(pizza);
 
-      console.log("The cart has been set ---->", JSON.stringify(cart));
-    }
+          cart[cartId]["pizzas"] = pizzas;
 
-    res.render("cart", req.cookies["cart"]);
+          res.cookie("cartId", cartId);
+          res.cookie("cart", cart);
+
+          console.log("The cart has been set ---->", JSON.stringify(cart));
+        }
+
+        res.render("cart", req.cookies["cart"]);
+
+      });
   });
 
   return router;

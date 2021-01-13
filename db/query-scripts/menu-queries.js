@@ -18,7 +18,6 @@ function menuBuilder(rows) {
     const name = row.pizza_name;
     let pizza = result[name];
 
-
     if (!pizza) {
       result[name] = {};
       pizza = result[name];
@@ -38,43 +37,32 @@ function menuBuilder(rows) {
     }
     pizza.toppings.push(row.topping_name + ',');
   }
-
   return result;
 }
 
 function pizzaEditor(rows) {
   const result = {};
   for (const row of rows) {
-    const name = row.pizza_name;
-    let pizza = result[name];
+    console.log('cheeses etc',row.type)
+    const ID = row.type;
+    let toppingID = result[ID];
 
-    if (!pizza) {
-      result[name] = {};
-      pizza = result[name];
+    if (!toppingID) {
+      result[ID] = [];
+      toppingID = result[ID];
     }
-    pizza.name = row.pizza_name;
+     toppingID.push(row.name);
 
-    if (!pizza.url) {
-      pizza.url = row.photo_url;
-    }
-
-    if (!pizza.price) {
-      pizza.price = row.menu_price;
-    }
-
-    if (!pizza.newPrice) {
-      pizza.newPrice = 0;
-    }
-    pizza.newPrice += row.topping_price;
-
-    if (!pizza.toppings) {
-      pizza.toppings = [];
-    }
-    pizza.toppings.push(row.topping_name + ',');
   }
-
+  console.log(result)
   return result;
 }
+
+
+
+const topping = {
+  id: 1
+};
 
 module.exports = {
   getProducts,
@@ -82,3 +70,15 @@ module.exports = {
   menuBuilder,
   pizzaEditor
 };
+/*
+{
+  1: [mozza, ched, feta],
+  2: [meet, meat2, meat3]
+  3: [veg1, veg2]
+  4: [small]
+  5: [med]
+  6: [lg]
+}
+
+veggies meats, cheeses, sizes
+*/

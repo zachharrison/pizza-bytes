@@ -13,7 +13,12 @@ const helpers = {
     return `SELECT * FROM menu_items WHERE id = $1;`;
   },
   getToppings: function() {
-    return `SELECT * toppings;`;
+    return `SELECT * FROM toppings;`;
+  },
+  getToppings2pt0: function() {
+    return `SELECT topping_category_id, toppings.name AS name, topping_categories.name AS type
+    FROM toppings
+    LEFT JOIN topping_categories ON toppings.topping_category_id = topping_categories.id;`;
   },
   getToppingFromId: function() {
     return `SELECT * FROM toppings WHERE id = $1;`;
@@ -85,6 +90,13 @@ const helpers = {
     JOIN customers ON customer_id = customers.id
     ORDER BY pickup_time;`;
   },
+  getDefaultToppings: function () {
+    return `SELECT toppings.name
+    FROM menu_items
+    LEFT JOIN menu_item_toppings ON menu_items.id = menu_item_id
+    JOIN toppings ON toppings.id = topping_id
+    WHERE menu_items.name = $1;`
+  }
 };
 
 module.exports = { helpers };

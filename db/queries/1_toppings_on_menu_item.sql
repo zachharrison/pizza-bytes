@@ -63,3 +63,8 @@ JOIN order_item_toppings on order_item_id = order_items.id
 JOIN toppings ON topping_id = toppings.id
 JOIN topping_categories ON topping_category_id = topping_categories.id
 WHERE orders.id = 1;
+
+SELECT toppings.name
+FROM menu_items
+LEFT JOIN menu_item_toppings ON menu_items.id = menu_item_id
+WHERE menu_items.name LIKE '%Cheese Pizza%';

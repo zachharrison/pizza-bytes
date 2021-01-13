@@ -21,140 +21,48 @@
           <tr class="pizza">
             <td>
               <div class="item-container">
-                <p>Pepperoni*</p>
+                <p>pizzaNameFromCookie</p>
                 <img src="https://freepngimg.com/thumb/pizza/35510-7-pepperoni-pizza.png">
               </div>
             </td>
-            <td>
-              <div class="check-group">
-                <input class="check" type="checkbox">
-                <label>Mozzarella</label>
-              </div>
-              <div class="check-group">
-                <input class="check" type="checkbox">
-                <label>Cheddar</label>
-              </div>
-              <div class="check-group">
-                <input class="check" type="checkbox">
-                <label>Feta</label>
-              </div>
-            </td>
-            <td>
-              <div class="check-group">
-                <input class="check" type="checkbox">
-                <label>Pepperoni</label>
-              </div>
-              <div class="check-group">
-                <input class="check" type="checkbox">
-                <label>Bacon</label>
-              </div>
-              <div class="check-group">
-                <input class="check" type="checkbox">
-                <label>Ham</label>
-              </div>
-              <div class="check-group">
-                <input class="check" type="checkbox">
-                <label>Chicken</label>
-              </div>
-              <div class="check-group">
-                <input class="check" type="checkbox">
-                <label>Italian Sausage</label>
-              </div>
-            </td>
-            <td>
-              <div class="check-group">
-                <input class="check" type="checkbox">
-                <label>Green Pepper</label>
-              </div>
-              <div class="check-group">
-                <input class="check" type="checkbox">
-                <label>Banana Peppers</label>
-              </div>
-              <div class="check-group">
-                <input class="check" type="checkbox">
-                <label>Mushrooms</label>
-              </div>
-              <div class="check-group">
-                <input class="check" type="checkbox">
-                <label>Black Olives</label>
-              </div>
-              <div class="check-group">
-                <input class="check" type="checkbox">
-                <label>Red Onion</label>
-              </div>
-              <div class="check-group">
-                <input class="check" type="checkbox">
-                <label>Pineapple</label>
-              </div>
-              <div class="check-group">
-                <input class="check" type="checkbox">
-                <label>Tomato</label>
-              </div>
-            </td>
-            <td>
-              <div>
-                <form>
-                  <select name="size" id="size">
-                    <option value="byte">byte</option>
-                    <option value="megabyte">megabyte</option>
-                    <option value="gigabyte">gigabyte</option>
-                  </select>
-                </form>
-              </div>
-            </td>
-            <div>
-              <td class="last">1 BTC</td>
-            </div>
-          </tr>
-          <% for (let topping in result) { %>
-            <tr class="pizza">
-              <td>
-                <div class="item-container">
-                  <p>
-                    <%=result[topping].name %>*
-                  </p>
-                  <img src="https://freepngimg.com/thumb/pizza/35510-7-pepperoni-pizza.png">
-                </div>
-              </td>
-              <% if (result[topping].topping_category_id=1){ %>
-                <td>
-                  <div class="check-group">
-                    <input class="check" type="checkbox" >
-                    <label>
-                      <%=result[topping].name %>
-                    </label>
-                  </div>
-                </td>
-                <%}%>
-                  <td>
-                    <div class="check-group">
-                      <input class="check" type="checkbox">
-                      <label>Meats-shoutout the zucck</label>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="check-group">
-                      <input class="check" type="checkbox">
-                      <label>veggies</label>
-                    </div>
 
-                  </td>
+            <% for (category in result) { %>
+              <% if(category !=='Size' ){%>
+
+                <td>
+                  <% for (topping in result[category]) { %>
+                    <div class="check-group">
+                      <input class="check" type="checkbox">
+
+                      <label>
+                        <%= result[category][topping] %>
+                      </label>
+
+                    </div>
+                    <% } %>
+                </td>
+                <% } }%>
                   <td>
                     <div>
                       <form>
                         <select name="size" id="size">
-                          <option value="byte">byte</option>
-                          <option value="megabyte">megabyte</option>
-                          <option value="gigabyte">gigabyte</option>
+                          <% for (const option of result.Size) { %>
+                            <option value="<%=option%>">
+                              <%= option %> </option>
+                            <% }%>
                         </select>
                       </form>
                     </div>
                   </td>
+
                   <div>
-                    <td class="last">1 BTC</td>
+                    <td class="last">
+                      <%='priceFromCookie' %> BTC
+                    </td>
                   </div>
-            </tr>
-            <% } %>
+
+          </tr>
+
         </tbody>
         <tfoot class="table-footer">
           <tr>
