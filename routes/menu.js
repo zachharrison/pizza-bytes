@@ -84,6 +84,7 @@ module.exports = (db) => {
         res.status(500).json({ error: err.message });
       });
   });
+
   // option to chng_quantity/remove => post'/cart'
   // router.post("/cart", (req, res) => {
   //   db.query(`SELECT * FROM order_items;`)
@@ -102,6 +103,7 @@ module.exports = (db) => {
   // });
 
   router.post("/cart", (req, res) => {
+    console.log('JKDSJFKLJDSKLFJKL:DSJFJDSK:J')
 
     pizzaId = generateRandomId()
 
@@ -136,7 +138,7 @@ module.exports = (db) => {
       
       res.cookie('cartId', cartId);
       res.cookie('cart', cart);
-      
+
       console.log('The cart has been set ', JSON.stringify(cart));
 
     }

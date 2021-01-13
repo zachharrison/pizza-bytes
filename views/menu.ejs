@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <title>Menu</title>
 
-<head>
-  <title>Menu</title>
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <!-- <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" /> -->
+    <!-- <link rel="stylesheet" href="/styles/layout.css" type="text/css" /> -->
 
-  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-  <!-- <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" /> -->
-  <!-- <link rel="stylesheet" href="/styles/layout.css" type="text/css" /> -->
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="/scripts/app.js"></script>
+    <!-- <script type="text/javascript" src="/scripts/menu.js"></script> -->
+  </head>
 
-  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-  <script type="text/javascript" src="/scripts/app.js"></script>
-  <!-- <script type="text/javascript" src="/scripts/menu.js"></script> -->
-</head>
-
-<body>
-  <%- include('partials/nav') %>
+  <body>
+    <%- include('partials/nav') %>
     <main id="menu-main">
       <h3 class="title">Menu</h3>
       <table class="table" id="menu-table">
@@ -24,52 +23,52 @@
             <th col="1">Pizza</th>
             <th col="2">Description</th>
             <th col="1">Starting at</th>
-            <th></th>
+            <th col="1">Starting at</th>
           </tr>
         </thead>
-        <% for (let pizza in result) { %>
-          <tbody>
-            <tr class="table-rows">
-              <td>
-                <div class="item-container">
-                  <p>
-                    <img class="menu-photo" src="<%=result[pizza].url %>" alt="<%=pizza.name %>" />
-                  </p>
-                </div>
-              </td>
-              <td>
-                <div class="item-container">
-                  <p>
-                    <%=result[pizza].name %>
-                  </p>
-                </div>
-              </td>
-              <td>
-                <div class="item-container">
-                  <% for (let topping of result[pizza].toppings) { %>
-                    <p><%=topping %></p>
-                    <% } %>
-                </div>
-              </td>
-              <td>
-                <div class="item-container">
-                  <p>
-                    <%= (result[pizza].price/100).toFixed(2) %>
-                  </p>
-                </div>
-              </td>
-              <td>
-                <form class="btn-container" action="/api/menu/cart" method="GET">
-                  <a href="/api/menu/edit" class="edit-btn" id="order-btn">Edit</a>
-                  <button class="btn" value="<%=pizza.name%>">Order</button>
-                </form>
-              </td>
-              <% } %>
-            </tr>
-          </tbody>
+        <% for (let item in result) { let dollarPrice = item.price/100 %>
+        <tbody>
+          <tr class="table-rows">
+            <td>
+              <div class="item-container">
+                <p>
+                  <img
+                    class="menu-photo"
+                    src="<%=item.photo_url %>"
+                    alt="<%=item.name %>"
+                  />
+                </p>
+              </div>
+            </td>
+            <td>
+              <div class="item-container">
+                <p><%=item.name %></p>
+              </div>
+            </td>
+            <td>
+              <div class="item-container">
+                <p>Description</p>
+              </div>
+            </td>
+  
+            <td>
+              <div class="item-container">
+                <p>$<%= dollarPrice.toFixed(2) %></p>
+              </div>
+            </td>
+            <td>
+              <form class="btn-container" action="/api/menu/cart/" method="POST">
+                <!-- <a href="/api/menu/cart" class="edit-btn" id="order-btn">Order</a> -->
+                <button name="pizza" class="btn" value="<%=item.name%>">Order</button>
+              </form>
+            </td>
 
-          <tfoot>
-            <thead>
+            <% } %>
+          </tr>
+        </tbody>
+
+        <tfoot>
+          <!-- <thead>
             <tr>
               <div class="total-container">
                 <th class="total-header"></th>
@@ -78,10 +77,9 @@
                 <th class="total-header"></th>
               </div>
             </tr>
-          </thead>
-          </tfoot>
+          </thead> -->
+        </tfoot>
       </table>
     </main>
-</body>
-
+  </body>
 </html>
