@@ -10,19 +10,19 @@ const { helpers } = require("../db/query-scripts/queryMethods.js");
 const { menuBuilder } = require("../db/query-scripts/menu-queries.js");
 const { generateRandomId } = require('../generateRandomId');
 const bodyParser = require("body-parser");
-const cookieSession = require('cookie-session');
+// const cookieSession = require('cookie-session');
 const app = express()
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(cookieSession(
-  // { name: 'session', keys: 'somestring', cart: {}},
-  { name: 'session', keys: ["some secret here"], maxAge: 24 * 60 * 60 * 1000 }
-));
-app.use(function(req, res, next){
-  res.locals.cart = req.session.cart;
-  next();
-});
+// app.use(cookieSession(
+//   // { name: 'session', keys: 'somestring', cart: {}},
+//   { name: 'session', keys: ["some secret here"], maxAge: 24 * 60 * 60 * 1000 }
+// ));
+// app.use(function(req, res, next){
+//   res.locals.cart = req.session.cart;
+//   next();
+// });
 
 
 module.exports = (db) => {
@@ -126,6 +126,7 @@ module.exports = (db) => {
 
   router.post("/cart", (req, res) => {
 
+<<<<<<< HEAD
     // const pizzaId = generateRandomId();
     // const templateVars = { id, cart: req.session.cart };
 
@@ -142,9 +143,14 @@ module.exports = (db) => {
     // }
 
     // req.session['cartId'] ?
+=======
+    // req.session['cartId'] ? 
+>>>>>>> d7783313fcbe31ce504fcc0a8c73519d5c396f74
     // req.session['cartId'] = cartId :
-    pizzaId = generateRandomId()
-    req.session['pizzaId'] = pizzaId;
+    // pizzaId = generateRandomId()
+    // req.session['pizzaId'] = pizzaId;
+
+    pizzas = [];
 
     const pizza = {
       id: pizzaId,
@@ -153,27 +159,40 @@ module.exports = (db) => {
       toppings: []
     }
 
-    if (req.session['cartId']) {
+    pizzas.push(pizza);
 
-      req.session['cartId'] = cartId;
-      pizzas.push(pizza)
-      console.log('TRUUUUUUUE');
-      const cart = req.session['cart'];
+    if (req.session.cartId) {
+      console.log('trueeeeee')
+      cartId = req.session['cartId'];
+      // pizzas.push(pizza)
+      // console.log('TRUUUUUUUE');
+      // // const cart = {} 
+      // cart[req.session['cartId']] = {};
 
     } else {
 
-      cart = {};
-
+      console.log('no cart')
       cartId = generateRandomId();
       req.session['cartId'] = cartId
 
+<<<<<<< HEAD
       req.session['pizza'] = req.body.pizza;
       req.session['pizzaId'] = generateRandomId();
 
       cart[cartId] = {};
+=======
+      // const cart = {};
+      // req.session.cart = cart;
 
-      pizzas = [];
-      pizzas.push(pizza);
+    
+      // req.session['pizza'] = req.body.pizza;
+      // req.session['pizzaId'] = generateRandomId();
+    
+      // cart[cartId] = {};
+>>>>>>> d7783313fcbe31ce504fcc0a8c73519d5c396f74
+
+      // pizzas = [];
+      // pizzas.push(pizza);
     }
 
     // cartId = generateRandomId();
@@ -199,12 +218,15 @@ module.exports = (db) => {
     // pizzas = [];
     // pizzas.push(pizza);
 
-    console.log('This is the cart ', cart);
-    console.log('This is the pizzas ', pizzas);
+    // console.log('This is the cart ', req.session.cart);
+    // console.log('This is the pizzas ', pizzas);
+
+
     // templateVars[cartId]['pizzas'] = [];
     // templateVars[cartId]['pizzas'].push(pizza);
     // stringifyed = JSON.stringify(templateVars)
     // console.log('This is the data', stringifyed);
+<<<<<<< HEAD
 
     // for (const prop in templateVars) {
       //   console.log('This is the cart id ', templateVars[cartId]);
@@ -218,10 +240,18 @@ module.exports = (db) => {
 
       res.render('cart', req.session.cart, pizzas);
 
+=======
+      
+      
+      
+      // res.render('cart', req.session.cart, pizzas);
+      
+>>>>>>> d7783313fcbe31ce504fcc0a8c73519d5c396f74
   });
 
     return router;
   }
+<<<<<<< HEAD
 
   /*
 
@@ -322,3 +352,8 @@ module.exports = (db) => {
 //     },
 //   ]
 // }
+=======
+  
+  /* 
+  
+>>>>>>> d7783313fcbe31ce504fcc0a8c73519d5c396f74

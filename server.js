@@ -9,7 +9,7 @@ const sass = require("node-sass-middleware");
 const app = express();
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
-const cookieSession = require('cookie-session');
+// const cookieSession = require('cookie-session');
 
 // PG database client/connection setup
 const { Pool } = require("pg");
@@ -35,9 +35,9 @@ app.use(bodyParser.json());
 //   })
 // );
 app.use(express.static("public"));
-app.use(cookieSession(
-  { name: 'id', keys: 'somestring', cart: {num: 55}},
-));
+// app.use(cookieSession(
+//   { name: 'id', keys: 'somestring', cart: {num: 55}},
+// ));
 
 
 // Separated Routes for each Resource
