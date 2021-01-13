@@ -10,20 +10,12 @@ const { helpers } = require("../db/query-scripts/queryMethods.js");
 const { menuBuilder, pizzaEditor } = require("../db/query-scripts/menu-queries.js");
 const { generateRandomId } = require('../generateRandomId');
 const bodyParser = require("body-parser");
-// const cookieSession = require('cookie-session');
+const cookieParser = require("cookie-parser");
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-// app.use(cookieSession(
-//   // { name: 'session', keys: 'somestring', cart: {}},
-//   { name: 'session', keys: ["some secret here"], maxAge: 24 * 60 * 60 * 1000 }
-// ));
-// app.use(function(req, res, next){
-//   res.locals.cart = req.session.cart;
-//   next();
-// });
-
+app.use(cookieParser());
 
 module.exports = (db) => {
 
@@ -92,6 +84,7 @@ module.exports = (db) => {
         res.status(500).json({ error: err.message });
       });
   });
+
   // option to chng_quantity/remove => post'/cart'
   // router.post("/cart", (req, res) => {
   //   db.query(`SELECT * FROM order_items;`)
@@ -110,220 +103,45 @@ module.exports = (db) => {
   // });
 
   router.post("/cart", (req, res) => {
-
-    // const pizzaId = generateRandomId();
-    // const templateVars = { id, cart: req.session.cart };
-
-
-    // if (req.session) {
-
-    //   cartId = req.session["cartId"];
-
-    // } else {
-
-    //   cartId = generateRandomId();
-    //   req.session['cartId'] = cartId
-
-    // }
-
-    // req.session['cartId'] ?
-    // req.session['cartId'] ?
-    // req.session['cartId'] = cartId :
-    // pizzaId = generateRandomId()
-    // req.session['pizzaId'] = pizzaId;
-
-    pizzas = [];
+    pizzaId = generateRandomId();
 
     const pizza = {
       id: pizzaId,
       name: req.body.pizza,
       size: "small",
-      toppings: []
+      toppings: [],
     };
 
-    pizzas.push(pizza);
-
-    if (req.session.cartId) {
-      console.log('trueeeeee');
-      cartId = req.session['cartId'];
-      // pizzas.push(pizza)
-      // console.log('TRUUUUUUUE');
-      // // const cart = {}
-      // cart[req.session['cartId']] = {};
-
+    /*
+      IF USER ALREADY HAS A CART IN THEIR COOKIES, USE THE EXISTING CART
+      ELSE CREATE A CART AND STORE THE CART ID AND THE
+      CART ITSELF AS COOKIES IN THE BROWSER
+    */
+    if (req.cookies["cartId"]) {
+      cart = req.cookies["cart"];
+      cart[req.cookies["cartId"]]["pizzas"].push(pizza);
+      console.log("This is your cart ---->", JSON.stringify(cart));
     } else {
-
-      console.log('no cart');
       cartId = generateRandomId();
-      req.session['cartId'] = cartId;
 
-      req.session['pizza'] = req.body.pizza;
-      req.session['pizzaId'] = generateRandomId();
-
+      cart = {};
       cart[cartId] = {};
-      // const cart = {};
-      // req.session.cart = cart;
 
+      const pizzas = [];
+      pizzas.push(pizza);
 
-      // req.session['pizza'] = req.body.pizza;
-      // req.session['pizzaId'] = generateRandomId();
+      cart[cartId]['pizzas'] = pizzas;
 
-      // cart[cartId] = {};
+      res.cookie('cartId', cartId);
+      res.cookie('cart', cart);
 
-      // pizzas = [];
-      // pizzas.push(pizza);
+      console.log('The cart has been set ', JSON.stringify(cart));
+
+      console.log("The cart has been set ---->", JSON.stringify(cart));
     }
 
-    // cartId = generateRandomId();
-    // req.session['cartId'] = cartId
-
-    // req.session['pizza'] = req.body.pizza;
-    // req.session['pizzaId'] = generateRandomId();
-
-    // pizzaId = generateRandomId()
-    // req.session['pizzaId'] = pizzaId;
-
-
-    // pizza = {
-    //   id: pizzaId,
-    //   name: req.body.pizza,
-    //   size: "small",
-    //   toppings: []
-    // }
-
-    // const cart = {};
-    // cart[cartId] = {};
-
-    // pizzas = [];
-    // pizzas.push(pizza);
-
-    // console.log('This is the cart ', req.session.cart);
-    // console.log('This is the pizzas ', pizzas);
-
-
-    // templateVars[cartId]['pizzas'] = [];
-    // templateVars[cartId]['pizzas'].push(pizza);
-    // stringifyed = JSON.stringify(templateVars)
-    // console.log('This is the data', stringifyed);
-
-    // for (const prop in templateVars) {
-    //   console.log('This is the cart id ', templateVars[cartId]);
-    //   console.log('This is the pizzas array ', templateVars[cartId]['pizzas']);
-    //   templateVars[cartId]['pizzas'].forEach(element => console.log('This is every pizza in the array ', element));
-
-
-    // }
-
-
-
-    res.render('cart', req.session.cart, pizzas);
-
-
-
-
-    // res.render('cart', req.session.cart, pizzas);
-
+    res.render("cart", req.cookies["cart"]);
   });
 
   return router;
-};;
-
-/*
-
-This is the cart id  { pizzas:
-  [ { id: 'e8r3qX',
-  name: 'Classic Cheese Pizza',
-  size: 'small',
-  toppings: [] } ] }
-  This is the pizzas array  [ { id: 'e8r3qX',
-  name: 'Classic Cheese Pizza',
-  size: 'small',
-  toppings: [] } ]
-  This is every pizza in the array  { id: 'e8r3qX',
-  name: 'Classic Cheese Pizza',
-  size: 'small',
-  toppings: [] }
-
-
-
-  */
-   // req.session['pizza'] = req.body.pizza;
-   //     req.session['pizzaId'] = generateRandomId();
-   //     req.session['cartId'] = generateRandomId();
-   //     const cartId = req.session['cartId'];
-   //     const pizzaId = req.session['pizzaId'];
-   //     cartId = {}
-   //     templateVars[cartId] = {};
-   //     templateVars[cartId]['pizzas'] = [];
-   //       const pizza = {
-     //       id: pizzaId,
-     //       name: req.body.pizza,
-     //       size: "small",
-     //       toppings: []
-     //     }
-     //     templateVars[cartId]['pizzas'].push(pizza)
-     // This is the templateVars  { cartId: { pizzas: [ [Object] ] } }=
-
-
-
-     // randomCartId: {
-   //   pizzas : [
-   //     {
-   //       id: randomPizzaId,
-   //       name: pepperoni,
-   //       size: small,
-   //       toppings: ['pepperoni', 'mozzarella'],
-   //     },
-   //   ]
-   // }
-
-
-
-
-// req.session["cart"]["pizzas"]
-// req.session["user_id"] = id;
-// res.redirect("/urls");
-
-// { name: 1, keys: 'somestring', cart: { } }
-
-// cartRandomID {
-//   pizzaRandomID {
-//     name: cheese pizza,
-//     size: lg,
-//     toppings: [feta, sausuage]
-//   },
-//   pizzaRandomID {
-//     etc
-//   }
-
-// }
-
-
-// cart {
-//   unique_cart_id: {
-//     pizzas : [
-//     {
-//       name: pepperoni,
-//       size: small,
-//       mozzarella: true,
-//       chedder: false,
-//       feta: false,
-//       pepperoni: true,
-//     },
-//       { //options 2
-//         name: custom
-//       }
-//     ]
-//   }
-// }
-
-// randomCartId: {
-//   pizzas : [
-//     {
-//       id: randomPizzaId,
-//       name: pepperoni,
-//       size: small,
-//       toppings: ['pepperoni', 'mozzarella'],
-//     },
-//   ]
-// }
+};
