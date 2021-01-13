@@ -54,17 +54,17 @@
                 </div>
               </td>
               <td>
-                <form class="btn-container" action="/api/menu/cart" method="GET">
+                <form class="btn-container" action="/api/menu/cart" method="POST">
                   <a href="/api/menu/edit" class="edit-btn" id="order-btn">Edit</a>
-                  <button class="btn" value="<%=pizza.name%>">Order</button>
+                  <button name="pizza" class="btn" value="<%=result[pizza].name%>">Order</button>
                 </form>
               </td>
             </tr>
             <% } %>
           </tr>
         </tbody>
-
         <tfoot>
+
         </tfoot>
       </table>
     </main>

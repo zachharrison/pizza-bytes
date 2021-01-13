@@ -119,9 +119,16 @@ module.exports = (db) => {
       CART ITSELF AS COOKIES IN THE BROWSER
     */
     if (req.cookies["cartId"]) {
+
       cart = req.cookies["cart"];
-      cart[req.cookies["cartId"]]["pizzas"].push(pizza);
-      console.log("This is your cart ---->", JSON.stringify(cart));
+      // console.log("This is your cart BEFORE you add to cart ---->", JSON.stringify(cart));
+
+      cart[req.cookies['cartId']]["pizzas"].push(pizza);
+
+      // console.log("This is your cart ---->", JSON.stringify(cart));
+      console.log(cart[req.cookies['cartId']]['pizzas']);
+      res.cookie("cart", cart)
+
     } else {
       cartId = generateRandomId();
 
