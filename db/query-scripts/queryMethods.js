@@ -12,18 +12,13 @@ const helpers = {
   getMenuItemFromId: function () {
     return `SELECT * FROM menu_items WHERE id = $1;`;
   },
-<<<<<<< Updated upstream
-  getToppings: function() {
+  getToppings: function () {
     return `SELECT * FROM toppings;`;
   },
-  getToppings2pt0: function() {
+  getToppings2pt0: function () {
     return `SELECT topping_category_id, toppings.name AS name, topping_categories.name AS type
     FROM toppings
     LEFT JOIN topping_categories ON toppings.topping_category_id = topping_categories.id;`;
-=======
-  getToppings: function () {
-    return `SELECT * toppings;`;
->>>>>>> Stashed changes
   },
   getToppingFromId: function () {
     return `SELECT * FROM toppings WHERE id = $1;`;
@@ -88,7 +83,7 @@ const helpers = {
     FROM menu_items
     LEFT JOIN menu_item_toppings ON menu_items.id = menu_item_id
     JOIN toppings ON toppings.id = topping_id
-    WHERE menu_items.name = $1;`
+    WHERE menu_items.name = $1;`;
   },
   getOrderDetails: function () {
     return `SELECT quantity, orders.id, menu_items.price, menu_items.name AS pizza_name, sizes.name AS size, order_items.id AS order_id, toppings.name AS topping
