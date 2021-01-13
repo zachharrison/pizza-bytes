@@ -103,7 +103,8 @@ module.exports = (db) => {
   // });
 
   router.post("/cart", (req, res) => {
-    pizzaId = generateRandomId();
+
+    pizzaId = generateRandomId()
 
     const pizza = {
       id: pizzaId,
@@ -130,12 +131,10 @@ module.exports = (db) => {
       const pizzas = [];
       pizzas.push(pizza);
 
-      cart[cartId]['pizzas'] = pizzas;
+      cart[cartId]["pizzas"] = pizzas;
 
-      res.cookie('cartId', cartId);
-      res.cookie('cart', cart);
-
-      console.log('The cart has been set ', JSON.stringify(cart));
+      res.cookie("cartId", cartId);
+      res.cookie("cart", cart);
 
       console.log("The cart has been set ---->", JSON.stringify(cart));
     }
