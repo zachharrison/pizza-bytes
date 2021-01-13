@@ -7,8 +7,8 @@
 const express = require("express");
 const router = express.Router();
 const { helpers } = require("../db/query-scripts/queryMethods.js");
-const { menuBuilder } = require("../db/query-scripts/menu-queries.js");
-const { generateRandomId } = require("../generateRandomId");
+const { menuBuilder, pizzaEditor } = require("../db/query-scripts/menu-queries.js");
+const { generateRandomId } = require('../generateRandomId');
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const app = express();
@@ -18,18 +18,6 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 module.exports = (db) => {
-  // main menu, shows pizzas with details
-  // router.get("/", (req, res) => {
-  //   res.render("menu", menuBuilder());
-  //   db.query(helpers.getMenu2pt0())
-  //     .then((data) => {
-  //       const result = menuBuilder(data.rows);
-  //       console.log(result);
-  //     })
-  //     .catch((err) => {
-  //       console.error(err);
-  //     });
-  // });
 
   router.get("/", (req, res) => {
     db.query(helpers.getMenu2pt0())
@@ -46,17 +34,31 @@ module.exports = (db) => {
   });
 
   // shows the 'selected' menu item and options INSERT into orders
+
   router.get("/edit", (req, res) => {
-    res.render("edit");
-    db.query(`SELECT * FROM toppings;`)
+    db.query(helpers.getToppings())
       .then((data) => {
-        const result = data.rows;
-        res.json({ result });
+        const templateVars = {
+          result: pizzaEditor(data.rows),
+        };
+        res.render("edit", templateVars);
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
       });
   });
+
+  /*   router.get("/edit", (req, res) => {
+      res.render("edit");
+      db.query(`SELECT * FROM toppings;`)
+        .then((data) => {
+          const result = data.rows;
+          res.json({ result });
+        })
+        .catch((err) => {
+          res.status(500).json({ error: err.message });
+        });
+    }); */
   // see and remove orders item
   // option to edit => get'/edit'
   router.get("/cart", (req, res) => {
@@ -122,10 +124,10 @@ module.exports = (db) => {
       console.log("This is your cart ---->", JSON.stringify(cart));
     } else {
       cartId = generateRandomId();
-      
+
       cart = {};
       cart[cartId] = {};
-      
+
       const pizzas = [];
       pizzas.push(pizza);
 
