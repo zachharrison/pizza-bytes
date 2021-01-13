@@ -47,28 +47,12 @@ module.exports = (db) => {
           result: menuBuilder(data.rows),
         };
         res.render("menu", templateVars);
-        console.log('===================>', templateVars);
-        for (const pizza in templateVars.result) {
-          console.log('pizza----->', pizza);
-
-        }
       })
       .catch((err) => {
         console.error(err);
         res.status(500).json({ error: err.message });
       });
   });
-  /*   router.get("/", (req, res) => {
-      db.query(helpers.getMenu())
-        .then((data) => {
-          const result = data.rows;
-          res.render("menu", { result });
-        })
-        .catch((err) => {
-          console.error(err);
-          res.status(500).json({ error: err.message });
-        });
-    }); */
 
   // shows the 'selected' menu item and options INSERT into orders
   router.get("/edit", (req, res) => {
@@ -126,7 +110,6 @@ module.exports = (db) => {
 
   router.post("/cart", (req, res) => {
 
-<<<<<<< HEAD
     // const pizzaId = generateRandomId();
     // const templateVars = { id, cart: req.session.cart };
 
@@ -143,9 +126,7 @@ module.exports = (db) => {
     // }
 
     // req.session['cartId'] ?
-=======
-    // req.session['cartId'] ? 
->>>>>>> d7783313fcbe31ce504fcc0a8c73519d5c396f74
+    // req.session['cartId'] ?
     // req.session['cartId'] = cartId :
     // pizzaId = generateRandomId()
     // req.session['pizzaId'] = pizzaId;
@@ -166,7 +147,7 @@ module.exports = (db) => {
       cartId = req.session['cartId'];
       // pizzas.push(pizza)
       // console.log('TRUUUUUUUE');
-      // // const cart = {} 
+      // // const cart = {}
       // cart[req.session['cartId']] = {};
 
     } else {
@@ -175,21 +156,18 @@ module.exports = (db) => {
       cartId = generateRandomId();
       req.session['cartId'] = cartId
 
-<<<<<<< HEAD
       req.session['pizza'] = req.body.pizza;
       req.session['pizzaId'] = generateRandomId();
 
       cart[cartId] = {};
-=======
       // const cart = {};
       // req.session.cart = cart;
 
-    
+
       // req.session['pizza'] = req.body.pizza;
       // req.session['pizzaId'] = generateRandomId();
-    
+
       // cart[cartId] = {};
->>>>>>> d7783313fcbe31ce504fcc0a8c73519d5c396f74
 
       // pizzas = [];
       // pizzas.push(pizza);
@@ -226,7 +204,6 @@ module.exports = (db) => {
     // templateVars[cartId]['pizzas'].push(pizza);
     // stringifyed = JSON.stringify(templateVars)
     // console.log('This is the data', stringifyed);
-<<<<<<< HEAD
 
     // for (const prop in templateVars) {
       //   console.log('This is the cart id ', templateVars[cartId]);
@@ -240,18 +217,15 @@ module.exports = (db) => {
 
       res.render('cart', req.session.cart, pizzas);
 
-=======
-      
-      
-      
+
+
+
       // res.render('cart', req.session.cart, pizzas);
-      
->>>>>>> d7783313fcbe31ce504fcc0a8c73519d5c396f74
+
   });
 
     return router;
   }
-<<<<<<< HEAD
 
   /*
 
@@ -352,8 +326,3 @@ module.exports = (db) => {
 //     },
 //   ]
 // }
-=======
-  
-  /* 
-  
->>>>>>> d7783313fcbe31ce504fcc0a8c73519d5c396f74
