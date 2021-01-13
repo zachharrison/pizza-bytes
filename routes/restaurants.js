@@ -9,6 +9,10 @@ const express = require("express");
 const router = express.Router();
 const bodyParser = require("body-parser");
 const { helpers } = require("../db/query-scripts/queryMethods.js");
+const {
+  menuBuilder,
+  pizzaEditor,
+} = require("../db/query-scripts/menu-queries.js");
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
@@ -30,18 +34,24 @@ module.exports = (db) => {
   });
   router.get("/orders/:id", (req, res) => {
     let id = req.params.id;
-    db.query(
-      `SELECT quantity, orders.id, menu_items.price, menu_items.name AS pizza_name, sizes.name AS size, order_items.id AS order_id
-      FROM order_items
-      JOIN orders ON orders.id = order_id
-      JOIN menu_items ON menu_item_id = menu_items.id
-      JOIN sizes ON sizes.id = size_id
-      WHERE orders.id = $1;`,
-      [id]
-    )
+    db.query(helpers.getOrderDetails(), [id])
       .then((data) => {
         const result = data.rows;
-        res.render("orders-id", { result });
+        const resultObj = {};
+        for (let each in result) {
+          if (result[each]["order_id"] in resultObj) {
+            resultObj[result[each]["order_id"]]["toppings"].push(
+              " " + result[each]["topping"]
+            );
+          } else {
+            resultObj[result[each]["order_id"]] = {
+              name: result[each]["pizza_name"],
+              size: result[each]["size"],
+              toppings: [result[each]["topping"]],
+            };
+          }
+        }
+        res.render("orders-id", { resultObj, id });
       })
       .catch((err) => {
         console.error(err);
@@ -95,12 +105,11 @@ module.exports = (db) => {
       });
   });
   router.get("/customers/:id", (req, res) => {
-    let query = `SELECT * FROM restaurants`;
-    console.log(query);
-    db.query(query)
+    let id = req.params.id;
+    db.query(helpers.getCustomerDetails(), [id])
       .then((data) => {
-        const result = data.rows;
-        res.json({ result });
+        const result = data.rows[0];
+        res.render("rests-custs-id", { result });
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });

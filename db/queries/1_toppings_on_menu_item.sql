@@ -68,3 +68,12 @@ SELECT toppings.name
 FROM menu_items
 LEFT JOIN menu_item_toppings ON menu_items.id = menu_item_id
 WHERE menu_items.name LIKE '%Cheese Pizza%';
+
+SELECT quantity, orders.id, menu_items.price, menu_items.name AS pizza_name, sizes.name AS size, order_items.id AS order_id, toppings.name AS topping
+    FROM order_items
+    JOIN orders ON orders.id = order_id
+    JOIN menu_items ON menu_item_id = menu_items.id
+    JOIN sizes ON sizes.id = size_id
+    JOIN order_item_toppings ON order_item_id = order_items.id
+    JOIN toppings ON topping_id = toppings.id
+    WHERE orders.id = $1;

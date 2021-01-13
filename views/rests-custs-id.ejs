@@ -16,20 +16,19 @@
   <body>
     <%- include('partials/nav') %>
 
-    <h1>Order <%=id%></h1>
+    <h1>Customer <%=result.id%></h1>
     <table>
       <tr>
-        <th>Pizza</th>
-        <th>Size</th>
-        <th>Toppings</th>
+        <th>Name</th>
+        <th>Phone Number</th>
+        <th>Email</th>
       </tr>
-      <% for (let item in resultObj) { %>
+
       <tr>
-        <td><%= resultObj[item].name %></td>
-        <td><%= resultObj[item].size %></td>
-        <td><%= resultObj[item].toppings %></td>
+        <td><%= result.name %></td>
+        <td><%= result.phone_number %></td>
+        <td><%= result.email %></td>
       </tr>
-      <% } %>
     </table>
   </body>
 </html>

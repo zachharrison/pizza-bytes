@@ -139,7 +139,8 @@ VALUES (1, 3, 1, 1),
 (3, 2, 1, 3),
 (3, 2, 1, 4),
 (4, 1, 3, 1),
-(4, 2, 2, 2);
+(4, 2, 2, 2),
+(5, 2, 1, 2);
 
 -- 7 order items total to add potential toppings to
 INSERT INTO order_item_toppings (topping_id, order_item_id)
@@ -158,6 +159,7 @@ VALUES (3, 1),
 (9, 6),
 (5, 6),
 (9, 7),
-(10, 7);
+(10, 7),
+(7, 8);
 
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO labber;
