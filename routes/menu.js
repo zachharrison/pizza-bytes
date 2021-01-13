@@ -7,11 +7,11 @@
 const express = require("express");
 const router = express.Router();
 const { helpers } = require("../db/query-scripts/queryMethods.js");
-const { menuBuilder } = require("../db/query-scripts/menu-queries.js");
+const { menuBuilder, pizzaEditor } = require("../db/query-scripts/menu-queries.js");
 const { generateRandomId } = require('../generateRandomId');
 const bodyParser = require("body-parser");
 // const cookieSession = require('cookie-session');
-const app = express()
+const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -26,21 +26,8 @@ app.use(bodyParser.json());
 
 
 module.exports = (db) => {
-  // main menu, shows pizzas with details
-  // router.get("/", (req, res) => {
-  //   res.render("menu", menuBuilder());
-  //   db.query(helpers.getMenu2pt0())
-  //     .then((data) => {
-  //       const result = menuBuilder(data.rows);
-  //       console.log(result);
-  //     })
-  //     .catch((err) => {
-  //       console.error(err);
-  //     });
-  // });
 
   router.get("/", (req, res) => {
-
     db.query(helpers.getMenu2pt0())
       .then((data) => {
         const templateVars = {
@@ -55,17 +42,31 @@ module.exports = (db) => {
   });
 
   // shows the 'selected' menu item and options INSERT into orders
+
   router.get("/edit", (req, res) => {
-    res.render("edit");
-    db.query(`SELECT * FROM toppings;`)
+    db.query(helpers.getToppings())
       .then((data) => {
-        const result = data.rows;
-        res.json({ result });
+        const templateVars = {
+          result: pizzaEditor(data.rows),
+        };
+        res.render("edit", templateVars);
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
       });
   });
+
+  /*   router.get("/edit", (req, res) => {
+      res.render("edit");
+      db.query(`SELECT * FROM toppings;`)
+        .then((data) => {
+          const result = data.rows;
+          res.json({ result });
+        })
+        .catch((err) => {
+          res.status(500).json({ error: err.message });
+        });
+    }); */
   // see and remove orders item
   // option to edit => get'/edit'
   router.get("/cart", (req, res) => {
@@ -138,12 +139,12 @@ module.exports = (db) => {
       name: req.body.pizza,
       size: "small",
       toppings: []
-    }
+    };
 
     pizzas.push(pizza);
 
     if (req.session.cartId) {
-      console.log('trueeeeee')
+      console.log('trueeeeee');
       cartId = req.session['cartId'];
       // pizzas.push(pizza)
       // console.log('TRUUUUUUUE');
@@ -152,9 +153,9 @@ module.exports = (db) => {
 
     } else {
 
-      console.log('no cart')
+      console.log('no cart');
       cartId = generateRandomId();
-      req.session['cartId'] = cartId
+      req.session['cartId'] = cartId;
 
       req.session['pizza'] = req.body.pizza;
       req.session['pizzaId'] = generateRandomId();
@@ -206,46 +207,46 @@ module.exports = (db) => {
     // console.log('This is the data', stringifyed);
 
     // for (const prop in templateVars) {
-      //   console.log('This is the cart id ', templateVars[cartId]);
-      //   console.log('This is the pizzas array ', templateVars[cartId]['pizzas']);
-      //   templateVars[cartId]['pizzas'].forEach(element => console.log('This is every pizza in the array ', element));
+    //   console.log('This is the cart id ', templateVars[cartId]);
+    //   console.log('This is the pizzas array ', templateVars[cartId]['pizzas']);
+    //   templateVars[cartId]['pizzas'].forEach(element => console.log('This is every pizza in the array ', element));
 
 
-      // }
-
-
-
-      res.render('cart', req.session.cart, pizzas);
+    // }
 
 
 
+    res.render('cart', req.session.cart, pizzas);
 
-      // res.render('cart', req.session.cart, pizzas);
+
+
+
+    // res.render('cart', req.session.cart, pizzas);
 
   });
 
-    return router;
-  }
+  return router;
+};;
 
-  /*
+/*
 
-  This is the cart id  { pizzas:
-    [ { id: 'e8r3qX',
-    name: 'Classic Cheese Pizza',
-    size: 'small',
-    toppings: [] } ] }
-    This is the pizzas array  [ { id: 'e8r3qX',
-    name: 'Classic Cheese Pizza',
-    size: 'small',
-    toppings: [] } ]
-    This is every pizza in the array  { id: 'e8r3qX',
-    name: 'Classic Cheese Pizza',
-    size: 'small',
-    toppings: [] }
+This is the cart id  { pizzas:
+  [ { id: 'e8r3qX',
+  name: 'Classic Cheese Pizza',
+  size: 'small',
+  toppings: [] } ] }
+  This is the pizzas array  [ { id: 'e8r3qX',
+  name: 'Classic Cheese Pizza',
+  size: 'small',
+  toppings: [] } ]
+  This is every pizza in the array  { id: 'e8r3qX',
+  name: 'Classic Cheese Pizza',
+  size: 'small',
+  toppings: [] }
 
 
 
-    */
+  */
    // req.session['pizza'] = req.body.pizza;
    //     req.session['pizzaId'] = generateRandomId();
    //     req.session['cartId'] = generateRandomId();

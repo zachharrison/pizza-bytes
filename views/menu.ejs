@@ -27,9 +27,9 @@
             <th></th>
           </tr>
         </thead>
-        <% for (let pizza in result) { %>
-          <tbody>
-            <tr class="table-rows">
+        <tbody>
+          <% for (let pizza in result) { %>
+          <tr class="table-rows">
               <td>
                 <div class="item-container">
                   <p>
@@ -39,9 +39,7 @@
               </td>
               <td>
                 <div class="item-container">
-                  <p>
-                    <%=result[pizza].name %>
-                  </p>
+                  <p><%=result[pizza].name %></p>
                 </div>
               </td>
               <td>
@@ -53,9 +51,7 @@
               </td>
               <td>
                 <div class="item-container">
-                  <p>
-                    <%= (result[pizza].price/100).toFixed(2) %>
-                  </p>
+                  <p> <%= (result[pizza].price/100).toFixed(2) %></p>
                 </div>
               </td>
               <td>
@@ -64,8 +60,8 @@
                   <button class="btn" value="<%=pizza.name%>">Order</button>
                 </form>
               </td>
-              <% } %>
             </tr>
+            <% } %>
           </tbody>
 
           <tfoot>
