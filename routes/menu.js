@@ -8,15 +8,14 @@ const express = require("express");
 const router = express.Router();
 const { helpers } = require("../db/query-scripts/queryMethods.js");
 const { menuBuilder } = require("../db/query-scripts/menu-queries.js");
-const { generateRandomId } = require('../generateRandomId');
+const { generateRandomId } = require("../generateRandomId");
 const bodyParser = require("body-parser");
-const cookieParser = require('cookie-parser');
-const app = express()
+const cookieParser = require("cookie-parser");
+const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
-
 
 module.exports = (db) => {
   // main menu, shows pizzas with details
@@ -33,7 +32,6 @@ module.exports = (db) => {
   // });
 
   router.get("/", (req, res) => {
-
     db.query(helpers.getMenu2pt0())
       .then((data) => {
         const templateVars = {
@@ -102,29 +100,25 @@ module.exports = (db) => {
   // });
 
   router.post("/cart", (req, res) => {
-
-    pizzaId = generateRandomId()
+    pizzaId = generateRandomId();
 
     const pizza = {
       id: pizzaId,
       name: req.body.pizza,
       size: "small",
-      toppings: []
-    }
-    
-    /* 
+      toppings: [],
+    };
+
+    /*
       IF USER ALREADY HAS A CART IN THEIR COOKIES, USE THE EXISTING CART
-      ELSE CREATE A CART AND STORE THE CART ID AND THE 
+      ELSE CREATE A CART AND STORE THE CART ID AND THE
       CART ITSELF AS COOKIES IN THE BROWSER
     */
-    if (req.cookies['cartId']) {
-
-      cart = req.cookies['cart'];
-      cart[req.cookies['cartId']]['pizzas'].push(pizza);
-      console.log('This is your cart' , JSON.stringify(cart));
-      
+    if (req.cookies["cartId"]) {
+      cart = req.cookies["cart"];
+      cart[req.cookies["cartId"]]["pizzas"].push(pizza);
+      console.log("This is your cart ---->", JSON.stringify(cart));
     } else {
-
       cartId = generateRandomId();
 
       cart = {};
@@ -132,23 +126,17 @@ module.exports = (db) => {
 
       const pizzas = [];
       pizzas.push(pizza);
-      
-      cart[cartId]['pizzas'] = pizzas;
 
-      res.cookie('cartId', cartId);
-      res.cookie('cart', cart);
+      cart[cartId]["pizzas"] = pizzas;
 
-      console.log('The cart has been set ', JSON.stringify(cart));
+      res.cookie("cartId", cartId);
+      res.cookie("cart", cart);
 
+      console.log("The cart has been set ---->", JSON.stringify(cart));
     }
-  
-    res.render('cart', req.cookies['cart']);
-      
+
+    res.render("cart", req.cookies["cart"]);
   });
-    
+
   return router;
-
-}
-  
-
-  
+};

@@ -15,16 +15,7 @@ module.exports = (db) => {
     res.render("rests");
   });
   router.get("/login", (req, res) => {
-    let query = `SELECT * FROM restaurants`;
-    console.log(query);
-    db.query(query)
-      .then((data) => {
-        const result = data.rows;
-        res.json({ result });
-      })
-      .catch((err) => {
-        res.status(500).json({ error: err.message });
-      });
+    res.render("rests-login");
   });
   router.get("/orders", (req, res) => {
     db.query(helpers.getAllOrders())
@@ -116,16 +107,7 @@ module.exports = (db) => {
       });
   });
   router.post("/login", (req, res) => {
-    let query = `SELECT * FROM restaurants`;
-    console.log(query);
-    db.query(query)
-      .then((data) => {
-        const result = data.rows;
-        res.json({ result });
-      })
-      .catch((err) => {
-        res.status(500).json({ error: err.message });
-      });
+    res.redirect("/api/restaurants/menu");
   });
   router.post("/menu", (req, res) => {
     let query = `SELECT * FROM restaurants`;
