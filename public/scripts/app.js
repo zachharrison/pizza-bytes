@@ -8,3 +8,8 @@
 //     }
 //   });;
 // });
+$(document).ready(function() {
+
+  // preventCartRefresh();
+  console.log('hellllloooo world');
+});
