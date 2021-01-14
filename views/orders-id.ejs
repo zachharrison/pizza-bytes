@@ -15,21 +15,22 @@
 
   <body>
     <%- include('partials/nav') %>
-
-    <h1>Order <%=id%></h1>
-    <table>
-      <tr>
-        <th>Pizza</th>
-        <th>Size</th>
-        <th>Toppings</th>
-      </tr>
-      <% for (let item in resultObj) { %>
-      <tr>
-        <td><%= resultObj[item].name %></td>
-        <td><%= resultObj[item].size %></td>
-        <td><%= resultObj[item].toppings %></td>
-      </tr>
-      <% } %>
-    </table>
+    <main>
+      <h1>Order <%=id%></h1>
+      <table>
+        <tr>
+          <th>Pizza</th>
+          <th>Size</th>
+          <th>Toppings</th>
+        </tr>
+        <% for (let item in resultObj) { %>
+        <tr>
+          <td><%= resultObj[item].name %></td>
+          <td><%= resultObj[item].size %></td>
+          <td><%= resultObj[item].toppings %></td>
+        </tr>
+        <% } %>
+      </table>
+    </main>
   </body>
 </html>
