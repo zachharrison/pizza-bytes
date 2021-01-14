@@ -28,15 +28,10 @@
 
             <% for (category in result) { %>
               <% if(category !=='Size' ){%>
-
                 <td>
                   <% for (topping in result[category]) { %>
                     <div class="check-group">
-                      <%if( ###########.includes(result[category][topping]) ){%>
-                      <input class="check" type="checkbox" checked>
-                     <% } else { %>
                       <input class="check" type="checkbox">
-                      <% } %>
                       <label>
                         <%= result[category][topping] %>
                       </label>

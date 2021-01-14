@@ -17,56 +17,74 @@
             <th scope="col">Price</th>
           </tr>
         </thead>
+
+        <% const getToppings = function(pizzaName) { %>
+
+          <% for(const id in cart) { %>
+            <% const pizzaArr = cart[id].pizzas %>
+            <% for(const pizza of pizzaArr) { %>
+              <% if(pizza.name === pizzaName) { %>
+                <% return pizza.toppings %>
+
+          <% }}}} %>
+
+
+
+                <% const toppings = getToppings(selectedPizza) %>
+
         <tbody>
           <tr class="pizza">
             <td>
               <div class="item-container">
-                <p>pizzaNameFromCookie</p>
+                <p><%=selectedPizza%></p>
                 <img src="https://freepngimg.com/thumb/pizza/35510-7-pepperoni-pizza.png">
               </div>
             </td>
 
-            <% const getToppings = function(cart) { %>
-
-              <% for(const id in cart) { %>
-                <% const pizzaArr = cart[id].pizzas %>
-                <% for(const pizza in pizzaArr) { %>
-
-                <% return cart[id].pizzas[pizza].toppings %>
-
-            <% }}} %>
+            <td>
 
             <% for (category in result) { %>
               <% if(category !=='Size' ){%>
+              <td>
+                <% for (topping in result[category]) { %>
 
-                <td>
-                  <% for (topping in result[category]) { %>
-                    <div class="check-group">
-                      <%if( cookieToppings############.includes(result[category][topping]) ){%>
-                      <input class="check" type="checkbox" checked>
-                     <% } else { %>
-                      <input class="check" type="checkbox">
-                      <% } %>
-                      <label>
-                        <%= result[category][topping] %>
-                      </label>
-                    </div>
+                    <% if (toppings.includes(result[category][topping])) { %>
+
+                      <div class="check-group">
+                        <input class="check" type="checkbox" value="checked" checked>
+                        <label>
+                          <%=result[category][topping] %>
+                        </label>
+                      </div>
+
+                    <% } else { %>
+
+                      <div class="check-group">
+                        <input class="check" type="checkbox" >
+                        <label>
+                          <%=result[category][topping] %>
+                        </label>
+                      </div>
+
                     <% } %>
-                </td>
+
+                    <% } %>
+              </td>
                 <% } }%>
+
                   <td>
                     <div>
                       <form>
                         <select name="size" id="size">
                           <% for (const option of result.Size) { %>
                             <option value="<%=option%>">
-                              <%= option %> </option>
+                              <%= option %>
+                            </option>
                             <% }%>
                         </select>
                       </form>
                     </div>
                   </td>
-
                   <div>
                     <td class="last">
                       <%='priceFromCookie' %> BTC

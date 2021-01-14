@@ -7,7 +7,7 @@
 const express = require("express");
 const router = express.Router();
 const { helpers } = require("../db/query-scripts/queryMethods.js");
-const { menuBuilder, pizzaEditor, test } = require("../db/query-scripts/menu-queries.js");
+const { menuBuilder, pizzaEditor } = require("../db/query-scripts/menu-queries.js");
 const { generateRandomId } = require('../generateRandomId');
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
@@ -50,7 +50,7 @@ module.exports = (db) => {
   });
 
   router.get("/edit/:name", (req, res) => {
-    db.query(helpers.getToppings())
+    db.query(helpers.getToppings2pt0())
       .then((data) => {
 
         const templateVars = {
@@ -58,7 +58,7 @@ module.exports = (db) => {
           cart: req.cookies["cart"],
           selectedPizza: req.params.name
         };
-
+        console.log("GET//:name=======>",data.rows)
         res.render("edit-name", templateVars);
 
       })
@@ -67,8 +67,8 @@ module.exports = (db) => {
       });
   });
 
-  /*   router.get("/edit", (req, res) => {
-      res.render("edit");
+  /*   router.get("/", (req, res) => {
+      res.render("");
       db.query(`SELECT * FROM toppings;`)
         .then((data) => {
           const result = data.rows;
@@ -79,7 +79,7 @@ module.exports = (db) => {
         });
     }); */
   // see and remove orders item
-  // option to edit => get'/edit'
+  // option to  => get'/'
   router.get("/cart", (req, res) => {
     db.query(helpers.getPizzasInOrder(), ["1"])
       .then((data) => {
@@ -165,7 +165,6 @@ module.exports = (db) => {
         }
 
         res.render("cart", req.cookies["cart"]);
-
 
       });
   });
