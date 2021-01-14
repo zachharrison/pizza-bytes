@@ -48,3 +48,46 @@
         </div>
   </tr>
   <% } %>
+
+
+
+
+
+
+  <!-- EDIT EJS -->
+  <% for (category in result) { %>
+    <% if(category !=='Size' ){%>
+      <td>
+        <% for (topping in result[category]) { %>
+          <div class="check-group">
+            <%if(getToppings(cart).includes(result[category][topping])){%>
+            <input class="check" type="checkbox" checked>
+            <p>SUCESSSSSSSS</p>
+           <% } else { %>
+            <input class="check" type="checkbox">
+            <% } %>
+            <label>
+              <%= result[category][topping] %>
+            </label>
+          </div>
+          <% } %>
+      </td>
+      <% } }%>
+        <td>
+          <div>
+            <form>
+              <select name="size" id="size">
+                <% for (const option of result.Size) { %>
+                  <option value="<%=option%>">
+                    <%= option %> </option>
+                  <% }%>
+              </select>
+            </form>
+          </div>
+        </td>
+
+      <div>
+        <td class="last">
+          <%='priceFromCookie' %> BTC
+        </td>
+      </div>

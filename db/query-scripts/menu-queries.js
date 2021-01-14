@@ -37,6 +37,7 @@ function menuBuilder(rows) {
     }
     pizza.toppings.push(row.topping_name);
   }
+  console.log(result)
   return result;
 }
 
@@ -58,15 +59,17 @@ function pizzaEditor(rows) {
 
 
 
-const topping = {
-  id: 1
-};
+function test() {
+  let message = 'hello world'
+  return message
+}
 
 module.exports = {
   getProducts,
   getProductById,
   menuBuilder,
-  pizzaEditor
+  pizzaEditor,
+  test
 };
 /*
 {

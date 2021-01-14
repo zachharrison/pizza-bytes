@@ -26,13 +26,23 @@
               </div>
             </td>
 
+            <% const getToppings = function(cart) { %>
+
+              <% for(const id in cart) { %>
+                <% const pizzaArr = cart[id].pizzas %>
+                <% for(const pizza in pizzaArr) { %>
+
+                <% return cart[id].pizzas[pizza].toppings %>
+
+            <% }}} %>
+
             <% for (category in result) { %>
               <% if(category !=='Size' ){%>
 
                 <td>
                   <% for (topping in result[category]) { %>
                     <div class="check-group">
-                      <%if( ###########.includes(result[category][topping]) ){%>
+                      <%if( cookieToppings############.includes(result[category][topping]) ){%>
                       <input class="check" type="checkbox" checked>
                      <% } else { %>
                       <input class="check" type="checkbox">

@@ -7,7 +7,7 @@
 const express = require("express");
 const router = express.Router();
 const { helpers } = require("../db/query-scripts/queryMethods.js");
-const { menuBuilder, pizzaEditor } = require("../db/query-scripts/menu-queries.js");
+const { menuBuilder, pizzaEditor, test } = require("../db/query-scripts/menu-queries.js");
 const { generateRandomId } = require('../generateRandomId');
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
@@ -41,19 +41,26 @@ module.exports = (db) => {
         const templateVars = {
           result: pizzaEditor(data.rows),
         };
+        console.log(templateVars)
         res.render("edit", templateVars);
       })
        .catch((err) => {
         res.status(500).json({ error: err.message });
       });
   });
-  router.get("/edit/:id", (req, res) => {
+
+  router.get("/edit/:name", (req, res) => {
     db.query(helpers.getToppings())
       .then((data) => {
+
         const templateVars = {
           result: pizzaEditor(data.rows),
+          cart: req.cookies["cart"],
+          selectedPizza: req.params.name
         };
-        res.render("edit", templateVars);
+
+        res.render("edit-name", templateVars);
+
       })
        .catch((err) => {
         res.status(500).json({ error: err.message });
