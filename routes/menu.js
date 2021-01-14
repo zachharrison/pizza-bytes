@@ -159,6 +159,7 @@ module.exports = (db) => {
 
         res.render("cart", req.cookies["cart"]);
 
+
       });
   });
 

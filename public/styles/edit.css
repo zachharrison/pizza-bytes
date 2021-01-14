@@ -86,17 +86,6 @@ tfoot tr th {
   outline: none;
 }
 
-.item-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-.item-container img {
-  width: 100px;
-  height: 100px;
-}
 
 .pizza {
   border-bottom: 3px solid black;

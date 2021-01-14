@@ -3,6 +3,10 @@
   height: 100px;
 }
 
-#menu-main {
-  margin-top: 800px;
+.desc-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
 }

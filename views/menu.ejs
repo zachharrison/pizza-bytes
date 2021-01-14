@@ -14,16 +14,16 @@
 
   <body>
     <%- include('partials/nav') %>
+
     <main id="menu-main">
       <h3 class="title">Menu</h3>
       <table class="table" id="menu-table">
         <thead class="table-headers">
           <tr>
             <th col="1">Photo</th>
-            <th col="1">Pizza</th>
             <th col="2">Description</th>
             <th col="1">Starting at</th>
-            <th col="1">Starting at</th>
+            <th col="1">Add to order</th>
           </tr>
         </thead>
         <tbody>
@@ -31,18 +31,12 @@
           <tr class="table-rows">
               <td>
                 <div class="item-container">
-                  <p>
-                    <img class="menu-photo" src="<%=result[pizza].url %>" alt="<%=pizza.name %>" />
-                  </p>
-                </div>
-              </td>
-              <td>
-                <div class="item-container">
                   <p><%=result[pizza].name %></p>
+                    <img class="menu-photo" src="<%=result[pizza].url %>" alt="<%=pizza.name %>" />
                 </div>
               </td>
               <td>
-                <div class="item-container">
+                <div id="menu-desc" class="desc-container">
                   <% for (let topping of result[pizza].toppings) { %>
                     <p><%=topping %></p>
                     <% } %>

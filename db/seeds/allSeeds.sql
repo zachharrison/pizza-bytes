@@ -16,43 +16,43 @@ VALUES (
 ),
 (
   1,
-  'Classic Cheese Pizza',
+  'Classic Cheese',
   'https://github.com/AdamTranquilla/Food-Pick-up-Ordering/blob/master/public/img/cheese.png?raw=true',
   1000
 ),
 (
   1,
-  'Pepperoni Pizza',
+  'Pepperoni',
   'https://github.com/AdamTranquilla/Food-Pick-up-Ordering/blob/master/public/img/pepperoni.png?raw=true',
   1300
 ),
 (
   1,
-  'Deluxe Pizza',
+  'Deluxe',
   'https://github.com/AdamTranquilla/Food-Pick-up-Ordering/blob/master/public/img/deluxe.png?raw=true',
   1650
 ),
 (
   1,
-  'Vegetarian Pizza',
+  'Vegetarian',
   'https://github.com/AdamTranquilla/Food-Pick-up-Ordering/blob/master/public/img/veg.png?raw=true',
   1550
 ),
 (
   1,
-  'Meat Lovers Pizza',
+  'Meat Lovers',
   'https://github.com/AdamTranquilla/Food-Pick-up-Ordering/blob/master/public/img/meat-lovers.png?raw=true',
   1850
 ),
 (
   1,
-  'Hawaiian Pizza',
+  'Hawaiian',
   'https://github.com/AdamTranquilla/Food-Pick-up-Ordering/blob/master/public/img/hawaiian.png?raw=true',
   1000
 ),
 (
   1,
-  'BBQ Chicken Pizza',
+  'BBQ Chicken',
   'https://github.com/AdamTranquilla/Food-Pick-up-Ordering/blob/master/public/img/bbq-chicken.png?raw=true',
   1000
 );

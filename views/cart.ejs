@@ -13,11 +13,47 @@
       <table class="table">
         <thead class="table-headers">
           <tr>
-            <th>Pizza</th>
-            <th>Toppings</th>
-            <th>Details</th>
-            <th>Price</th>
+            <th col="1">Pizza</th>
+            <th col="1">Toppings</th>
+            <th col="1">Price</th>
           </tr>
+
+          <% for(const id in cart) { %>
+            <% const pizzaArr = cart[id].pizzas %>
+            <% for(const pizza in pizzaArr) { %>
+
+            <tr class="table-rows">
+              <td class="table-data">
+                <div class="item-container">
+                  <p><%= cart[id].pizzas[pizza].name %></p>
+                  <img src="" alt="">
+                </div>
+              </td>
+
+              <td class="table-data">
+                <div class="item-container">
+                  <% for (let topping of cart[id].pizzas[pizza].toppings) { %>
+                    <p><%=topping %></p>
+                    <% } %>
+                </div>
+              </td>
+
+              <td class="table-data">
+                <div class="item-container">
+                  <p> $10 </p>
+                </div>
+              </td>
+
+
+            </tr>
+
+
+
+            <% } %>
+          <% } %>
+
+
+
         </thead>
         <tbody>
 
@@ -51,7 +87,7 @@
             </div>
           </tr> -->
 
-          
+
 
         </tbody>
 
@@ -61,7 +97,6 @@
               <div class="total-container">
                 <th class="total-header">Total</th>
                 <th class="total-header"></th>
-                <th class="total-header"></th>
                 <th class="total-header">$9.99</th>
               </div>
             </tr>
@@ -69,6 +104,6 @@
         </tfoot>
       </table>
       <div class='btn-container'>
-        <a href="/checkout" class="checkout-btn">Commit</a>
+        <a href="/checkout" class="checkout-btn">Checkout</a>
       </div>
       </html>

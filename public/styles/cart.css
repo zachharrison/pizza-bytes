@@ -18,10 +18,6 @@ body {
   /* margin-bottom: 400px; */
 }
 
-.cart-main {
-  margin-top: 200px;
-}
-
 .table-headers {
   background: rgba(115, 149, 111, 0.8);
   width: 100%;
@@ -47,12 +43,13 @@ body {
 tbody .table-rows {
   padding: 12px;
   font-size: 18px;
-  text-align: center;
 }
 
 tbody .table-rows td {
   padding: 12px;
-  /* border-bottom: 3px solid #a51c30; */
+  align-items: flex-start;
+  justify-content: flex-start;
+/*   vertical-align: top; */
   background-color: rgba(255, 255, 255, 0.9);
 }
 
@@ -131,4 +128,10 @@ tbody .table-rows td {
 .btn:hover {
   background: #73956f;
   color: white;
+}
+
+.table-data {
+  padding: 12px;
+  /* border-bottom: 3px solid #a51c30; */
+  background-color: rgba(255, 255, 255, 0.9);
 }
