@@ -37,7 +37,6 @@ function menuBuilder(rows) {
     }
     pizza.toppings.push(row.topping_name);
   }
-  console.log(result)
   return result;
 }
 
