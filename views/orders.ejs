@@ -4,17 +4,18 @@
     <title>Orders</title>
 
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <!-- <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" /> -->
+    <!-- <link rel="stylesheet" href="/styles/layout.css" type="text/css" /> -->
     <link rel="stylesheet" href="/styles/orders.css" type="text/css" />
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
-    <!-- <script type="text/javascript" src="/scripts/menu.js"></script> -->
+    <script type="text/javascript" src="/scripts/menu.js"></script>
   </head>
 
   <body>
     <%- include('partials/restNav') %>
+<<<<<<< HEAD
 
     <h1>Your Orders</h1>
     <table>
@@ -46,7 +47,7 @@
               class="order-detail"
               href="/api/restaurants/customers/<%= item.customer_id %>"
               ><%= item.name %></a
-            >
+    </table>>
           </td>
           <td class="orders-table"><%= item.phone_number %></td>
           <td class="orders-table"><%= item.completed %></td>
@@ -54,5 +55,51 @@
       </tbody>
       <% } %>
     </table>
+=======
+    <main>
+      <h1>Your Orders</h1>
+      <table>
+        <thead class="table-headers">
+          <tr class="table-rows">
+            <th>Order Number</th>
+            <th>Order Date</th>
+            <th>Pickup Time</th>
+            <th>Name</th>
+            <th>Phone Number</th>
+            <th>Completed</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for (let item of result) { %>
+          <tr>
+            <td class="orders-table">
+              <a
+                class="order-detail"
+                class="orders-table"
+                href="/api/restaurants/orders/<%= item.id %>"
+                ><%= item.id %></a
+              >
+            </td>
+            <td class="orders-table">
+              <%= item.order_date.toLocaleString() %>
+            </td>
+            <td class="orders-table">
+              <%= item.pickup_time.toLocaleString() %>
+            </td>
+            <td class="orders-table">
+              <a
+                class="order-detail"
+                href="/api/restaurants/customers/<%= item.customer_id %>"
+                ><%= item.name %></a
+              >
+            </td>
+            <td class="orders-table"><%= item.phone_number %></td>
+            <td class="orders-table"><%= item.completed %></td>
+          </tr>
+        </tbody>
+        <% } %>
+      </table>
+    </main>
+>>>>>>> a86da922c2cb343c7880197c21fc580b15a7617a
   </body>
 </html>
