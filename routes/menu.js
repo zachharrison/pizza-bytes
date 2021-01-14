@@ -7,8 +7,11 @@
 const express = require("express");
 const router = express.Router();
 const { helpers } = require("../db/query-scripts/queryMethods.js");
-const { menuBuilder, pizzaEditor, checkoutOrder } = require("../db/query-scripts/menu-queries.js");
-const { generateRandomId } = require('../generateRandomId');
+const {
+  menuBuilder,
+  pizzaEditor,
+} = require("../db/query-scripts/menu-queries.js");
+const { generateRandomId } = require("../generateRandomId");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const app = express();
@@ -18,7 +21,6 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 module.exports = (db) => {
-
   router.get("/", (req, res) => {
     db.query(helpers.getMenu2pt0())
       .then((data) => {
@@ -52,34 +54,19 @@ module.exports = (db) => {
   router.get("/edit/:name", (req, res) => {
     db.query(helpers.getToppings2pt0())
       .then((data) => {
-
         const templateVars = {
           result: pizzaEditor(data.rows),
           cart: req.cookies["cart"],
-          selectedPizza: req.params.name
+          selectedPizza: req.params.name,
         };
-        console.log("GET//:name=======>", data.rows);
+        // console.log("FIRST DB QUERY", data.rows);
         res.render("edit-name", templateVars);
-
       })
       .catch((err) => {
         res.status(500).json({ error: err.message });
       });
   });
 
-  /*   router.get("/", (req, res) => {
-      res.render("");
-      db.query(`SELECT * FROM toppings;`)
-        .then((data) => {
-          const result = data.rows;
-          res.json({ result });
-        })
-        .catch((err) => {
-          res.status(500).json({ error: err.message });
-        });
-    }); */
-  // see and remove orders item
-  // option to  => get'/'
   router.get("/cart", (req, res) => {
     db.query(helpers.getPizzasInOrder(), ["1"])
       .then((data) => {
@@ -195,50 +182,50 @@ module.exports = (db) => {
     db
       .query(helpers.getDefaultToppings(), [req.body.pizza])
       .then(data => {
+  router.post("/edit", (req, res) => {
+    db.query(helpers.getDefaultToppings(), [req.body.pizza]).then((data) => {
+      const defaultToppings = data.rows;
 
-        const defaultToppings = data.rows;
+      pizzaId = generateRandomId();
 
-        pizzaId = generateRandomId();
+      const pizza = {
+        id: pizzaId,
+        name: req.body.pizza,
+        size: "small",
+        toppings: defaultToppings.map((topping) => topping.name),
+      };
 
-        const pizza = {
-          id: pizzaId,
-          name: req.body.pizza,
-          size: "small",
-          toppings: defaultToppings.map(topping => topping.name),
-        };
-
-        /*
+      /*
           IF USER ALREADY HAS A CART IN THEIR COOKIES, USE THE EXISTING CART
           ELSE CREATE A CART AND STORE THE CART ID AND THE
           CART ITSELF AS COOKIES IN THE BROWSER
         */
-        if (req.cookies["cartId"]) {
+      if (req.cookies["cartId"]) {
+        cart = req.cookies["cart"];
+        cart[req.cookies["cartId"]]["pizzas"].push(pizza);
 
-          cart = req.cookies["cart"];
-          cart[req.cookies['cartId']]["pizzas"].push(pizza);
+        res.cookie("cart", cart);
+      } else {
+        cartId = generateRandomId();
 
-          res.cookie("cart", cart);
+        cart = {};
+        cart[cartId] = {};
 
-        } else {
+        const pizzas = [];
+        pizzas.push(pizza);
 
-          cartId = generateRandomId();
+        cart[cartId]["pizzas"] = pizzas;
 
-          cart = {};
-          cart[cartId] = {};
+        res.cookie("cartId", cartId);
+        res.cookie("cart", cart);
+      }
 
-          const pizzas = [];
-          pizzas.push(pizza);
-
-          cart[cartId]["pizzas"] = pizzas;
-
-          res.cookie("cartId", cartId);
-          res.cookie("cart", cart);
-        }
-
-        res.render("cart", req.cookies["cart"]);
-
-      });
+      res.redirect(`/api/menu/edit/${req.body.pizza}`);
+    });
   });
+
 
   return router;
 };
+
+
