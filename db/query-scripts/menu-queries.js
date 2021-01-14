@@ -37,7 +37,7 @@ function menuBuilder(rows) {
     }
     pizza.toppings.push(row.topping_name);
   }
-  console.log(result)
+  console.log(result);
   return result;
 }
 
@@ -51,7 +51,7 @@ function pizzaEditor(rows) {
       result[ID] = [];
       toppingID = result[ID];
     }
-     toppingID.push(row.name);
+    toppingID.push(row.name);
 
   }
   return result;
@@ -59,27 +59,20 @@ function pizzaEditor(rows) {
 
 
 
-function test() {
-  let message = 'hello world'
-  return message
+function checkoutOrder() {
+  return `
+  INSERT INTO orders ( customer_id, completed)
+  VALUES ($1, TRUE);
+
+`;
 }
+
 
 module.exports = {
   getProducts,
   getProductById,
   menuBuilder,
   pizzaEditor,
-  test
+  checkoutOrder
 };
-/*
-{
-  1: [mozza, ched, feta],
-  2: [meet, meat2, meat3]
-  3: [veg1, veg2]
-  4: [small]
-  5: [med]
-  6: [lg]
-}
 
-veggies meats, cheeses, sizes
-*/

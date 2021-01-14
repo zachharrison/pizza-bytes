@@ -7,7 +7,7 @@
 const express = require("express");
 const router = express.Router();
 const { helpers } = require("../db/query-scripts/queryMethods.js");
-const { menuBuilder, pizzaEditor } = require("../db/query-scripts/menu-queries.js");
+const { menuBuilder, pizzaEditor, checkoutOrder } = require("../db/query-scripts/menu-queries.js");
 const { generateRandomId } = require('../generateRandomId');
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
@@ -41,10 +41,10 @@ module.exports = (db) => {
         const templateVars = {
           result: pizzaEditor(data.rows),
         };
-        console.log(templateVars)
+        console.log(templateVars);
         res.render("edit", templateVars);
       })
-       .catch((err) => {
+      .catch((err) => {
         res.status(500).json({ error: err.message });
       });
   });
@@ -58,11 +58,11 @@ module.exports = (db) => {
           cart: req.cookies["cart"],
           selectedPizza: req.params.name
         };
-        console.log("GET//:name=======>",data.rows)
+        console.log("GET//:name=======>", data.rows);
         res.render("edit-name", templateVars);
 
       })
-       .catch((err) => {
+      .catch((err) => {
         res.status(500).json({ error: err.message });
       });
   });
@@ -86,6 +86,18 @@ module.exports = (db) => {
         const result = data.rows;
         res.render("cart", { result });
       })
+
+
+      /*       const templateVars = {
+        result: checkoutOrder(data.rows),
+        cart: req.cookies["cart"],
+      };
+      console.log("GET/cart=======>",data.rows)
+      res.render("cart", templateVars);
+    }) */
+
+
+
       .catch((err) => {
         console.error(err);
         res.status(500).json({ error: err.message });
@@ -119,10 +131,69 @@ module.exports = (db) => {
   //     });
   // });
 
+  // checkout confirmation
+  router.post("/checkout", (req, res) => {
+
+    ////order id need to be fixed to actual id number
+    const cart = {
+      i7k4aA: {
+        pizzas:
+          [
+            {
+              id: 1,
+              name: "Pepperoni Pizza",
+              size: "small",
+              toppings: ["Mozzarella", "Pepperoni", "Jalepeno's"],
+              quantity: 1,
+              price: 14,
+            },
+            {
+              id: 2,
+              name: "Pepperoni Pizza2",
+              size: "medium",
+              toppings: ["Mozzarella", "Pepperoni", "Jalepeno's"],
+              quantity: 2,
+              price: 5,
+            },
+          ],
+        total: 30,
+      }
+    };
+    const parseCart = cart[Object.keys(cart)[0]];
+
+    db.query(`
+    INSERT INTO orders ( customer_id, restaurant_id)
+    VALUES ( $1, $2 ) RETURNING *
+    ;`, [1, 1])
+      .then((data) => {
+        const result = data.rows;
+        console.log(data.rows);
+        const promises = [];
+        for (let pizza of parseCart.pizzas) {
+          const query = `INSERT INTO order_items ( order_id, menu_item_id, quantity)
+          VALUES ( $1, $2, $3);`;
+          const promise = db.query(query, [data.rows[0].id, pizza.id, pizza.quantity]);
+          promises.push(promise);
+        }
+        Promise.all(promises).then(() => {
+          res.send("ok");
+
+        });
+
+
+        /* res.render("checkout", { result }); */
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  });
+
+
+
   router.post("/cart", (req, res) => {
 
     db
-    .query(helpers.getDefaultToppings(), [req.body.pizza])
+      .query(helpers.getDefaultToppings(), [req.body.pizza])
       .then(data => {
 
         const defaultToppings = data.rows;
