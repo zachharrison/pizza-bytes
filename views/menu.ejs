@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Menu</title>
 
-    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-    <!-- <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" /> -->
-    <!-- <link rel="stylesheet" href="/styles/layout.css" type="text/css" /> -->
+<head>
+  <title>Menu</title>
 
-    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-    <script type="text/javascript" src="/scripts/app.js"></script>
-    <!-- <script type="text/javascript" src="/scripts/menu.js"></script> -->
-  </head>
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <!-- <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" /> -->
+  <!-- <link rel="stylesheet" href="/styles/layout.css" type="text/css" /> -->
 
-  <body>
-    <%- include('partials/nav') %>
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
+  <!-- <script type="text/javascript" src="/scripts/menu.js"></script> -->
+</head>
+
+<body>
+  <%- include('partials/nav') %>
 
     <main id="menu-main">
       <h3 class="title">Menu</h3>
@@ -28,39 +29,56 @@
         </thead>
         <tbody>
           <% for (let pizza in result) { %>
-          <tr class="table-rows">
+            <tr class="table-rows">
               <td>
                 <div class="item-container">
-                  <p><%=result[pizza].name %></p>
-                    <img class="menu-photo" src="<%=result[pizza].url %>" alt="<%=pizza.name %>" />
+                  <p>
+                    <%=result[pizza].name %>
+                  </p>
+                  <img class="menu-photo" src="<%=result[pizza].url %>" alt="<%=pizza.name %>" />
                 </div>
               </td>
               <td>
                 <div id="menu-desc" class="desc-container">
-                  <% for (let topping of result[pizza].toppings) { %>
-                    <p><%=topping %></p>
-                    <% } %>
+                  <% if(result[pizza].name==='Build Your Own' ){ %>
+                    <p> Pick your own toppings </p>
+                    <% } else {%>
+                      <p>
+                        <%let i = 0%>
+                        <% for (let topping of result[pizza].toppings) { %>
+                          <%i++%>
+                          <%if( i !== result[pizza].toppings.length){%>
+                            <%=topping+","%>
+                              <%} else {%>
+                                <%=topping %>
+                                  <%} } } %>
+                      </p>
                 </div>
               </td>
               <td>
                 <div class="item-container">
-                  <p> <%= (result[pizza].price/100).toFixed(2) %></p>
+                  <p>
+                    <%= (result[pizza].price/100).toFixed(2) %>
+                  </p>
                 </div>
               </td>
               <td>
-                <form class="btn-container" action="/api/menu/cart" method="POST">
-                  <a href="/api/menu/edit/<%=result[pizza].id %>" class="edit-btn" id="order-btn">Edit</a>
-                  <button name="pizza" class="btn" value="<%=result[pizza].name%>">Order</button>
-                </form>
+                <div>
+                  <form class="btn-container" action="/api/menu/cart" method="POST">
+                    <a href="/api/menu/edit/<%=result[pizza].id %>" class="edit-btn" id="order-btn">Edit</a>
+                    <button name="pizza" class="btn" value="<%=result[pizza].name%>">Order</button>
+                  </form>
+                  <div>
               </td>
             </tr>
             <% } %>
-          </tr>
+              </tr>
         </tbody>
         <tfoot>
 
         </tfoot>
       </table>
     </main>
-  </body>
+</body>
+
 </html>
