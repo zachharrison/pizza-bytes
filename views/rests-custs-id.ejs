@@ -16,18 +16,19 @@
   <body>
     <%- include('partials/nav') %>
 
-    <h1>Customer <%=result.id%></h1>
+    <h1>Customer Details</h1>
     <table>
+      <thead class="table-headers">
+        <tr class="table-rows">
+          <th>Name</th>
+          <th>Phone Number</th>
+          <th>Email</th>
+        </tr>
+      </thead>
       <tr>
-        <th>Name</th>
-        <th>Phone Number</th>
-        <th>Email</th>
-      </tr>
-
-      <tr>
-        <td><%= result.name %></td>
-        <td><%= result.phone_number %></td>
-        <td><%= result.email %></td>
+        <td class="orders-table"><%= result.name %></td>
+        <td class="orders-table"><%= result.phone_number %></td>
+        <td class="orders-table"><%= result.email %></td>
       </tr>
     </table>
   </body>

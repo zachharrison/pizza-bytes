@@ -47,6 +47,11 @@ nav .nav-links a:hover {
 
 .logo {
   height: 60px;
+<<<<<<< HEAD
+=======
+  /* border: 1px solid #0a5e2aff; */
+  border-radius: 3px;
+>>>>>>> 5eb3190d4e4dbe3f7d8680bd6397e3e1e04c3002
 }
 
 header {
@@ -91,4 +96,8 @@ header .showcase .order {
 
 header .showcase .order:hover {
   background-color: #c52039;
+}
+
+.logo:hover {
+  transform: scale(1.1);
 }
