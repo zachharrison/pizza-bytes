@@ -35,7 +35,7 @@ function menuBuilder(rows) {
     if (!pizza.toppings) {
       pizza.toppings = [];
     }
-    pizza.toppings.push(row.topping_name + ', ');
+    pizza.toppings.push(row.topping_name);
   }
   return result;
 }
