@@ -57,21 +57,9 @@ function pizzaEditor(rows) {
 }
 
 
-
-function checkoutOrder() {
-  return `
-  INSERT INTO orders ( customer_id, completed)
-  VALUES ($1, TRUE);
-
-`;
-}
-
-
 module.exports = {
   getProducts,
   getProductById,
   menuBuilder,
-  pizzaEditor,
-  checkoutOrder
+  pizzaEditor
 };
-

@@ -28,6 +28,13 @@ body {
   font-size: 18px;
 }
 
+.item-container-toppings {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
 .item-container {
   display: flex;
   justify-content: center;
@@ -50,6 +57,14 @@ tbody .table-rows td {
   align-items: flex-start;
   justify-content: flex-start;
 /*   vertical-align: top; */
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.table-data #cart-toppings {
+  padding: 12px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  /* border-bottom: 3px solid #a51c30; */
   background-color: rgba(255, 255, 255, 0.9);
 }
 
@@ -83,14 +98,17 @@ tbody .table-rows td {
   border-radius: 4px;
 }
 .checkout-btn {
-  width: 85px;
-  height: 25px;
-  border: 1px solid #2f2f2f;
-  background: #a51c30;
+  width: 175px;
   color: #f6ebe5;
-  padding: 3px;
+  border: 3px solid #f6ebe5;
+  background: #a51c30;
+  outline: none;
+  padding: 12px;
+  font-size: 24px;
+  text-align: center;
   text-decoration: none;
-  border-radius: 4px;
+  align-self: flex-end;
+  margin-right: 150px;
 }
 
 .btn-container {

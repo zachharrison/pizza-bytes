@@ -9,7 +9,7 @@
   <%- include('partials/nav') %>
 
     <main class='cart-main'>
-      <h3 class="title">Pizza Oven <br> (Your Cart)</h3>
+      <h3 class="title">Pizza Oven</h3>
       <table class="table">
         <thead class="table-headers">
           <tr>
@@ -18,92 +18,74 @@
             <th col="1">Price</th>
           </tr>
 
-          <% for(const id in cart) { %>
-            <% const pizzaArr = cart[id].pizzas %>
-            <% for(const pizza in pizzaArr) { %>
+          <% for (const pizza of pizzaArr) { %>
 
             <tr class="table-rows">
               <td class="table-data">
                 <div class="item-container">
-                  <p><%= cart[id].pizzas[pizza].name %></p>
-                  <img src="" alt="">
+                  <p>
+                    <%= pizza.name %>
+                  </p>
+                  <img src="<%= pizza.url %> " alt="">
+                </div>
+              </td>
+
+              <td class="table-data" id="cart-toppings">
+                <div class="item-container-toppings">
+                  <p>
+                    <% console.log(pizza.toppings)%>
+
+
+                    <% if (pizza.toppings.length < 1) { %>
+                      No toppings selected
+
+                      <% } else { %>
+                        <%= pizza.toppings %> 
+                      <% } %> 
+
+                  </p>
                 </div>
               </td>
 
               <td class="table-data">
                 <div class="item-container">
-                  <% for (let topping of cart[id].pizzas[pizza].toppings) { %>
-                    <p><%=topping %></p>
-                    <% } %>
+                  <p>$<%= (pizza.price / 100).toFixed(2) %>
+                  </p>
                 </div>
               </td>
-
-              <td class="table-data">
-                <div class="item-container">
-                  <p> $10 </p>
-                </div>
-              </td>
-
 
             </tr>
 
-
-
             <% } %>
-          <% } %>
 
 
 
         </thead>
         <tbody>
 
-
-          <!-- <tr class="table-rows">
-            <td>
-              <div class="item-container">
-                <p>Deep dish is not real pizza</p>
-                <img src="https://freepngimg.com/thumb/pizza/35510-7-pepperoni-pizza.png">
-              </div>
-            </td>
-
-            <td>
-              topping here
-            </td>
-
-            <td>
-              <div class="details-container">
-                <p>Size: <span id="size">smol</span></p>
-                <p>Quantity: <span id="quantity">#</span></p>
-                <div class="btn-container">
-                  <a href="/api/menu/edit" class="edit-btn">Edit</a>
-                  <button class="remove-btn">Remove</button>
-                </div>
-              </div>
-            </td>
-            <div class="price">
-              <td>
-                $_.__
-              </td>
-            </div>
-          </tr> -->
-
-
-
         </tbody>
 
-        <tfoot class="table-footer">
-          <thead>
-            <tr>
-              <div class="total-container">
-                <th class="total-header">Total</th>
-                <th class="total-header"></th>
-                <th class="total-header">$9.99</th>
-              </div>
-            </tr>
-          </thead>
-        </tfoot>
+
+        <% let total = 0 %>
+        <% for (const pizza of pizzaArr) { %>
+            <% total += pizza.price %> 
+        <% } %> 
+
+          <tfoot class="table-footer">
+            <thead>
+              <tr>
+                <div class="total-container">
+                  <th class="total-header">Total</th>
+                  <th class="total-header"></th>
+                  <th class="total-header">$<%= (total / 100).toFixed(2) %>
+                  </th>
+                </div>
+              </tr>
+            </thead>
+          </tfoot>
       </table>
       <form method='post' action='/api/menu/checkout' class='btn-container'>
         <button class="checkout-btn">Checkout</button>
       </form>
-      </html>
+
+</html>

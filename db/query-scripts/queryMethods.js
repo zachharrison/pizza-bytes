@@ -79,7 +79,7 @@ const helpers = {
     ORDER BY pickup_time;`;
   },
   getDefaultToppings: function () {
-    return `SELECT toppings.name
+    return `SELECT toppings.name, menu_items.price AS default_price, menu_items.id AS pizza_id, menu_items.photo_url AS url
     FROM menu_items
     LEFT JOIN menu_item_toppings ON menu_items.id = menu_item_id
     JOIN toppings ON toppings.id = topping_id
@@ -100,6 +100,22 @@ const helpers = {
     FROM customers
     WHERE id = $1;`;
   },
+  getNotDefaultToppings: function () {
+    return `SELECT toppings.name, topping_categories.price
+    FROM toppings 
+    JOIN topping_categories ON topping_categories.id = topping_category_id
+    WHERE toppings.name NOT IN (
+
+    SELECT toppings.name AS included_toppings
+    FROM menu_items
+    LEFT JOIN menu_item_toppings ON menu_items.id = menu_item_id
+    JOIN toppings ON toppings.id = topping_id
+    WHERE menu_items.name = $1);`
+  },
+  getPhotos: function () {
+    return `SELECT id, photo_url
+    FROM menu_items;`
+  }
 };
 
 module.exports = { helpers };

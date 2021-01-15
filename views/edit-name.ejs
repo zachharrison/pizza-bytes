@@ -35,21 +35,21 @@
             <td>
               <div class="item-container">
                 <p><%=selectedPizza%></p>
-                <img src="https://freepngimg.com/thumb/pizza/35510-7-pepperoni-pizza.png">
+                <img src="<%=pizzaArr[pizzaArr.length - 1].url %> ">
               </div>
             </td>
 
             
 
             <% for (category in result) { %>
-              <% if(category !=='Size' ){%>
+              <% if(category !=='Size'){%>
               <td>
                 <% for (topping in result[category]) { %>
 
                     <% if (toppings.includes(result[category][topping])) { %>
 
                       <div class="check-group">
-                        <input class="check" type="checkbox" value="checked" checked>
+                        <input class="check" type="checkbox" name="topping" value="<%=result[category][topping] %> " checked>
                         <label>
                           <%=result[category][topping] %>
                         </label>
@@ -58,7 +58,7 @@
                     <% } else { %>
 
                       <div class="check-group">
-                        <input class="check" type="checkbox" >
+                        <input class="check" type="checkbox" value="<%=result[category][topping] %>" name="topping" >
                         <label>
                           <%=result[category][topping] %>
                         </label>
@@ -90,7 +90,7 @@
           <tr>
             <th colspan="4">Uploading text animation ======> 60%</th>
             <th>
-            <button type="submit" class="upload" name="upload" >upload</button>
+            <button type="submit" class="upload" >upload</button>
             </th>
           </tr>
         </tfoot>

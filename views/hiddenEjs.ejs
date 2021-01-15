@@ -91,3 +91,39 @@
           <%='priceFromCookie' %> BTC
         </td>
       </div>
+
+
+
+
+
+
+      <% for(const id in cart) { %>
+        <% const pizzaArr = cart[id].pizzas %>
+        <% for(const pizza in pizzaArr) { %>
+
+
+
+
+
+
+          <% } else if (typeof(pizza.topping) !== 'object') {%>
+
+            <%= pizza.toppings %>
+
+              <% } else { %>
+
+                  <%let i=0%>
+
+                    <% for (const topping of pizza.toppings) { %>
+
+                      <%i++%>
+
+                        <% if (i !==pizza.toppings.length) { %>
+
+                          <%=' ' + topping + " "%>
+
+                            <%} else {%>
+
+                              <%=topping %>
+
+                                <% }}} %>

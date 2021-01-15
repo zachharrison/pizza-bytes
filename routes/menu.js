@@ -7,10 +7,7 @@
 const express = require("express");
 const router = express.Router();
 const { helpers } = require("../db/query-scripts/queryMethods.js");
-const {
-  menuBuilder,
-  pizzaEditor,
-} = require("../db/query-scripts/menu-queries.js");
+const {menuBuilder,pizzaEditor} = require("../db/query-scripts/menu-queries.js");
 const { generateRandomId } = require("../generateRandomId");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
@@ -37,29 +34,34 @@ module.exports = (db) => {
 
   // shows the 'selected' menu item and options INSERT into orders
 
-  router.get("/edit", (req, res) => {
-    db.query(helpers.getToppings2pt0())
-      .then((data) => {
-        const templateVars = {
-          result: pizzaEditor(data.rows),
-        };
-        console.log(templateVars);
-        res.render("edit", templateVars);
-      })
-      .catch((err) => {
-        res.status(500).json({ error: err.message });
-      });
-  });
+  // router.get("/edit", (req, res) => {
+  //   db.query(helpers.getToppings2pt0())
+  //     .then((data) => {
+  //       const templateVars = {
+  //         result: pizzaEditor(data.rows),
+  //       };
+  //       console.log(templateVars);
+  //       res.render("edit", templateVars);
+  //     })
+  //     .catch((err) => {
+  //       res.status(500).json({ error: err.message });
+  //     });
+  // });
 
   router.get("/edit/:name", (req, res) => {
+
+    const cart = req.cookies['cart'];
+    const cartId = req.cookies['cartId'];
+
     db.query(helpers.getToppings2pt0())
       .then((data) => {
         const templateVars = {
           result: pizzaEditor(data.rows),
           cart: req.cookies["cart"],
           selectedPizza: req.params.name,
+          pizzaArr: Object.values(cart[cartId].pizzas)
         };
-        // console.log("FIRST DB QUERY", data.rows);
+
         res.render("edit-name", templateVars);
       })
       .catch((err) => {
@@ -68,27 +70,13 @@ module.exports = (db) => {
   });
 
   router.get("/cart", (req, res) => {
-    db.query(helpers.getPizzasInOrder(), ["1"])
-      .then((data) => {
-        const result = data.rows;
-        res.render("cart", { result });
-      })
-
-
-      /*       const templateVars = {
-        result: checkoutOrder(data.rows),
-        cart: req.cookies["cart"],
-      };
-      console.log("GET/cart=======>",data.rows)
-      res.render("cart", templateVars);
-    }) */
-
-
-
-      .catch((err) => {
-        console.error(err);
-        res.status(500).json({ error: err.message });
-      });
+    
+    const cart = req.cookies['cart'];
+    const cartId = req.cookies['cartId'];
+    const pizzaArr = Object.values(cart[cartId].pizzas);
+    
+    res.render('cart', { pizzaArr })
+    
   });
   // checkout confirmation
   router.get("/checkout", (req, res) => {
@@ -102,23 +90,7 @@ module.exports = (db) => {
       });
   });
 
-  // option to chng_quantity/remove => post'/cart'
-  // router.post("/cart", (req, res) => {
-  //   db.query(`SELECT * FROM order_items;`)
-  //     .then((data) => {
-  //       const id = generateRandomId();
-  //       const result = data.rows;
-  //       const templateVars = { result, id, cart: req.session.cart };
-  //       // res.json({ result });
-  //       res.json({ result });
-  //       res.render('cart', templateVars);
-  //     })
-  //     .catch((err) => {
-  //       res.status(500).json({ error: err.message });
-  //     });
-  // });
-
-  // checkout confirmation
+   // checkout confirmation
   router.post("/checkout", (req, res) => {
 
     ////order id need to be fixed to actual id number
@@ -127,7 +99,8 @@ module.exports = (db) => {
         pizzas:
           [
             {
-              id: 1,
+              id: 'h3a5iU',
+              menuId: 1,
               name: "Pepperoni Pizza",
               size: "small",
               toppings: ["Mozzarella", "Pepperoni", "Jalepeno's"],
@@ -135,7 +108,8 @@ module.exports = (db) => {
               price: 14,
             },
             {
-              id: 2,
+              id: 'h4j5iG',
+              menuId: 1,
               name: "Pepperoni Pizza2",
               size: "medium",
               toppings: ["Mozzarella", "Pepperoni", "Jalepeno's"],
@@ -153,13 +127,12 @@ module.exports = (db) => {
     VALUES ( $1, $2 ) RETURNING *
     ;`, [1, 1])
       .then((data) => {
-        const result = data.rows;
         console.log(data.rows);
         const promises = [];
         for (let pizza of parseCart.pizzas) {
           const query = `INSERT INTO order_items ( order_id, menu_item_id, quantity)
           VALUES ( $1, $2, $3);`;
-          const promise = db.query(query, [data.rows[0].id, pizza.id, pizza.quantity]);
+          const promise = db.query(query, [data.rows[0].menuId, pizza.menuId, pizza.quantity]);
           promises.push(promise);
         }
         Promise.all(promises).then(() => {
@@ -175,31 +148,37 @@ module.exports = (db) => {
       });
   });
 
-
-
-  router.post("/cart", (req, res) => {
-
-    db
-      .query(helpers.getDefaultToppings(), [req.body.pizza])
-      .then(data => {
   router.post("/edit", (req, res) => {
     db.query(helpers.getDefaultToppings(), [req.body.pizza]).then((data) => {
       const defaultToppings = data.rows;
+      const menuId = data.rows[0].pizza_id;
+      const menuUrl = data.rows[0].url;
+      let defaultPrice;
+      
+      if (data.rows.length) {
+        defaultPrice = data.rows[0].default_price
+      } else {
+        defaultPrice = 900
+      }
 
       pizzaId = generateRandomId();
 
       const pizza = {
         id: pizzaId,
+        menuId,
+        url: menuUrl,
         name: req.body.pizza,
         size: "small",
         toppings: defaultToppings.map((topping) => topping.name),
+        price: defaultPrice
       };
+      // console.log(pizza);
 
       /*
-          IF USER ALREADY HAS A CART IN THEIR COOKIES, USE THE EXISTING CART
-          ELSE CREATE A CART AND STORE THE CART ID AND THE
-          CART ITSELF AS COOKIES IN THE BROWSER
-        */
+        IF USER ALREADY HAS A CART IN THEIR COOKIES, USE THE EXISTING CART
+        OTHERWISE CREATE A CART AND STORE THE CART ID AND THE
+        CART ITSELF AS COOKIES IN THE BROWSER
+      */
       if (req.cookies["cartId"]) {
         cart = req.cookies["cart"];
         cart[req.cookies["cartId"]]["pizzas"].push(pizza);
@@ -224,8 +203,36 @@ module.exports = (db) => {
     });
   });
 
+  router.post("/cart", (req, res) => {
 
+    const cartId = req.cookies['cartId']
+    const cart = req.cookies['cart']
+
+    const pizzaIndex = cart[cartId]['pizzas'].length - 1;
+    const pizzaName = cart[cartId]['pizzas'][pizzaIndex]['name']
+
+    const chosenToppings = req.body.topping;
+    const chosenSize = req.body.size;
+
+    
+    db.query(helpers.getNotDefaultToppings(), [pizzaName])
+    .then(data => {
+      
+      const result = data.rows;
+
+        cart[cartId]['pizzas'][pizzaIndex]['toppings'] = chosenToppings;
+        cart[cartId].pizzas[cart[cartId].pizzas.length - 1].size = chosenSize;
+
+        for (const topping of result) {
+          if (chosenToppings.includes(topping.name)) {
+            cart[cartId].pizzas[cart[cartId].pizzas.length - 1].price += topping.price;
+          }
+          
+        }
+
+        res.cookie("cart", cart);
+        res.redirect("/api/menu/cart");
+    })
+  });
   return router;
 };
-
-

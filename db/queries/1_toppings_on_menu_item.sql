@@ -77,3 +77,28 @@ SELECT quantity, orders.id, menu_items.price, menu_items.name AS pizza_name, siz
     JOIN order_item_toppings ON order_item_id = order_items.id
     JOIN toppings ON topping_id = toppings.id
     WHERE orders.id = $1;
+
+
+
+
+/* SELECT toppings.name, topping_categories.price
+FROM orders 
+JOIN order_items ON topping_categories.id = topping_category_id
+WHERE toppings.name NOT IN ( */
+
+SELECT toppings.name, topping_categories.price
+FROM toppings 
+JOIN topping_categories ON topping_categories.id = topping_category_id
+WHERE toppings.name NOT IN (
+
+SELECT toppings.name AS included_toppings
+    FROM menu_items
+    LEFT JOIN menu_item_toppings ON menu_items.id = menu_item_id
+    JOIN toppings ON toppings.id = topping_id
+    WHERE menu_items.name LIKE '%Deluxe%'
+
+);
+
+SELECT id, photo_url
+FROM menu_items;
+

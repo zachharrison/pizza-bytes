@@ -101,7 +101,7 @@ VALUES (1, 'Mozzarella'),
 
 INSERT INTO menu_item_toppings (menu_item_id, topping_id )
 VALUES
-(1, NULL),
+(1,1),
 (2,1),
 (3,1),
 (3,4),

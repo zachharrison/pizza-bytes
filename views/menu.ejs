@@ -40,18 +40,18 @@
               </td>
               <td>
                 <div id="menu-desc" class="desc-container">
-                  <% if(result[pizza].name ==='Build Your Own' ){ %>
+                  <% if(result[pizza].name==='Build Your Own' ){ %>
                     <p> Pick your own toppings </p>
                     <% } else {%>
                       <p>
-                        <%let i = 0%>
-                        <% for (let topping of result[pizza].toppings) { %>
-                          <%i++%>
-                          <%if( i !== result[pizza].toppings.length){%>
-                            <%=topping+","%>
-                              <%} else {%>
-                                <%=topping %>
-                                  <%} } } %>
+                        <%let i=0%>
+                          <% for (let topping of result[pizza].toppings) { %>
+                            <%i++%>
+                              <%if( i !==result[pizza].toppings.length){%>
+                                <%=topping+","%>
+                                  <%} else {%>
+                                    <%=topping %>
+                                      <%} } } %>
                       </p>
                 </div>
               </td>
