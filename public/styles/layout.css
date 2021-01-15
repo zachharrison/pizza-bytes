@@ -3,7 +3,6 @@
 BE CARFUL WHEN CHANGING THIS FILE
 */
 
-
 html {
   font-family: "Merienda One", cursive;
   box-sizing: border-box;
@@ -61,4 +60,8 @@ main {
 
 #complete-body {
   background-image: none;
+}
+
+h1 {
+  text-align: center;
 }

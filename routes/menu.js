@@ -7,23 +7,24 @@
 const express = require("express");
 const router = express.Router();
 const { helpers } = require("../db/query-scripts/queryMethods.js");
-const {menuBuilder,pizzaEditor} = require("../db/query-scripts/menu-queries.js");
+const {
+  menuBuilder,
+  pizzaEditor,
+} = require("../db/query-scripts/menu-queries.js");
 const { generateRandomId } = require("../generateRandomId");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const app = express();
 const accountSid = process.env.TWILIO_SID; // Your Account SID from www.twilio.com/console
-const authToken = process.env.TWILIO_TOKEN;   // Your Auth Token from www.twilio.com/console
-const client = require('twilio')(accountSid, authToken, {
-  lazyLoading: true
+const authToken = process.env.TWILIO_TOKEN; // Your Auth Token from www.twilio.com/console
+const client = require("twilio")(accountSid, authToken, {
+  lazyLoading: true,
 });
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
-const MessagingResponse = require('twilio').twiml.MessagingResponse;
-
-
+const MessagingResponse = require("twilio").twiml.MessagingResponse;
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
@@ -57,9 +58,8 @@ module.exports = (db) => {
   // });
 
   router.get("/edit/:name", (req, res) => {
-
-    const cart = req.cookies['cart'];
-    const cartId = req.cookies['cartId'];
+    const cart = req.cookies["cart"];
+    const cartId = req.cookies["cartId"];
 
     db.query(helpers.getToppings2pt0())
       .then((data) => {
@@ -67,7 +67,7 @@ module.exports = (db) => {
           result: pizzaEditor(data.rows),
           cart: req.cookies["cart"],
           selectedPizza: req.params.name,
-          pizzaArr: Object.values(cart[cartId].pizzas)
+          pizzaArr: Object.values(cart[cartId].pizzas),
         };
 
         res.render("edit-name", templateVars);
@@ -78,26 +78,22 @@ module.exports = (db) => {
   });
 
   router.post("/complete", (req, res) => {
+    req.cookies["cartId"] = null;
+    req.cookies["cart"] = null;
 
-    req.cookies['cartId'] = null;
-    req.cookies['cart'] = null;
-
-    res.render('complete')
+    res.render("complete");
   });
 
   router.get("/complete", (req, res) => {
- 
-    res.render('complete')
+    res.render("complete");
   });
 
   router.get("/cart", (req, res) => {
-    
-    const cart = req.cookies['cart'];
-    const cartId = req.cookies['cartId'];
+    const cart = req.cookies["cart"];
+    const cartId = req.cookies["cartId"];
     const pizzaArr = Object.values(cart[cartId].pizzas);
-    
-    res.render('cart', { pizzaArr })
-    
+
+    res.render("cart", { pizzaArr });
   });
   // checkout confirmation
   router.get("/checkout", (req, res) => {
@@ -111,25 +107,25 @@ module.exports = (db) => {
       });
   });
 
-   // checkout confirmation
+  // checkout confirmation
   router.post("/checkout", (req, res) => {
-
-    const cart = req.cookies['cart'];
-    const cartId = req.cookies['cartId'];
+    const cart = req.cookies["cart"];
+    const cartId = req.cookies["cartId"];
     const pizzaArr = Object.values(cart[cartId].pizzas);
 
-    console.log('THIS IS THE PIZZA ARRAY', pizzaArr)
-    console.log('THIS IS THE CART', cart)
-    res.render('checkout', { pizzaArr })
-    
+    console.log("THIS IS THE PIZZA ARRAY", pizzaArr);
+    console.log("THIS IS THE CART", cart);
+    res.render("checkout", { pizzaArr });
+
     // res.render('checkout')
-    client.messages.create({
-      to: '+17788778963',
-      from: '+16042659587',
-      body: `Your order will be ready for pick-up in 30 minutes!`
-    })
+    client.messages
+      .create({
+        to: "+17788778963",
+        from: "+16042659587",
+        body: `Your order will be ready for pick-up in 30 minutes!`,
+      })
       .then((message) => console.log("OUTGOING MESSAGE", message.body))
-      .catch(err => console.log(err))
+      .catch((err) => console.log(err));
 
     // db.query(`
     // INSERT INTO orders ( customer_id, restaurant_id)
@@ -155,11 +151,11 @@ module.exports = (db) => {
       const menuId = data.rows[0].pizza_id;
       const menuUrl = data.rows[0].url;
       let defaultPrice;
-      
+
       if (data.rows.length) {
-        defaultPrice = data.rows[0].default_price
+        defaultPrice = data.rows[0].default_price;
       } else {
-        defaultPrice = 900
+        defaultPrice = 900;
       }
 
       pizzaId = generateRandomId();
@@ -171,7 +167,7 @@ module.exports = (db) => {
         name: req.body.pizza,
         size: "small",
         toppings: defaultToppings.map((topping) => topping.name),
-        price: defaultPrice
+        price: defaultPrice,
       };
 
       /*
@@ -204,34 +200,31 @@ module.exports = (db) => {
   });
 
   router.post("/cart", (req, res) => {
+    const cartId = req.cookies["cartId"];
+    const cart = req.cookies["cart"];
 
-    const cartId = req.cookies['cartId']
-    const cart = req.cookies['cart']
-
-    const pizzaIndex = cart[cartId]['pizzas'].length - 1;
-    const pizzaName = cart[cartId]['pizzas'][pizzaIndex]['name']
+    const pizzaIndex = cart[cartId]["pizzas"].length - 1;
+    const pizzaName = cart[cartId]["pizzas"][pizzaIndex]["name"];
 
     const chosenToppings = req.body.topping;
     const chosenSize = req.body.size;
 
-    
-    db.query(helpers.getNotDefaultToppings(), [pizzaName])
-    .then(data => {
-      
+    db.query(helpers.getNotDefaultToppings(), [pizzaName]).then((data) => {
       const result = data.rows;
 
-        cart[cartId]['pizzas'][pizzaIndex]['toppings'] = chosenToppings;
-        cart[cartId].pizzas[cart[cartId].pizzas.length - 1].size = chosenSize;
+      cart[cartId]["pizzas"][pizzaIndex]["toppings"] = chosenToppings;
+      cart[cartId].pizzas[cart[cartId].pizzas.length - 1].size = chosenSize;
 
-        for (const topping of result) {
-          if (chosenToppings.includes(topping.name)) {
-            cart[cartId].pizzas[cart[cartId].pizzas.length - 1].price += topping.price;
-          }  
+      for (const topping of result) {
+        if (chosenToppings.includes(topping.name)) {
+          cart[cartId].pizzas[cart[cartId].pizzas.length - 1].price +=
+            topping.price;
         }
+      }
 
-        res.cookie("cart", cart);
-        res.redirect("/api/menu/cart");
-    })
+      res.cookie("cart", cart);
+      res.redirect("/api/menu/cart");
+    });
   });
   return router;
 };

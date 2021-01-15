@@ -2,27 +2,21 @@
 <html lang="en">
   <head>
     <title>Orders</title>
-
-    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/orders.css" type="text/css" />
-
-    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-    <script type="text/javascript" src="/scripts/app.js"></script>
-    <!-- <script type="text/javascript" src="/scripts/menu.js"></script> -->
   </head>
 
   <body>
     <%- include('partials/restNav') %>
     <main>
       <h1>Order <%=id%></h1>
-      <table>
+      <table class="rest-tables">
         <thead class="table-headers">
           <tr class="table-rows">
           <th>Pizza</th>
           <th>Size</th>
           <th>Toppings</th>
+          </tr>
+        </thead>
+        <tbody>
         </tr>
         <% for (let item in resultObj) { %>
         <tr class='table-rows'>
@@ -30,6 +24,7 @@
           <td class="orders-table"><%= resultObj[item].size %></td>
           <td class="orders-table"><%= resultObj[item].toppings %></td>
         </tr>
+      </tbody>
         <% } %>
       </table>
     </main>
