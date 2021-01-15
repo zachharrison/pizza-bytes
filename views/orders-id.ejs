@@ -14,20 +14,21 @@
   </head>
 
   <body>
-    <%- include('partials/nav') %>
+    <%- include('partials/restNav') %>
     <main>
       <h1>Order <%=id%></h1>
       <table>
-        <tr>
+        <thead class="table-headers">
+          <tr class="table-rows">
           <th>Pizza</th>
           <th>Size</th>
           <th>Toppings</th>
         </tr>
         <% for (let item in resultObj) { %>
-        <tr>
-          <td><%= resultObj[item].name %></td>
-          <td><%= resultObj[item].size %></td>
-          <td><%= resultObj[item].toppings %></td>
+        <tr class='table-rows'>
+          <td class="orders-table"><%= resultObj[item].name %></td>
+          <td class="orders-table"><%= resultObj[item].size %></td>
+          <td class="orders-table"><%= resultObj[item].toppings %></td>
         </tr>
         <% } %>
       </table>

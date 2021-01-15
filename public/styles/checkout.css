@@ -3,9 +3,41 @@
   padding: 15px;
   border: 1px solid grey;
   border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 60vw;
+  margin-bottom: 25px;
 }
+
+.form-group {
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.form-group input {
+  padding: 10px;
+}
+
+#email-help {
+  margin-bottom: 15px;
+}
+
 
 .checkout-body {
   margin: 0px;
   margin-top: 20px;
+}
+
+.order-total {
+  font-size: 24px;
+}
+
+.form-check-input {
+  margin-top: 15px;
 }

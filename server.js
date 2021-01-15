@@ -6,10 +6,45 @@ const PORT = process.env.PORT || 8080;
 const ENV = process.env.ENV || "development";
 const express = require("express");
 const sass = require("node-sass-middleware");
+
 const app = express();
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const cookieParser = require('cookie-parser');
+
+const http = require('http');
+const MessagingResponse = require('twilio').twiml.MessagingResponse;
+const moment = require('moment');
+
+// app.post('/sms', (req, res) => {
+//   const twiml = new MessagingResponse();
+
+//   console.log(twiml.message('Response from twilio!')) //returns promise once message is sent
+//   // .then((message) => console.log(message))
+//   res.writeHead(200, { 'Content-Type': 'text/xml' });
+//   res.end(twiml.toString());
+// })
+
+// http.createServer(app).listen(3000, () => {
+//   console.log("http server listening on 3000")
+// })
+// const MessagingResponse = require('twilio').twiml.MessagingResponse;
+
+// const accountSid = process.env.TWILIO_SID; // Your Account SID from www.twilio.com/console
+// const authToken = process.env.TWILIO_TOKEN;   // Your Auth Token from www.twilio.com/console
+
+// const client = require('twilio')(accountSid, authToken, {
+//   lazyLoading: true
+// });
+
+// client.messages.create({
+//   to: '+17788778963',
+//   from: '+16042659587',
+//   body: `Your order will be ready for pick-up in 30 minutes!`
+// })
+//   .then((message) => console.log("OUTGOING MESSAGE", message.body))
+//   .catch(err => console.log(err))
+
 
 // PG database client/connection setup
 const { Pool } = require("pg");

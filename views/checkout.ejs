@@ -7,12 +7,13 @@
   </head>
   <body class="checkout-body">
     <%- include('partials/nav') %>
+    <main>
     <h3 class="title">
       Get your Pizza in the Oven! <br />
       Checkout
     </h3>
     <div>
-      <form class="checkout-form" action="/checkout" method="POST">
+      <form class="checkout-form" action="/api/menu/complete" method="POST">
         <div class="form-group">
           <label for="name">Your Name:</label>
           <input
@@ -37,10 +38,10 @@
         <div class="form-group">
           <label for="text">Phone Number:</label>
           <input
-            type="email"
+            type="phone"
             class="form-control"
             style="width: 300px; margin: 1em"
-            placeholder="email"
+            placeholder="number"
           />
           <small id="emailHelp" class="form-text text-muted"
             >We can send you a text once your order is ready.</small
@@ -56,9 +57,19 @@
             >Text Notification</label
           >
         </div>
-        <p>Order Total:</p>
+
+
+        <% let total = 0 %>
+        <% for (const pizza of pizzaArr) { %>
+            <% total += pizza.price %> 
+        <% } %> 
+
+          
+
+        <p class="order-total">Order Total: $<%= (total / 100).toFixed(2) %></p>
         <button type="submit" class="btn btn-primary">Push</button>
       </form>
     </div>
+  </main>
   </body>
 </html>

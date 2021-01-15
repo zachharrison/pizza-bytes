@@ -12,10 +12,18 @@ const { generateRandomId } = require("../generateRandomId");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const app = express();
+const accountSid = process.env.TWILIO_SID; // Your Account SID from www.twilio.com/console
+const authToken = process.env.TWILIO_TOKEN;   // Your Auth Token from www.twilio.com/console
+const client = require('twilio')(accountSid, authToken, {
+  lazyLoading: true
+});
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
+const MessagingResponse = require('twilio').twiml.MessagingResponse;
+
+
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
@@ -69,6 +77,19 @@ module.exports = (db) => {
       });
   });
 
+  router.post("/complete", (req, res) => {
+
+    req.cookies['cartId'] = null;
+    req.cookies['cart'] = null;
+
+    res.render('complete')
+  });
+
+  router.get("/complete", (req, res) => {
+ 
+    res.render('complete')
+  });
+
   router.get("/cart", (req, res) => {
     
     const cart = req.cookies['cart'];
@@ -93,59 +114,40 @@ module.exports = (db) => {
    // checkout confirmation
   router.post("/checkout", (req, res) => {
 
-    ////order id need to be fixed to actual id number
-    const cart = {
-      i7k4aA: {
-        pizzas:
-          [
-            {
-              id: 'h3a5iU',
-              menuId: 1,
-              name: "Pepperoni Pizza",
-              size: "small",
-              toppings: ["Mozzarella", "Pepperoni", "Jalepeno's"],
-              quantity: 1,
-              price: 14,
-            },
-            {
-              id: 'h4j5iG',
-              menuId: 1,
-              name: "Pepperoni Pizza2",
-              size: "medium",
-              toppings: ["Mozzarella", "Pepperoni", "Jalepeno's"],
-              quantity: 2,
-              price: 5,
-            },
-          ],
-        total: 30,
-      }
-    };
-    const parseCart = cart[Object.keys(cart)[0]];
+    const cart = req.cookies['cart'];
+    const cartId = req.cookies['cartId'];
+    const pizzaArr = Object.values(cart[cartId].pizzas);
 
-    db.query(`
-    INSERT INTO orders ( customer_id, restaurant_id)
-    VALUES ( $1, $2 ) RETURNING *
-    ;`, [1, 1])
-      .then((data) => {
-        console.log(data.rows);
-        const promises = [];
-        for (let pizza of parseCart.pizzas) {
-          const query = `INSERT INTO order_items ( order_id, menu_item_id, quantity)
-          VALUES ( $1, $2, $3);`;
-          const promise = db.query(query, [data.rows[0].menuId, pizza.menuId, pizza.quantity]);
-          promises.push(promise);
-        }
-        Promise.all(promises).then(() => {
-          res.send("ok");
+    console.log('THIS IS THE PIZZA ARRAY', pizzaArr)
+    console.log('THIS IS THE CART', cart)
+    res.render('checkout', { pizzaArr })
+    
+    // res.render('checkout')
+    client.messages.create({
+      to: '+17788778963',
+      from: '+16042659587',
+      body: `Your order will be ready for pick-up in 30 minutes!`
+    })
+      .then((message) => console.log("OUTGOING MESSAGE", message.body))
+      .catch(err => console.log(err))
 
-        });
+    // db.query(`
+    // INSERT INTO orders ( customer_id, restaurant_id)
+    // VALUES ( $1, $2 ) RETURNING *
+    // ;`, [1, 1])
+    //   .then((data) => {
+    //     console.log(data.rows);
+    //     const promises = [];
+    //     for (let pizza of parseCart.pizzas) {
+    //       const query = `INSERT INTO order_items ( order_id, menu_item_id, quantity)
+    //       VALUES ( $1, $2, $3);`;
+    //       const promise = db.query(query, [data.rows[0].menuId, pizza.menuId, pizza.quantity]);
+    //       promises.push(promise);
+    //     }
+    //     Promise.all(promises).then(() => {
+    //       res.send("ok");
+    //     });
 
-
-        /* res.render("checkout", { result }); */
-      })
-      .catch((err) => {
-        res.status(500).json({ error: err.message });
-      });
   });
 
   router.post("/edit", (req, res) => {
