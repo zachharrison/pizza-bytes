@@ -147,7 +147,6 @@ module.exports = (db) => {
     //     Promise.all(promises).then(() => {
     //       res.send("ok");
     //     });
-
   });
 
   router.post("/edit", (req, res) => {
@@ -174,7 +173,6 @@ module.exports = (db) => {
         toppings: defaultToppings.map((topping) => topping.name),
         price: defaultPrice
       };
-      // console.log(pizza);
 
       /*
         IF USER ALREADY HAS A CART IN THEIR COOKIES, USE THE EXISTING CART
@@ -228,8 +226,7 @@ module.exports = (db) => {
         for (const topping of result) {
           if (chosenToppings.includes(topping.name)) {
             cart[cartId].pizzas[cart[cartId].pizzas.length - 1].price += topping.price;
-          }
-          
+          }  
         }
 
         res.cookie("cart", cart);
