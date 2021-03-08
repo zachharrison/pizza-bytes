@@ -29,14 +29,23 @@ Each member of the group worked on all aspects - front end, back-end, as well as
 ## Screenshots
 
 !["Screenshot of home page"](https://github.com/AdamTranquilla/Food-Pick-up-Ordering/blob/master/public/img/home-page.png?raw=true)
+
 !["Screenshot of menu page"](https://github.com/AdamTranquilla/Food-Pick-up-Ordering/blob/master/public/img/menu-page.png?raw=true)
+
 !["Screenshot of the edit page"](https://github.com/AdamTranquilla/Food-Pick-up-Ordering/blob/master/public/img/edit-page.png?raw=true)
+
 !["Screenshot of the cart page"](https://github.com/AdamTranquilla/Food-Pick-up-Ordering/blob/master/public/img/cart-page.png?raw=true)
+
 !["Screenshot of the checkout page"](https://github.com/AdamTranquilla/Food-Pick-up-Ordering/blob/master/public/img/checkout-page.png?raw=true)
+
 !["Screenshot of checked out page"](https://github.com/AdamTranquilla/Food-Pick-up-Ordering/blob/master/public/img/tyvm-page.png?raw=true)
+
 !["Screenshot of restaurant login page"](https://github.com/AdamTranquilla/Food-Pick-up-Ordering/blob/master/public/img/rest-login-page2.png?raw=true)
+
 !["Screenshot of menu editor page"](https://github.com/AdamTranquilla/Food-Pick-up-Ordering/blob/master/public/img/rest-menu-item-edit.png?raw=true)
+
 !["Screenshot of all orders page"](https://github.com/AdamTranquilla/Food-Pick-up-Ordering/blob/master/public/img/rest-orders-page.png?raw=true)
+
 !["Screenshot of an order page"](https://github.com/AdamTranquilla/Food-Pick-up-Ordering/blob/master/public/img/rest-single-order.png?raw=true)
 
 ## Getting Started
